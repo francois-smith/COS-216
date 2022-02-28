@@ -1,0 +1,24 @@
+:root{
+    --accent-color: #F65050;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+}
+  
+main {
+    min-height: 100vh;
+    color: #393939;
+    font-family: Oswald, sans-serif;
+    font-weight: regular;
+}
