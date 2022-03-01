@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
     --accent-color: #F65050;
-
+    --font-color: #393939;
 }
 
 * {
@@ -16,9 +17,115 @@ html {
     width: 100%;
 }
   
-main {
+body {
     min-height: 100vh;
-    color: #393939;
-    font-family: Oswald, sans-serif;
-    font-weight: regular;
+    color: var(--font-color);
+    font-family: 'Oswald', sans-serif;
+}
+
+/*======================================Navigation============================================*/
+
+nav #top-bar{
+    height: 40px;
+    box-shadow: 0px 1px 10px rgba(246, 80, 80, 15%);
+    display: flex;
+    justify-content: space-between;
+}
+
+nav #date-time span{
+    padding-left: 15px;
+}
+
+#date-time {
+    display: flex;
+    align-items: center;
+}
+
+#date-time img {
+    height: 20px;
+}
+
+nav #title-logo {
+    display: flex;
+    align-items: center;
+    font-family: Montserrat, sans-serif;
+    font-weight: light;
+    letter-spacing: 0.03em;
+    font-size: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+nav #title-logo p {
+    padding-left: 20px;
+}
+
+nav #title-logo img {
+    height: 160px;
+}
+
+nav #links {
+    color: #fff;
+    background-color: #393939;
+    height: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+nav #links ul {
+    position: absolute;
+    display: flex;
+    list-style: none;
+    height: 100%;
+}
+
+nav #links li{
+    padding: 0px 30px;
+    font-size: 22px;
+    font-weight: 300;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 55px;
+}
+
+nav #links a{
+    text-decoration: none;
+    color: #fff;
+}
+
+nav #search-bar{
+    position: absolute;
+    right: 20px;
+    display: flex;
+    height: 100%;
+}
+
+
+
+nav #search-bar span {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#active-link {
+    height: 100%;
+    background-color: #F65050;
+    position: relative;
+}
+
+#active-link a {
+    border-bottom: 2px solid #fff;
+    padding-bottom: 5px;
+    height: auto;
+}
+/*======================================General Classes============================================*/
+
+.orange-text{
+    color: var(--accent-color);
+}
+
+.center{
+    width: 86%;
+    margin: auto;
 }
