@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --accent-color: #F65050;
+    --font-color: #393939;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+}
+  
+body {
+    min-height: 100vh;
+    color: var(--font-color);
+    font-family: 'Oswald', sans-serif;
+}
+
+/*======================================Construction Area============================================*/
+
+#construction-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+#construction-title {
+    padding-top: 200px;
+}
+
+#construction-title h1{
+    font-weight: 400;
+    font-size: 75px;
+}
+
+#construction-container img {
+    position: absolute;
+    transform: scale(0.7) translateX(250px) translateY(50px);
+}
