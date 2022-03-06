@@ -25,6 +25,11 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
+main{
+    width: 86%;
+    margin: auto;
+}
+
 /*======================================Navigation============================================*/
 
 nav #top-bar{

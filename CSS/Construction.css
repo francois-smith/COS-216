@@ -26,24 +26,3 @@ body {
 }
 
 /*======================================Construction Area============================================*/
-
-#construction-container {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
-
-#construction-title {
-    padding-top: 200px;
-}
-
-#construction-title h1{
-    font-weight: 400;
-    font-size: 75px;
-}
-
-#construction-container img {
-    position: absolute;
-    transform: scale(0.7) translateX(250px) translateY(50px);
-}
