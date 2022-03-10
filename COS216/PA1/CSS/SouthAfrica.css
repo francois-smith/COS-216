@@ -1,0 +1,228 @@
+/*Francois Smith - u21649988*/
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --accent-color: #F65050;
+    --font-color: #393939;
+    --all-color: rgb(49, 178, 187);
+    --limpopo-color: #80B1D3;
+    --mpumalanga-color: #cc9c43;
+    --kwazulunatal-color: #F47F71;
+    --easterncape-color: #8ED2C8;
+    --westerncape-color: #BC80B7;
+    --northerncape-color: #D9D9D8;
+    --nothwest-color: #F2AFD1;
+    --freestate-color: #cac24c;
+    --gauteng-color: #BFBCDA;
+}
+
+/*===========================================LatestNews===================================*/
+
+.latest-news {
+    padding: 40px 50px;
+}
+
+.latest-news-container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px); 
+    gap: 40px 40px; 
+    grid-template-areas: 
+      "latest-article1 latest-article1 side-bar"
+      "latest-article2 latest-article2 side-bar"
+      "latest-article3 latest-article3 side-bar"
+      "latest-article4 latest-article4 side-bar"; 
+}
+
+.general-latest-article {
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+}
+
+.latest-article1 { 
+    grid-area: latest-article1; 
+}
+
+.latest-article2 { 
+    grid-area: latest-article2; 
+}
+
+.latest-article3 { 
+    grid-area: latest-article3; 
+}
+
+.latest-article4 { 
+    grid-area: latest-article4; 
+}
+
+.latest-article-image {
+    width: 350px;
+    padding-right: 10px;
+}
+
+.latest-article-content {
+    padding: 0px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.latest-article-title {
+    font-size: 30px;
+    padding-bottom: 12px;
+}
+ 
+.latest-article-author {
+    padding-left: 10px;
+}
+
+.latest-article-description {
+    font-size: 18px;
+    opacity: 0.8;
+    padding-top: 8px;
+}
+
+.side-bar { 
+    grid-area: side-bar; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#weather-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #393939;
+}
+
+#weather-type{
+    margin-top: -10px;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+#weather-icon{
+    width: 200px;
+    margin-bottom: -60px;
+} 
+
+#weather-region{
+    font-size: 30px;
+}
+
+#temprature{
+    display: flex;
+}
+
+#weather-temp{
+    font-size: 50px;
+}
+
+#weather-symbol{
+    font-size: 35px;
+    padding-left: 2px;
+}
+
+#social-links{
+    padding-top: 30px;
+    width: 70%;
+}
+
+#social-links ul{
+    list-style: none;
+}
+
+#social-links img{
+    width: 50px;
+}
+
+#social-links li{
+    box-shadow: 2px 2px 5px #393939;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.social-text{
+    display: flex;
+    align-items: center;
+}
+
+.social-prompt{
+    padding-right: 10px;
+    border-left: 2px solid #fff;
+    padding-left: 10px;
+}
+
+#instagram{
+    background: #ff496d;
+}
+
+#facebook{
+    background: #2566b7;
+}
+
+#facebook .social-prompt{
+    padding-right: 20px;
+    padding-left: 15px;
+}
+
+#twitter{
+    background: #00adf6;
+}
+
+/*===========================================General Classes===================================*/
+
+.all {
+    background-color: var(--all-color);
+}
+
+.limpopop{
+    background-color: var(--limpopo-color);
+}
+
+.mpumalanga{
+    background-color: var(--mpumalanga-color);
+}
+
+.kwazulunatal{
+    background-color: var(--kwazulunatal-color);
+}
+
+.easterncape{
+    background-color: var(--easterncape-color);
+}
+
+.westerncape{
+    background-color: var(--westerncape-color);
+}
+
+.northerncape{
+    background-color: var(--northerncape-color);
+}
+
+.nothwest{
+    background-color: var(--nothwest-color);
+}
+
+.freestate{
+    background-color: var(--freestate-color);
+}
+
+.gauteng{
+    background-color: var(--gauteng-color);
+}
+
+.tag{
+    color: #fff;
+    padding: 2px 6px;
+    font-weight: 300;
+    font-size: 16px;
+}

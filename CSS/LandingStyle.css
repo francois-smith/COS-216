@@ -83,6 +83,7 @@ main #landing-body{
     flex-direction: column;
     align-items: center;
     width: 100%;
+    padding-bottom: 25px;
 }
 
 #landing-body img{
@@ -117,12 +118,13 @@ main #landing-socials{
     padding-bottom: 25px;
 }
 
-main #landing-socials span{
-    font-size: 40px;
+main #landing-socials img{
+    height: 60px;
+    width: 80px;
     text-decoration: none;
     color: #393939;
 }
 
-main #landing-socials span:hover{
-    color: var(--accent-color);
+main #landing-socials img:hover{
+    filter: invert(52%) sepia(27%) saturate(3445%) hue-rotate(326deg) brightness(85%) contrast(97%);
 }
