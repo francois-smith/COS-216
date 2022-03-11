@@ -3,11 +3,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="icon" href="img/Favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../../IMG/Favicon.ico" type="image/x-icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>NewsLodge | Daily News</title>
         <meta name="description" content="News website birning you the latest updates of things happening around the world">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link rel="stylesheet" href="../../CSS/MainStyle.css">
         <link rel="stylesheet" href="CSS/Covid.css">
     </head>
@@ -24,7 +25,7 @@
                 </div>
             </div>
             <div class="center" id="title-logo">
-                <img src="img/Logo.png" alt="logo">
+                <img src="../../IMG/Logo.png" alt="logo">
                 <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
             </div>
             <div class="center" id="links">
@@ -46,44 +47,72 @@
         </nav>
         <main>
             <section id="covid-section">
+                <div id="graph-container">
+                    <img src="img/graph.png" alt="graph">
+                </div>
                 <div class="container">
                     <div class="Overall-stats grid-container">
                         <div class="counter">
                             <span class="counter-title">Total Cases</span>
-                            <span class="counter-amount" style="color: #387cd4;">452,538,325</span>
+                            <span class="counter-amount" style="color: #2a81ea;">452,538,325</span>
                         </div>
                         <div class="counter">
                             <span class="counter-title">Recoveries</span>
-                            <span class="counter-amount" style="color: #38d45a;">379,925,570</span>
+                            <span class="counter-amount" style="color: #2eaa49;">379,925,570</span>
                         </div>
                         <div class="counter">
                             <span class="counter-title">Total Deaths</span>
                             <span class="counter-amount" style="color: #ff5f5f;">6,047,631</span>
                         </div>
                     </div>
-                    <div class="graph grid-container">
-                        <img src="https://corona.dnsforfamily.com/graph.png?c=ZA" alt="">
+                    <div class="infographic">
+                        <div id="infographic-container">
+                            <div id="infographic-title">
+                                <span id="infographic-main">CORONA</span>
+                                <div id="infographic-float-container">
+                                    <span id="infographic-float">COVID-19</span>
+                                    <span id="infographic-main2">VIRUS</span>
+                                </div>
+                            </div>
+                            <p id="infographic-text">
+                                The Coronavirus (COVID-19) was first reported in Wuhan, Hubei, China in December 2019, the outbreak was later recognized as a pandemic by the World Health Organization (WHO) on 11 March 2020.
+                            </p>
+                        </div>
+                        <img src="img/infographic.png" alt="">
                     </div>
-                    <div class="mortality grid-container">
-                        
-                            
+                    <div class="Mortailty grid-container">
+                        <p>56%</p>    
+                        <img src="img/donut.png" alt="donut graph">
                     </div>
-                    <div class="cases-today grid-container">
-
+                    <div class="cases-today grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/covid-svgrepo-com.svg" alt="covid">
+                        <div class="stat-info">
+                            <span class="stat-title">South Africa New Cases</span>
+                            <span class="stat-amount">1,803</span>
+                        </div>
                     </div>
-                    <div class="deaths-today grid-container">
-                        
+                    <div class="deaths-today grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/skull.svg" alt="bed">
+                        <div class="stat-info">
+                            <span class="stat-title">South Africa New Deaths</span>
+                            <span class="stat-amount">25</span>
+                        </div>
                     </div>
-                    <div class="covid-svg">
-
+                    <div class="ifr grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/blood.svg" alt="bed">
+                        <div class="stat-info">
+                            <span class="stat-title">IFR Rate</span>
+                            <span class="stat-amount">0.725%</span>
+                        </div>
                     </div>
-                    <div class="covid-title">
-
+                    <div class="cfr grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/case.svg" alt="bed">
+                        <div class="stat-info">
+                            <span class="stat-title">CFR Rate</span>
+                            <span class="stat-amount">2.32%</span>
+                        </div>
                     </div>
-                    <div class="ifr-cfr grid-container">
-
-                    </div>
-                  </div>
+                </div>
             </section>
         </main>
         <script src="js/" async defer></script>

@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
-    --accent-color: #F65050;
+    --accent-color: #2a81ea;
     --font-color: #393939;
 }
 
@@ -67,12 +67,12 @@ nav #landing-nav a::before{
 }
 
 nav #landing-nav a {
-    box-shadow: inset 0 0 0 0 #d64a4a;
+    box-shadow: inset 0 0 0 0 var(--accent-color);
     transition: color .25s ease-in-out, box-shadow .25s ease-in-out;
 }
 
 nav #landing-nav a:hover {
-    box-shadow: inset 0 0 200px 0 #d64a4a;
+    box-shadow: inset 0 0 200px 0 var(--accent-color);
     color: white;
 }
 
@@ -126,5 +126,5 @@ main #landing-socials img{
 }
 
 main #landing-socials img:hover{
-    filter: invert(52%) sepia(27%) saturate(3445%) hue-rotate(326deg) brightness(85%) contrast(97%);
+    filter: invert(58%) sepia(45%) saturate(6825%) hue-rotate(195deg) brightness(93%) contrast(98%);
 }

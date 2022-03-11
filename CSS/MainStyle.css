@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
-    --accent-color: #F65050;
+    --accent-color: #2a81ea;
     --font-color: #393939;
 }
 
@@ -120,18 +120,18 @@ nav #links a::before{
     background-color: #fff;
 }
 
-a {
-    box-shadow: inset 0 0 0 0 #d64a4a;
+nav a {
+    box-shadow: inset 0 0 0 0 var(--accent-color);
     transition: color .25s ease-in-out, box-shadow .25s ease-in-out;
 }
 
-a:hover {
-    box-shadow: inset 0 0 200px 0 #d64a4a;
+nav a:hover {
+    box-shadow: inset 0 0 200px 0 var(--accent-color);
     color: white;
 }
 
 #active-link {
-    background-color: #F65050;
+    background-color: var(--accent-color);
     pointer-events: none;
 }
 

@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
-    --accent-color: #F65050;
+    --accent-color: #056cc4;
     --font-color: #393939;
     --all-color: rgb(49, 178, 187);
     --limpopo-color: #80B1D3;
@@ -34,10 +34,12 @@
       "latest-article4 latest-article4 side-bar"; 
 }
 
-.general-latest-article {
+.general-latest-article a{
     overflow: hidden;
     cursor: pointer;
     display: flex;
+    text-decoration: none;
+    color: var(--font-color);
 }
 
 .latest-article1 { 
@@ -61,11 +63,16 @@
     padding-right: 10px;
 }
 
+.general-latest-article:hover .latest-article-content{
+    transform: translateX(10px);
+}
+
 .latest-article-content {
     padding: 0px 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 0.4s;
 }
 
 .latest-article-title {
@@ -148,6 +155,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#social-links li:hover{ 
+    filter: brightness(0.8);
 }
 
 .social-text{

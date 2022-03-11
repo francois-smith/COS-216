@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
-    --accent-color: #F65050;
+    --accent-color: #2a81ea;
     --font-color: #393939;
 }
 
@@ -26,3 +26,25 @@ body {
 }
 
 /*======================================Construction Area============================================*/
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+#img-container {
+    width: 84%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}   
+
+#img-container img{
+    padding-top: 30px;
+    position: absolute;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
