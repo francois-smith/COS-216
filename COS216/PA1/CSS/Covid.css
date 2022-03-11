@@ -7,3 +7,86 @@
 }
 
 /*===========================================Covid Page Styling===================================*/
+
+#covid-section{
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 86%;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1.4fr; 
+    grid-template-rows: 200px 1fr 200px 200px 320px 250px; 
+    gap: 30px 30px; 
+    grid-template-areas: 
+      "Overall-stats Overall-stats"
+      "graph graph"
+      "mortality cases-today"
+      "mortality deaths-today"
+      "covid-svg covid-title"
+      "ifr-cfr ifr-cfr"; 
+}
+
+.grid-container{
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,0.2);
+}
+
+.Overall-stats { 
+    grid-area: Overall-stats; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.counter{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.counter-title{
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.counter-amount{
+    font-size: 32px;
+}
+
+.graph { 
+    grid-area: graph; 
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(105%) contrast(104%);
+}
+
+.graph img { 
+    width: 100%;
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,0.2);
+}
+
+.mortality { 
+    grid-area: mortality; 
+}
+
+.cases-today { 
+    grid-area: cases-today; 
+}
+
+.deaths-today { 
+    grid-area: deaths-today; 
+}
+
+.covid-svg { 
+    grid-area: covid-svg; 
+}
+
+.covid-title { 
+    grid-area: covid-title; 
+}
+
+.ifr-cfr { 
+    grid-area: ifr-cfr; 
+}
