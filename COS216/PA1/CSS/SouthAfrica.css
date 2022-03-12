@@ -19,14 +19,14 @@
 /*===========================================LatestNews===================================*/
 
 .latest-news {
-    padding: 40px 50px;
+    padding: 40px 35px;
 }
 
 .latest-news-container {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px); 
-    gap: 40px 40px; 
+    gap: 25px 25px; 
     grid-template-areas: 
       "latest-article1 latest-article1 side-bar"
       "latest-article2 latest-article2 side-bar"
@@ -56,6 +56,25 @@
 
 .latest-article4 { 
     grid-area: latest-article4; 
+}
+
+.img-container {
+    position: relative;
+}
+
+div.img-container span {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #393939;
+    color: rgb(212, 212, 212);
+    padding: 5px;
+    border-radius: 5px;
+}
+  
+div.img-container:hover span {
+    display: block;
 }
 
 .latest-article-image {
