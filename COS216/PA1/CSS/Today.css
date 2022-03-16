@@ -4,14 +4,6 @@
 :root{
     --accent-color: #056cc4;
     --font-color: #393939;
-    --all-color: #bbd13d;
-    --covid-color: #2ECC71;
-    --lifestyle-color: #A56CBD;
-    --sports-color: #997C00;
-    --technology-color: #42C0F5;
-    --global-color: #F65050;
-    --business-color: #0088FF;
-    --gaming-color: #e7b54a;
 }
 
 /*===========================================Trending Section===================================*/
@@ -232,38 +224,6 @@
 }
 
 /*===========================================General Classes===================================*/
-
-.all {
-    background-color: var(--all-color);
-}
-
-.covid{
-    background-color: var(--covid-color);
-}
-
-.sports{
-    background-color: var(--sports-color);
-}
-
-.tech{
-    background-color: var(--technology-color);
-}
-
-.gaming{
-    background-color: var(--gaming-color);
-}
-
-.business{
-    background-color: var(--business-color);
-}
-
-.global{
-    background-color: var(--global-color);
-}
-
-.life{
-    background-color: var(--lifestyle-color);
-}
 
 .tag{
     color: #fff;
