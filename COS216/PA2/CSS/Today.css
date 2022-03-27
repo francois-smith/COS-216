@@ -1,0 +1,278 @@
+/*Francois Smith - u21649988*/
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --accent-color: #056cc4;
+    --font-color: #393939;
+}
+
+/*===========================================Trending Section===================================*/
+.trending-news{
+    padding: 0px 50px;
+}
+
+.trending-container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: minmax(200px, 250px) minmax(200px, 250px); 
+    gap: 15px 15px; 
+    grid-template-areas: 
+      "article1 article1 article2 article3"
+      "article1 article1 article4 article4"; 
+}
+  
+.general-article{
+    cursor: pointer;
+}
+
+.general-article a {
+    display: none;
+}
+
+.article1 { 
+    grid-area: article1; 
+    position: relative;
+    overflow: hidden;
+}
+
+.article2 { 
+    grid-area: article2; 
+    position: relative;
+    overflow: hidden;
+}
+
+.article3 { 
+    grid-area: article3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.article4 { 
+    grid-area: article4; 
+    position: relative;
+    overflow: hidden;
+}
+
+.card-article-content{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 25px 25px;
+    transition: all 0.3s ;
+}
+
+.card-author-date{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.card-article-title{
+    padding-top: 8px;
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.2em;
+}
+
+.card-article-title-small{
+    padding-top: 8px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.card-article-image {
+    width: 100%;
+    position: absolute;
+    object-fit: fill;
+    bottom: 0px;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*===========================================Today News===================================*/
+
+.latest-news {
+    padding: 0px 50px 30px;
+}
+
+.latest-container {
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    grid-template-rows: 120px 120px 120px 120px 120px; 
+    gap: 20px 40px; 
+}
+
+.main-article { 
+    grid-area: 1 / 1 / 6 / 2; 
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.main-article a{
+    display: none;
+}
+
+.sub-article-general .tag{
+    display: none;
+}
+
+.sub-article-general a{
+    display: none;
+}
+
+.sub-article1 { 
+    grid-area: 1 / 2 / 2 / 3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.sub-article2 { 
+    grid-area: 2 / 2 / 3 / 3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.sub-article3 { 
+    grid-area: 3 / 2 / 4 / 3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.sub-article4 { 
+    grid-area: 4 / 2 / 5 / 3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.sub-article5 { 
+    grid-area: 5 / 2 / 6 / 3; 
+    position: relative;
+    overflow: hidden;
+}
+
+.latest-header {
+    position: relative;
+    justify-content: space-between;
+}
+
+.filters-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-bottom: 10px;
+}
+
+.filter{
+    color: rgb(255, 255, 255);
+    padding: 4px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.grid-article-image-main {
+    height: 70%;
+}
+
+.grid-article-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px 30px 0px;
+    transition: all 0.4s;
+}
+
+.main-article:hover .grid-article-content{
+    transform: translateX(15px);
+}
+
+.main-article:hover .grid-article-image-main{
+    filter: brightness(0.65);
+}
+
+.grid-author-date {
+    font-size: 0.9em;
+    padding-bottom: 5px;
+}
+
+.grid-article-title {
+    font-size: 1.5em;
+    padding-bottom: 5px;
+}
+
+.grid-article-description {
+    font-weight: 300;
+    font-size: 1.2em;
+    color: #39393994;
+}
+
+.sub-article-general{
+    display: flex;
+    cursor: pointer;
+}
+
+.grid-article-image-sub {
+    width: 180px;
+}
+
+.sub-article-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    transition: all 0.4s;
+}
+
+.sub-article-general:hover .sub-article-content{
+    transform: translateX(15px);
+}
+
+.sub-author-date {
+    font-weight: 300;
+    padding-top: 10px;
+}
+
+.sub-article-title {
+    font-size: 1.4em;
+    padding-top: 10px;
+    line-height: 1.4em;
+}
+
+/*===========================================General Classes===================================*/
+
+.tag{
+    color: #fff;
+    padding: 3px 12px;
+    font-weight: 300;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    text-transform: capitalize;
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+
+.general-article:hover .overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.general-article:hover .card-article-content{
+    transform: translateX(10px);
+}
+
+.section-title {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    color: var(--accent-color);
+    font-weight: 500;
+    width: 100%;
+    border-bottom: 2px solid var(--font-color);
+}

@@ -102,12 +102,23 @@ nav #search-bar{
     padding-right: 20px;
 }
 
-nav #search-bar span {
+nav #search-bar input {
     color: rgba(255, 255, 255, 0.3);
+    background-color: #393939;
+    font-size: 16px;
+    border: none;
+    border-left: solid 1px rgba(255, 255, 255, 0.3);
     font-weight: 300;
-    padding-right: 50px;
-    padding-left: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0px 10px;
+    margin: 0px 20px;
+}
+
+nav #search-bar div{
+    cursor: pointer;
+}
+
+nav #search-bar:hover svg{
+    filter: invert(58%) sepia(45%) saturate(6825%) hue-rotate(195deg) brightness(120%) contrast(98%);
 }
 
 nav #search-bar svg {
@@ -200,4 +211,41 @@ footer {
 .center{
     width: 86%;
     margin: auto;
+}
+
+#loading-background{
+    position: fixed;
+    background-color: #393939;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+#loading-background p {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 200;
+    width: 100%;
+    text-align: center;
+    top: 50%;    
+    position: fixed;
+}
+
+#loading-background.display {
+    opacity: 1;
+    display: block;
+}
+
+#loading {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    margin-top: -100px;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
 }

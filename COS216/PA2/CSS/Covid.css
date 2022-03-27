@@ -1,0 +1,197 @@
+/*Francois Smith - u21649988*/
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --accent-color: #2a81ea;
+    --font-color: #393939;
+}
+
+/*===========================================Covid Page Styling===================================*/
+
+#covid-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#graph-container{
+    padding-top: 20px;
+}
+
+.grid-container{
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    width: 86%;
+    display: grid; 
+    grid-template-columns: 0.8fr 1fr 1fr; 
+    grid-template-rows: 200px 600px 180px 180px; 
+    gap: 20px 20px; 
+    padding-bottom: 30px;
+}
+
+.Overall-stats { 
+    grid-area: 1 / 1 / 2 / 4; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.counter{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.counter-title{
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.counter-amount{
+    font-size: 32px;
+}
+
+.Mortailty { 
+    grid-area: 3 / 1 / 5 / 2; 
+    position: relative;
+    text-align: center;
+}
+
+.Mortailty p{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 300;
+    padding-left: 18px;
+    padding-bottom: 18px;
+}
+
+.Mortailty img{
+    width: 360px;
+}
+
+.stat-card{
+    display: flex;
+    align-items: center;
+}
+
+.stat-image{
+    height: 100px;
+    padding: 15px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.cases-today { 
+    grid-area: 3 / 2 / 4 / 3; 
+}
+
+.cases-today img{
+    height: 100px;
+    background: linear-gradient(to right, #2a81ea 0%, #185aaa 100%);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.deaths-today { 
+    grid-area: 3 / 3 / 4 / 4; 
+}
+
+.deaths-today img{
+    background: linear-gradient(87deg, #ff5f5f 0, #a82b2b 100%);
+}
+
+.stat-info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 45px;
+}
+
+.stat-title{
+    font-size: 22px;
+    font-weight: 400;
+    color: #393939bd;
+}
+
+.stat-amount{
+    font-size: 38px;
+}
+
+.ifr { 
+    grid-area: 4 / 2 / 5 / 3; 
+}
+
+.ifr img{
+    background: linear-gradient(135deg, #ff9a48 0%, #cc732a 100%);
+}
+
+.cfr { 
+    grid-area: 4 / 3 / 5 / 4; 
+}
+
+.cfr img {
+    background: linear-gradient(to right, #2eaa49 0%, #19792e 100%);
+}
+
+.infographic{
+    grid-area: 2 / 1 / 3 / 4;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.infographic img{
+    height: 520px;
+}
+
+#infographic-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+#infographic-title {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 50px;
+}
+
+#infographic-main {
+    font-weight: 700;
+    font-size: 90px;
+    color: #393939c0;
+}
+
+#infographic-main2 {
+    font-weight: 700;
+    font-size: 50px;
+    color: #393939c0;
+    margin-top: -20px;
+    padding-bottom: 12px;
+}
+
+#infographic-float-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: 5px;
+} 
+
+#infographic-float {
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--accent-color);
+}
+
+#infographic-text {
+    font-weight: 300;
+    color: #393939c0;
+    font-size: 22px;
+}
