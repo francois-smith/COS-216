@@ -33,7 +33,6 @@ function loadTodayArticles(){
         populateSubArticles(json);
         generateFilters(json);
     };
-
     
     request.send();
 }
@@ -185,11 +184,6 @@ function tagGenerator(){
     return colors[i];
 }
 
-function filter(event){
-    const filterType = event;
-    alert(filterType.innerHTML);
-}
-
 function search(){
     var searchText = document.getElementById("searchBox");
 
@@ -200,14 +194,15 @@ function search(){
 
     const request = new XMLHttpRequest();
 
-    var offset = Math.floor(Math.random()*50);
-    var requestURL = "https://webit-news-search.p.rapidapi.com/search?q="+ searchText.value +"&language=en&number=50&offset=0"+offset;
+    var offset = Math.floor(Math.random()*8);
+    console.log(offset);
+    var requestURL = "https://newscatcher.p.rapidapi.com/v1/search_free?q="+searchText.value+"&lang=en&page="+offset+"&page_size=30&media=True";
     request.open("GET", requestURL);
-    request.setRequestHeader("x-rapidapi-host", "webit-news-search.p.rapidapi.com");
-    request.setRequestHeader("x-rapidapi-key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
+    request.setRequestHeader("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
+    request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
     request.onload = () => {
         var data = JSON.parse(request.responseText);
-        populateSearchResults(data);
+        populateSearchResults(data, searchText);
     };
 
     request.send();
@@ -218,53 +213,129 @@ function goToLink(event){
     window.open(link, '_blank').focus();
 }
 
-function populateSearchResults(json){
+function populateSearchResults(json, searchText){
     const articlesList = document.getElementsByClassName("general-article");
     console.log(json);
     var i = 0;
 
     for (let article of articlesList) {
         //set data variable
-        var data = json.data.results[i];
-        i += 2;
-
+        var data = json.articles[i];
+        i++;
         console.log(data);
 
-        // //set link
+        //set link
         var link = article.querySelector(".link");
-        link.setAttribute("href", data.url)
+        link.setAttribute("href", data.link)
 
-        // //set title of article
+        //set title of article
         var title = article.querySelector('.card-article-title, .card-article-title-small');
         if(data.title == ""){
-            title.innerHTML = "Visit article for further information";
+             title.innerHTML = "Visit article for further information";
         }
         else {
             title.innerHTML = data.title;
         }
 
-        // //set author and date
+        //set image
+        var image = article.querySelector(".card-article-image");
+        image.src = data.media;
+
+        //set author and date
         var author_date = article.querySelector('.card-author-date');
         var author = data.author;
         if(author == null)
         {
             author = "By Unknown Author";
         } 
-        author_date.innerHTML = author + " - " + data.date.substr(0, data.date.indexOf(' '));
+        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf(' '));
 
-        // // //set image
-        var image = article.querySelector(".card-article-image");
-        image.src = data.image;
-
-        // //set tag category with random color
+        //set tag category with random color
         var tag = article.querySelector(".tag");
-        if(data.keywords == null)
+        if(data.topic == null)
         {
-             tag.innerHTML = "General";
+            tag.innerHTML = "General";
         }
         else {
-             tag.innerHTML = data.keywords[0];
+            tag.innerHTML = data.topic;
         }   
         tag.style.background = tagGenerator();
     }    
+}
+
+function filter(event){
+    const filterType = event.innerHTML.toLowerCase();
+    const articles = document.getElementsByClassName("sub-article-general");
+    var i = 0;
+
+    if(filterType == "all"){
+        populateSubArticles(json);
+        return;
+    }
+
+    var filtered = new Array(5);
+    for (let data of json.results) {
+        if(data.section == filterType){
+            filtered[i] = data;
+            i++;
+        }
+
+        if(i == 5)
+            break;
+    }
+
+    for (let article of articles){
+        var link = article.querySelector(".link");
+        link.setAttribute("href", "")
+
+        //set title of article
+        var title = article.querySelector('.sub-article-title');
+        title.innerHTML = "";
+
+        // //set author and date
+        var author_date = article.querySelector('.sub-author-date');
+        author_date.innerHTML = "";
+
+        //set image
+        var image = article.querySelector(".grid-article-image-sub");
+        image.src = "";
+
+        // //set tag category with random color
+        var tag = article.querySelector(".tag");
+        tag.innerHTML = "";
+    }
+
+    i = 0;
+    for (let article of articles) {
+        //set data variable
+        var data = filtered[i];
+
+        console.log("wad");
+        
+        //set link
+        var link = article.querySelector(".link");
+        link.setAttribute("href", data.url)
+
+        //set title of article
+        var title = article.querySelector('.sub-article-title');
+        title.innerHTML = data.title;
+
+        // //set author and date
+        var author_date = article.querySelector('.sub-author-date');
+        var author = data.byline;
+        if(author == "")
+        {
+            author = "By New York Times";
+        } 
+        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf('T'));
+
+        //set image
+        var image = article.querySelector(".grid-article-image-sub");
+        image.src = data.multimedia[0].url;
+
+        // //set tag category with random color
+        var tag = article.querySelector(".tag");
+        tag.innerHTML = data.section;
+        i++;
+    }   
 }
