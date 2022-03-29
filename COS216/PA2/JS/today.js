@@ -59,7 +59,15 @@ function populateInitialTrendingArticles(json){
         {
             author = "By New York Times";
         } 
-        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf('T'));
+
+        const formatter = new Intl.DateTimeFormat("en-SA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+        const date = new Date();
+        const result = formatter.format(date);
+        author_date.innerHTML = author + " - " + result;
 
         //set image
         var image = article.querySelector(".card-article-image");
@@ -98,7 +106,15 @@ function populateMainArticle(json){
     {
         author = "By New York Times";
     } 
-    author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf('T'));
+
+    const formatter = new Intl.DateTimeFormat("en-SA", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    })
+    const date = new Date()
+    const result = formatter.format(date)
+    author_date.innerHTML = author + " - " + result;
 
     //set image
     var image = mainArticle.querySelector(".grid-article-image-main");
@@ -142,7 +158,15 @@ function populateSubArticles(json){
         {
             author = "By New York Times";
         } 
-        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf('T'));
+
+        const formatter = new Intl.DateTimeFormat("en-SA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+        const date = new Date()
+        const result = formatter.format(date)
+        author_date.innerHTML = author + " - " + result;
 
         //set image
         var image = article.querySelector(".grid-article-image-sub");
@@ -248,7 +272,15 @@ function populateSearchResults(json, searchText){
         {
             author = "By Unknown Author";
         } 
-        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf(' '));
+
+        const formatter = new Intl.DateTimeFormat("en-SA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+        const date = new Date()
+        const result = formatter.format(date);
+        author_date.innerHTML = author + " - " + result;
 
         //set tag category with random color
         var tag = article.querySelector(".tag");
@@ -327,7 +359,15 @@ function filter(event){
         {
             author = "By New York Times";
         } 
-        author_date.innerHTML = author + " - " + data.published_date.substr(0, data.published_date.indexOf('T'));
+
+        const formatter = new Intl.DateTimeFormat("en-SA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+        const date = new Date()
+        const result = formatter.format(date);
+        author_date.innerHTML = author + " - " + result;
 
         //set image
         var image = article.querySelector(".grid-article-image-sub");
