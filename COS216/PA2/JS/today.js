@@ -38,6 +38,7 @@ function loadTodayArticles(){
 }
 
 function populateInitialTrendingArticles(json){
+    console.log(json);
     const articles = document.getElementsByClassName("general-article");
 
     for (let article of articles) {
@@ -46,7 +47,7 @@ function populateInitialTrendingArticles(json){
 
         //set link
         var link = article.querySelector(".link");
-        link.setAttribute("href", data.url)
+        link.setAttribute("href", data.url);
 
         //set title of article
         var title = article.querySelector('.card-article-title, .card-article-title-small');
@@ -172,7 +173,6 @@ function populateSubArticles(json){
         var image = article.querySelector(".grid-article-image-sub");
         image.src = data.multimedia[0].url;
 
-        // //set tag category with random color
         var tag = article.querySelector(".tag");
         tag.innerHTML = data.section;
     }   
@@ -219,7 +219,6 @@ function search(){
     const request = new XMLHttpRequest();
 
     var offset = Math.floor(Math.random()*8);
-    console.log(offset);
     var requestURL = "https://newscatcher.p.rapidapi.com/v1/search_free?q="+searchText.value+"&lang=en&page="+offset+"&page_size=30&media=True";
     request.open("GET", requestURL);
     request.setRequestHeader("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
