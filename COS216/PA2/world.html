@@ -1,0 +1,200 @@
+<!--Francois SMith - u21649988-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NewsLodge | Daily News</title>
+        <meta name="description" content="News website birning you the latest updates of things happening around the world">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../CSS/MainStyle.css">
+        <link rel="stylesheet" href="CSS/world.css">
+    </head>
+    <body>
+        <nav>
+            <div id="top-bar-container">
+                <div id="top-bar" class="center">
+                    <!--div below will update the current day when website opens, as this is javascript it will be implemented later-->
+                    <div id="date-time" class="center">                    
+                        <img alt="image of clock" src="img/Time.png">
+                        <span>weekday, day month year</span>
+                    </div>
+                    <div id="socials">
+                        <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg"></a>
+                        <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg"></a>
+                        <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center" id="title-logo">
+                <img src="../../IMG/Logo.png" alt="logo">
+                <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
+            </div>
+            <div class="center" id="links">
+                <div id="link-container">
+                    <a href="today.html"><span>Today</span></li>
+                    <a href="south-africa.html"><span>South Africa</span></a>
+                    <a id="active-link" href=""><span>World</span></a>
+                    <a href="covid.html"><span>COVID-19</span></a>
+                    <a href="../../construction.html"><span>Calendar</span></a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <section class="tech-News">
+                <div class="tech-header">
+                    <h2 class="section-title">Technology</h2>
+                    <div class="tech-filters-container">
+                        <span class="tech-filter" onclick="techFilter(this)"></span>
+                    </div>
+                </div>
+
+                <div class="tech-container">
+                    <div onclick="goToLink(this)" class="tech-article-main1 tech-article-main-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-main-image" src="" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-main-content">
+                            <span class="tech-article-main-author">awdawdaw</span>
+                            <span class="tech-article-main-title">awdadaw</span>
+                            <span class="tech-article-main-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="tech-article-main2 tech-article-main-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-main-image" src="" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-main-content">
+                            <span class="tech-article-main-author">awdawdaw</span>
+                            <span class="tech-article-main-title">awdadaw</span>
+                            <span class="tech-article-main-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="tech-article-main3 tech-article-main-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-main-image" src="" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-main-content">
+                            <span class="tech-article-main-author">awdawdaw</span>
+                            <span class="tech-article-main-title">awdadaw</span>
+                            <span class="tech-article-main-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="tech-article-sub1 tech-article-sub-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-sub-image" src="960x0.jpg" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-sub-content">
+                            <span class="tech-article-sub-author">awdawdaw</span>
+                            <span class="tech-article-sub-title">awdadaw</span>
+                        </div> 
+                    </div>
+                    <div onclick="goToLink(this)" class="tech-article-sub2 tech-article-sub-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-sub-image" src="" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-sub-content">
+                            <span class="tech-article-sub-author">awdawdaw</span>
+                            <span class="tech-article-sub-title">awdadaw</span>
+                        </div> 
+                    </div>
+                    <div onclick="goToLink(this)" class="tech-article-sub3 tech-article-sub-general">
+                        <a href="" class="link"></a>
+                        <img class="tech-article-sub-image" src="" alt="">
+                        <span class="tag tech"></span>
+                        <div class="tech-article-sub-content">
+                            <span class="tech-article-sub-author">awdawdaw</span>
+                            <span class="tech-article-sub-title">awdadaw</span>
+                        </div> 
+                    </div>
+                </div>
+            </section>
+            <section class="sports-news">
+                <div class="sports-header">
+                    <h2 class="section-title">Sports</h2>
+                    <div class="sports-filters-container">
+                        <span class="sports-filter" onclick="sportFilter(this)"></span>
+                    </div>
+                </div>
+                
+                <div class="sports-container">
+                    <div onclick="goToLink(this)" class="main-sports-article">
+                        <a href="" class="link"></a>
+                        <img class="sport-article-image-main" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-article-content-main">
+                            <span class="sport-article-author-main">awdawdaw</span>
+                            <span class="sport-article-title-main">awdadaw</span>
+                            <span class="sport-article-description-main">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="sport-sub-article1 sport-sub-article-general">
+                        <a href="" class="link"></a>
+                        <img class="sport-sub-article-image" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-sub-article-content">
+                            <span class="sport-sub-author-date">awdawdaw</span>
+                            <span class="sport-sub-article-title">awdawddaw</span>
+                        </div> 
+                    </div>
+                    <div onclick="goToLink(this)" class="sport-sub-article2 sport-sub-article-general">
+                        <a href="" class="link"></a>
+                        <img class="sport-sub-article-image" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-sub-article-content">
+                            <span class="sport-sub-author-date">wadawdaw</span>
+                            <span class="sport-sub-article-title">awdwada</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="sport-sub-article3 sport-sub-article-general">
+                        <a href="" class="link"></a>
+                        <img class="sport-sub-article-image" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-sub-article-content">
+                            <span class="sport-sub-author-date">awdawdaw</span>
+                            <span class="sport-sub-article-title">awdawdaw</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="sport-sub-article4 sport-sub-article-general">
+                        <a href="" class="link"></a>
+                        <img class="sport-sub-article-image" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-sub-article-content">
+                            <span class="sport-sub-author-date">wadawda</span>
+                            <span class="sport-sub-article-title">awdawdaw</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="sport-sub-article5 sport-sub-article-general">
+                        <a href="" class="link"></a>
+                        <img class="sport-sub-article-image" src="" alt="">
+                        <span class="tag sport"></span>
+                        <div class="sport-sub-article-content">
+                            <span class="sport-sub-author-date">awdawda</span>
+                            <span class="sport-sub-article-title">adawdawd</span>
+                        </div>
+                    </div>
+                  </div>
+            </section>
+        </main>
+        <footer>
+            <div id="footer-socials">
+                <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg"></a>
+                <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg"></a>
+                <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg"></a>
+            </div>
+            <div id="footer-links">
+                <a href="today.html" class="footer-link">Today</a>
+                <a href="" class="footer-link">South Africa</a>
+                <a href="../../construction.html" class="footer-link">World</a>
+                <a href="covid.html" class="footer-link">Covid-19</a>
+                <a href="../../construction.html" class="footer-link">Calendar</a>
+            </div>
+            <div id="footer-copyright">
+                <p>&copy;2022 NewsLodge All Rights Reserved</p>
+            </div>
+        </footer>
+        <script src="JS/general.js"></script>
+        <script src="js/world.js"></script>
+    </body>
+</html>
