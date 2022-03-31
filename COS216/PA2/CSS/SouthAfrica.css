@@ -4,16 +4,6 @@
 :root{
     --accent-color: #056cc4;
     --font-color: #393939;
-    --all-color: rgb(49, 178, 187);
-    --limpopo-color: #80B1D3;
-    --mpumalanga-color: #cc9c43;
-    --kwazulunatal-color: #F47F71;
-    --easterncape-color: #8ED2C8;
-    --westerncape-color: #BC80B7;
-    --northerncape-color: #D9D9D8;
-    --nothwest-color: #F2AFD1;
-    --freestate-color: #cac24c;
-    --gauteng-color: #BFBCDA;
 }
 
 /*===========================================LatestNews===================================*/
@@ -107,6 +97,8 @@ div.img-container:hover span {
     font-size: 18px;
     opacity: 0.8;
     padding-top: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .side-bar { 
@@ -212,49 +204,10 @@ div.img-container:hover span {
 
 /*===========================================General Classes===================================*/
 
-.all {
-    background-color: var(--all-color);
-}
-
-.limpopop{
-    background-color: var(--limpopo-color);
-}
-
-.mpumalanga{
-    background-color: var(--mpumalanga-color);
-}
-
-.kwazulunatal{
-    background-color: var(--kwazulunatal-color);
-}
-
-.easterncape{
-    background-color: var(--easterncape-color);
-}
-
-.westerncape{
-    background-color: var(--westerncape-color);
-}
-
-.northerncape{
-    background-color: var(--northerncape-color);
-}
-
-.nothwest{
-    background-color: var(--nothwest-color);
-}
-
-.freestate{
-    background-color: var(--freestate-color);
-}
-
-.gauteng{
-    background-color: var(--gauteng-color);
-}
-
 .tag{
     color: #fff;
     padding: 2px 6px;
     font-weight: 300;
     font-size: 16px;
+    text-transform: capitalize;
 }
