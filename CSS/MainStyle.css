@@ -46,10 +46,13 @@ nav #top-bar{
 #date-time {
     display: flex;
     align-items: center;
+    margin: 0;
+    padding-bottom: 5px;
 }
 
 #date-time img {
     height: 20px;
+    padding-right: 10px;
 }
 
 #socials a{
