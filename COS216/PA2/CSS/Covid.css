@@ -15,7 +15,11 @@
 }
 
 #graph-container{
-    padding-top: 20px;
+    width: 90%;
+    height: 420px;
+    padding: 25px;
+    display: table-cell;
+    margin: 20px 0px;
 }
 
 .grid-container{
@@ -57,23 +61,30 @@
     grid-area: 3 / 1 / 5 / 2; 
     position: relative;
     text-align: center;
-}
-
-.Mortailty p{
-    position: absolute;
-    width: 100%;
-    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
-    font-weight: 300;
-    padding-left: 18px;
-    padding-bottom: 18px;
+    overflow: hidden;
 }
 
-.Mortailty img{
-    width: 360px;
+.Mortailty #doughnut{
+    margin-top: 40px;
+}
+
+.Mortailty h3{
+    position: absolute;
+    top: 10px;
+    font-weight: 300;
+    font-size: 32px;
+    font-family: 'Oswald', sans-serif;
+}
+
+#tooltip-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-49%, -30%);
 }
 
 .stat-card{
