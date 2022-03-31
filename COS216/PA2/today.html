@@ -13,14 +13,18 @@
     </head>
     <body>
         <nav>
-            <div id="top-bar">
-                <!--div below will update the current day when website opens, as this is javascript it will be implemented later-->
-                <div id="date-time" class="center">                    
-                    <img alt="image of clock" src="img/Time.png">
-                    <span>weekday, day month year</span>
-                </div>
-                <div id="socials">
-
+            <div id="top-bar-container">
+                <div id="top-bar" class="center">
+                    <!--div below will update the current day when website opens, as this is javascript it will be implemented later-->
+                    <div id="date-time" class="center">                    
+                        <img alt="image of clock" src="img/Time.png">
+                        <span>weekday, day month year</span>
+                    </div>
+                    <div id="socials">
+                        <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg"></a>
+                        <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg"></a>
+                        <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg"></a>
+                    </div>
                 </div>
             </div>
             <div class="center" id="title-logo">
@@ -31,7 +35,7 @@
                 <div id="link-container">
                     <a id="active-link" href=""><span>Today</span></li>
                     <a href="south-africa.html"><span>South Africa</span></a>
-                    <a href="../../construction.html"><span>World</span></a>
+                    <a href="world.html"><span>World</span></a>
                     <a href="covid.html"><span>COVID-19</span></a>
                     <a href="../../construction.html"><span>Calendar</span></a>
                 </div>
@@ -180,6 +184,7 @@
                 <p>&copy;2022 NewsLodge All Rights Reserved</p>
             </div>
         </footer>
+        <script src="JS/general.js"></script>
         <script src="JS/today.js"></script>
     </body>
 </html>
