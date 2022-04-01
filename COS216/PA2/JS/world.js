@@ -1,6 +1,6 @@
 var sportsJSON;
 var techJSON;
-getSportData();
+//getSportData();
 getTechData();
 
 function getSportData(){
@@ -98,11 +98,33 @@ function populateTech(json){
 
 function techFilter(event){
     const filterType = getFilerType(event.innerHTML);
+    let filteredResults = [];
 
     if(filterType == "all"){
         populateTech(techJSON);
         return;
     }
+
+    for(let article of techJSON.results){
+        if(article.des_facet != null){ 
+            if(article.des_facet.includes(filterType)){
+                filteredResults.push(article);
+            }
+        }   
+    }
+
+    if(filteredResults.length <= 3){
+
+    }
+    else if(filteredResults.length < 6 ){
+
+    }
+    else if(filteredResults.length > 6){
+
+    }
+
+    console.log(filteredResults.length);
+    /*
 
     const mainArticle = document.querySelector(".main-sports-article");
     for (let article of mainArticles){
@@ -140,20 +162,21 @@ function techFilter(event){
         tag.innerHTML = category.articles[i+1].categoryLabel;
         tag.style.background = tagGenerator();  
     }
+    */
 }
 
 function getFilerType(filter){
     switch(filter){
-        case "Social Media":
+        case "Social media":
             return "Social Media";
 
         case "Computers":
             return "Computers and the Internet";
-
-        case "AI":
+            
+        case "Artificial intelligence":
             return "Artificial Intelligence";
 
-        case "Virtual Currency":
+        case "Virtual currency":
             return "Virtual Currency";
 
         case "Mobile":
@@ -194,7 +217,7 @@ function getTag(filters){
 }
 
 function generateTechFilters(){
-    var categories = ["Social Media", "Computers", "Artifical intelligence", "Virtual Currency", "Mobile", "Streaming"];
+    var categories = ["Social Media", "Computers", "Artificial intelligence", "Virtual Currency", "Mobile", "Streaming"];
     const container = document.querySelector(".tech-filters-container");
 
     var filter = document.querySelector(".tech-filter");
