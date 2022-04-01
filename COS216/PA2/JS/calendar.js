@@ -13,6 +13,8 @@ function getNews(searchDate){
 }
 
 const renderCalendar = () =>{ 
+    date.setDate(1);
+
     const monthDays = document.querySelector(".days-of-month");
 
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -26,7 +28,7 @@ const renderCalendar = () =>{
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
     document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-    document.querySelector(".date p").innerHTML = date.toDateString();
+    document.querySelector(".date p").innerHTML = new Date().toDateString();
 
     let days = "";
 
@@ -63,8 +65,11 @@ document.querySelector(".next").addEventListener("click", () => {
 
 renderCalendar();
 
-var article = document.querySelector(".article");
-var articleContainer = document.querySelector(".articles-container");
+let article = document.querySelector(".article");
+let articleContainer = document.querySelector(".articles-container");
+let errorMessage = document.createElement("div");
+errorMessage.innerHTML = "No Articles Found";
+errorMessage.classList.add("error-message");
 
 let selectedDate = new Date();
 function selectDate(event){
@@ -76,6 +81,8 @@ function selectDate(event){
     event.classList.add("selected");
     let selectedDate = new Date(date.getFullYear(), date.getMonth(), event.innerHTML);
 
+    document.querySelector(".date p").innerHTML = selectedDate.toDateString();
+
     let year = selectedDate.getFullYear();
     let month = selectedDate.getMonth()+1;
     let day = selectedDate.getDate();
@@ -83,17 +90,24 @@ function selectDate(event){
     getNews(searchDate);
 
     setTimeout(() => {
-        console.log(json);
-        articleContainer.innerHTML = "";
-        article.style.display = "flex";
+        console.log(json.data);
+        if(json.data != ""){
+            articleContainer.innerHTML = "";
+            article.style.display = "flex";
 
-        for(let i = 0; i < 5; i++) {
-            const clone = article.cloneNode(true);
-            clone.querySelector(".article-date").innerHTML = (json.data[i].published_at).split("T")[0];
-            clone.querySelector(".article-title").innerHTML = json.data[i].title;
-            clone.querySelector(".link").setAttribute("href", json.data[i].url);
-            articleContainer.appendChild(clone);
+            for(let i = 0; i < 4; i++) {
+                const clone = article.cloneNode(true);
+                clone.querySelector(".article-date").innerHTML = (json.data[i].published_at).split("T")[0];
+                clone.querySelector(".article-title").innerHTML = json.data[i].title;
+                clone.querySelector(".link").setAttribute("href", json.data[i].url);
+                articleContainer.appendChild(clone);
+            }
         }
+        else {
+            articleContainer.innerHTML = "";
+            articleContainer.appendChild(errorMessage);
+        }
+        
     }, 1000)
 }
 
