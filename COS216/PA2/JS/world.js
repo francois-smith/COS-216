@@ -1,22 +1,94 @@
-var sportsJSON;
-var techJSON;
+let sportsJSON;
+let techJSON;
+let businessJSON;
+let generalJSON;
+let businesscategories = [];
+
+loader();
 //getSportData();
-getTechData();
+//getTechData();
+//getBusinessData();
+//getGeneralData();
+
+function loader(){
+    const loader = document.querySelector("#loading-background");
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 3000);
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 4000);
+}
+
+function getGeneralData(){
+    const request = new XMLHttpRequest();
+
+    let offset = Math.floor(Math.random()*10);
+    request.open("GET", "https://api.nytimes.com/svc/news/v3/content/all/world.json?limit=40&offset="+offset+"&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP");
+    request.onload = () => {
+        generalJSON = JSON.parse(request.responseText);
+        populateGeneralData(generalJSON);
+    };
+    
+    request.send();
+}
+
+function populateGeneralData(json){
+    let data = json.results;
+    let articles = document.getElementsByClassName("general-article-base");
+    console.log(data);
+
+    let goodResults = [];
+    for(let article of data){
+        if(article.title != null && article.multimedia != null){
+            goodResults.push(article);
+        }
+    }
+
+    let i = 1;
+    for(let article of articles){
+        article.querySelector(".link").setAttribute("href", goodResults[i].url);
+        article.querySelector(".general-article-image").src = goodResults[i].multimedia[2].url;
+
+        let title;
+        if(goodResults[i].title == null){
+            title = "No article title";
+        }
+        else{
+            title = goodResults[i].title;
+        }
+        article.querySelector(".general-article-title").innerHTML = title;
+
+        let description;
+        if(goodResults[i].abstract == ""){
+            description = "No article description given.";
+        }
+        else{
+            description = goodResults[i].abstract;
+        }
+        article.querySelector(".general-article-description").innerHTML = description;
+
+        let author_date = article.querySelector('.general-article-author');
+        let author = goodResults[0].byline;
+        if(author == "")
+        {
+            author = "Unknown Author";
+        } 
+        author_date.innerHTML = author + " - " + goodResults[i].created_date.split('T')[0];
+
+        let tag = article.querySelector(".general-tag")
+        tag.innerHTML = goodResults[i].subsection;
+        if(tag.innerHTML == ""){
+            tag.innerHTML = goodResults[i].section;
+        }
+        tag.style.background = tagGenerator();
+
+        i+=4;
+    }
+}
 
 function getSportData(){
-    //const loader = document.querySelector("#loading-background");
-
-    //loader.classList.remove("display");
-    //loader.style.display = "none";
-
-    // setTimeout(() => {
-    //     loader.classList.remove("display");
-    // }, 3000);
-
-    // setTimeout(() => {
-    //     loader.style.display = "none";
-    // }, 4000);
-
     const request = new XMLHttpRequest();
 
     request.open("GET", "https://livescore6.p.rapidapi.com/news/v2/list");
@@ -43,6 +115,165 @@ function getTechData(){
     };
     
     request.send();
+}
+
+function getBusinessData(){
+
+    const request = new XMLHttpRequest();
+
+    request.open("GET", "https://cnbc.p.rapidapi.com/news/v2/list?franchiseId=19794221&count=30");
+    request.setRequestHeader("X-RapidAPI-Host", "cnbc.p.rapidapi.com");
+    request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
+    request.onload = () => {
+        businessJSON = JSON.parse(request.responseText);
+        populateBusiness(businessJSON);
+        generateBusinessFilters(businessJSON);
+    };
+    
+    request.send();
+}
+
+function populateBusiness(json){
+    let data = json.data.sectionsEntries[0].assets;
+
+    let mainArticle = document.querySelector(".business-article-main");
+    mainArticle.querySelector(".link").setAttribute("href", data[0].url);
+    mainArticle.querySelector(".business-main-article-image").src = data[0].promoImage.url;
+    mainArticle.querySelector(".business-main-article-title").innerHTML = data[0].headline;
+
+    let author_date = mainArticle.querySelector('.business-main-author-date');
+    let author = data[0].authorFormatted;
+    if(author == "")
+    {
+        author = "Unknown Author";
+    } 
+    author_date.innerHTML = author + " - " + data[0].dateFirstPublished.split('T')[0];
+
+    let tag = mainArticle.querySelector(".tag")
+    tag.innerHTML = data[0].section.shortestHeadline;
+    tag.style.background = tagGenerator();
+
+    let i = 1;
+    let subArticles = document.getElementsByClassName("business-sub-article-general");
+    console.log(subArticles);
+    for(let article of subArticles){
+        article.querySelector(".link").setAttribute("href", data[i].url);
+        article.querySelector(".business-sub-article-image").src = data[i].promoImage.url;
+        article.querySelector(".business-sub-article-title").innerHTML = data[i].headline;
+
+        let author_date = article.querySelector('.business-sub-author-date');
+        let author = data[0].authorFormatted;
+        if(author == "")
+        {
+            author = "Unknown Author";
+        } 
+        author_date.innerHTML = author + " - " + data[0].dateFirstPublished.split('T')[i];
+
+        let tag = article.querySelector(".tag")
+        tag.innerHTML = data[i].section.shortestHeadline;
+        tag.style.background = tagGenerator();
+
+        i++;
+    }
+}
+
+function generateBusinessFilters(json){
+    const container = document.querySelector(".business-filters-container");
+    
+    json.data.sectionsEntries[0].assets.forEach(result => {
+        if(businesscategories.indexOf(result.section.shortestHeadline) == -1) businesscategories.push(result.section.shortestHeadline);
+    });
+
+    var filter = document.querySelector(".business-filter");
+    const clone = filter.cloneNode(true);
+    filter.innerHTML = "All";
+    filter.style.backgroundColor = tagGenerator();
+    container.appendChild(filter);
+
+    for(var i = 0; i < businesscategories.length; i++){
+        const clone = filter.cloneNode(true);
+        clone.innerHTML = businesscategories[i];
+        clone.innerHTML = clone.innerHTML.substring(0,1).toUpperCase() + clone.innerHTML.substring(1).toLowerCase();
+        clone.style.backgroundColor = tagGenerator();
+        container.appendChild(clone);
+    }
+    console.log(businesscategories);
+}
+
+function businessFilter(event){
+    const filterType = event.innerHTML.toLowerCase();
+    let filteredResults = [];
+   
+    if(filterType == "all"){
+        populateTech(techJSON);
+        return;
+    }
+
+    for(let article of businessJSON.data.sectionsEntries[0].assets){
+        if(article.section.shortestHeadline != null){ 
+            if(article.section.shortestHeadline.toUpperCase() === filterType.toUpperCase()){
+                filteredResults.push(article);
+            }
+        }   
+    }
+
+    let mainTechArticle = document.querySelector(".business-article-main");
+    mainTechArticle.querySelector(".link").setAttribute("href", "");
+    mainTechArticle.querySelector('.business-main-article-title').innerHTML = "No Article Found";
+    mainTechArticle.querySelector(".business-main-article-image").src = "";
+    mainTechArticle.querySelector('.business-main-author-date').innerHTML = "";
+    mainTechArticle.querySelector(".tag").innerHTML = "";
+
+
+    let subBusinessArticles = document.getElementsByClassName("business-sub-article-general");
+    for(let article of subBusinessArticles){
+        article.querySelector(".link").setAttribute("href", "");
+        article.querySelector('.business-sub-article-title').innerHTML = "No Article Found";
+        article.querySelector(".business-sub-article-image").src = "";
+        article.querySelector('.business-sub-author-date').innerHTML = "";
+        article.querySelector(".tag").innerHTML = "";
+    }
+
+    let i = 0;
+    for(let article of filteredResults){
+        if(i > 3) break;
+
+        if(i < 1){
+            mainTechArticle.querySelector(".link").setAttribute("href", article.url);
+            mainTechArticle.querySelector(".business-main-article-image").src = article.promoImage.url;
+            mainTechArticle.querySelector(".business-main-article-title").innerHTML = article.headline;
+
+            let author_date = mainTechArticle.querySelector('.business-main-author-date');
+            let author = article.authorFormatted;
+            if(author == "")
+            {
+                author = "Unknown Author";
+            } 
+            author_date.innerHTML = author + " - " + article.dateFirstPublished.split('T')[0];
+
+            let tag = mainTechArticle.querySelector(".tag")
+            tag.innerHTML = article.section.shortestHeadline;
+            tag.style.background = tagGenerator();
+        }
+        else{
+            subBusinessArticles[i-1].querySelector(".link").setAttribute("href", article.url);
+            subBusinessArticles[i-1].querySelector(".business-sub-article-image").src = article.promoImage.url;
+            subBusinessArticles[i-1].querySelector(".business-sub-article-title").innerHTML = article.headline;
+
+            let author_date = subBusinessArticles[i-1].querySelector('.business-sub-author-date');
+            let author = article.authorFormatted;
+            if(author == "")
+            {
+                author = "Unknown Author";
+            } 
+            author_date.innerHTML = author + " - " + article.dateFirstPublished.split('T')[0];
+
+            let tag = subBusinessArticles[i-1].querySelector(".tag")
+            tag.innerHTML = article.section.shortestHeadline;
+            tag.style.background = tagGenerator();
+        }   
+        i++;
+    }
 }
 
 function populateTech(json){
@@ -113,56 +344,65 @@ function techFilter(event){
         }   
     }
 
-    if(filteredResults.length <= 3){
-
-    }
-    else if(filteredResults.length < 6 ){
-
-    }
-    else if(filteredResults.length > 6){
-
-    }
-
-    console.log(filteredResults.length);
-    /*
-
-    const mainArticle = document.querySelector(".main-sports-article");
-    for (let article of mainArticles){
-        article.querySelector(".sport-sub-author-date").innerHTML = "";  
-        article.querySelector(".sport-sub-article-title").innerHTML = "";
-        article.querySelector(".sport-sub-article-image").src = "";
+    let mainTechArticles = document.getElementsByClassName("tech-article-main-general");
+    for(let article of mainTechArticles){
         article.querySelector(".link").setAttribute("href", "");
+        article.querySelector('.tech-article-main-title').innerHTML = "No Article Found";
+        article.querySelector(".tech-article-main-image").src = "";
+        article.querySelector(".tech-article-main-description").innerHTML = "";
+        article.querySelector('.tech-article-main-author').innerHTML = "";
+        article.querySelector(".tag").innerHTML = "";
+    }
+    let subTechArticles = document.getElementsByClassName("tech-article-sub-general");
+    for(let article of subTechArticles){
+        article.querySelector(".link").setAttribute("href", "");
+        article.querySelector('.tech-article-sub-title').innerHTML = "No Article Found";
+        article.querySelector(".tech-article-sub-image").src = "";
+        article.querySelector('.tech-article-sub-author').innerHTML = "";
         article.querySelector(".tag").innerHTML = "";
     }
 
-    const subArticles = document.getElementsByClassName("sport-sub-article-general");
-    for (let article of subArticles){
-        article.querySelector(".sport-sub-author-date").innerHTML = "";  
-        article.querySelector(".sport-sub-article-title").innerHTML = "";
-        article.querySelector(".sport-sub-article-image").src = "";
-        article.querySelector(".link").setAttribute("href", "");
-        article.querySelector(".tag").innerHTML = "";
-    }
+    let i = 0;
+    for(let article of filteredResults){
+        if(i > 3) break;
 
-    for (let i=0 ; i < loopNum; i++){
-        let date = category.articles[i+1].publishedAt;
-        let author;
-        if(category.articles[i+1].authors.length == 0){
-            author = "Unknown Author";
+        if(i < 2){
+            mainTechArticles[i].querySelector(".link").setAttribute("href", article.url);
+            mainTechArticles[i].querySelector('.tech-article-main-title').innerHTML = article.title;
+            mainTechArticles[i].querySelector(".tech-article-main-image").src = article.multimedia[2].url;
+            mainTechArticles[i].querySelector(".tech-article-main-description").innerHTML= article.abstract;
+
+            let author_date = mainTechArticles[i].querySelector('.tech-article-main-author');
+            let author = article.byline;
+            if(author == "")
+            {
+                author = "By New York Times";
+            } 
+            author_date.innerHTML = author + " - " + article.published_date.split('T')[0];
+
+            let tag = mainTechArticles[i].querySelector(".tag")
+            tag.innerHTML = getTag(article.des_facet);
+            tag.style.background = tagGenerator();
         }
         else{
-            author = category.articles[i+1].authors[0].name;
-        }
-        subArticles[i].querySelector(".sport-sub-author-date").innerHTML = author + " - " + date.split('T')[0];  
-        subArticles[i].querySelector(".sport-sub-article-title").innerHTML = category.articles[i+1].title;
-        subArticles[i].querySelector(".sport-sub-article-image").src = category.articles[i+1].mainMedia.gallery.url;
-        subArticles[i].querySelector(".link").setAttribute("href", "https://www.livescore.com" + category.articles[i+1].url);
+            subTechArticles[i-2].querySelector(".link").setAttribute("href", article.url);
+            subTechArticles[i-2].querySelector('.tech-article-sub-title').innerHTML = article.title;
+            subTechArticles[i-2].querySelector(".tech-article-sub-image").src = article.multimedia[2].url;
 
-        let tag = subArticles[i+1].querySelector(".tag");
-        tag.innerHTML = category.articles[i+1].categoryLabel;
-        tag.style.background = tagGenerator();  
+            let author_date = subTechArticles[i-2].querySelector('.tech-article-sub-author');
+            let author = article.byline;
+            if(author == "")
+            {
+                author = "By New York Times";
+            } 
+            author_date.innerHTML = author + " - " + article.published_date.split('T')[0];
+
+            let tag = subTechArticles[i-2].querySelector(".tag")
+            tag.innerHTML = getTag(article.des_facet);
+            tag.style.background = tagGenerator();
+        }   
+        i++;
     }
-    */
 }
 
 function getFilerType(filter){
@@ -241,7 +481,14 @@ function populateSports(json){
     const mainArticle = document.querySelector(".main-sports-article");
 
     let date = json.topStories[i].publishedAt;
-    mainArticle.querySelector(".sport-article-author-main").innerHTML = json.topStories[i].authors[0].name + " - " + date.split('T')[0];  
+    let author;
+    if(json.topStories[i].authors[0] != null){ 
+        author = json.topStories[i].authors[0].name;
+    }
+    else {
+        author = "Unknown Author";
+    }
+    mainArticle.querySelector(".sport-article-author-main").innerHTML =  + " - " + date.split('T')[0];  
 
     mainArticle.querySelector(".sport-article-title-main").innerHTML = json.topStories[i].title;
     mainArticle.querySelector(".sport-article-description-main").innerHTML = json.topStories[i].seo.description;
@@ -253,11 +500,18 @@ function populateSports(json){
     tag.style.background = tagGenerator();  
 
     i++;
-
     const subArticles = document.getElementsByClassName("sport-sub-article-general");
     for (let article of subArticles){
+
         let date = json.topStories[i].publishedAt;
-        article.querySelector(".sport-sub-author-date").innerHTML = json.topStories[i].authors[0].name + " - " + date.split('T')[0];  
+        let author;
+        if(json.topStories[i].authors[0] != null){ 
+            author = json.topStories[i].authors[0].name;
+        }
+        else {
+            author = "Unknown Author";
+        }
+        article.querySelector(".sport-sub-author-date").innerHTML = author + " - " + date.split('T')[0];  
 
         article.querySelector(".sport-sub-article-title").innerHTML = json.topStories[i].title;
         article.querySelector(".sport-sub-article-image").src = json.topStories[i].mainMedia.gallery.url;
