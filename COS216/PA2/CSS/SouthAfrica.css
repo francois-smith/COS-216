@@ -15,7 +15,7 @@
 .latest-news-container {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px) minmax(200px, 250px); 
+    grid-template-rows: 250px 250px 250px 250px; 
     gap: 25px 25px; 
     grid-template-areas: 
       "latest-article1 latest-article1 side-bar"
@@ -68,6 +68,7 @@ div.img-container:hover span {
 }
 
 .latest-article-image {
+    height: 250px;
     width: 350px;
     padding-right: 10px;
 }
