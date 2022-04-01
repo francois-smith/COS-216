@@ -174,3 +174,9 @@ main{
 .article a{
     display: none;
 }
+
+.error-message{
+    font-size: 22px;
+    margin-top: 15px;
+    padding: 15px;
+}
