@@ -1,0 +1,132 @@
+<!--Francois SMith - u21649988-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NewsLodge | Daily News</title>
+        <meta name="description" content="News website birning you the latest updates of things happening around the world">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../CSS/MainStyle.css">
+        <link rel="stylesheet" href="CSS/calendar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    </head>
+    <body>
+        <nav>
+            <div id="top-bar-container">
+                <div id="top-bar" class="center">
+                    <!--div below will update the current day when website opens, as this is javascript it will be implemented later-->
+                    <div id="date-time" class="center">                    
+                        <img alt="image of clock" src="img/Time.png">
+                        <span>weekday, day month year</span>
+                    </div>
+                    <div id="socials">
+                        <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg"></a>
+                        <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg"></a>
+                        <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center" id="title-logo">
+                <img src="../../IMG/Logo.png" alt="logo">
+                <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
+            </div>
+            <div class="center" id="links">
+                <div id="link-container">
+                    <a href="today.html"><span>Today</span></li>
+                    <a href="south-africa.html"><span>South Africa</span></a>
+                    <a href="world.html"><span>World</span></a>
+                    <a href="covid.html"><span>COVID-19</span></a>
+                    <a id="active-link" href=""><span>Calendar</span></a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <section id="calendar-section">
+                <div class="calendar-container">
+                    <div class="month">
+                        <i class="fas fa-angle-left prev"></i>
+                        <div class="date">
+                            <h1>May</h1>
+                            <p>Fri May 29, 2020</p>
+                        </div>
+                        <i class="fas fa-angle-right next"></i>
+                    </div>
+                    <div class="weekdays">
+                        <div>Sunday</div>
+                        <div>Monday</div>
+                        <div>Tue</div>
+                        <div>Wednesday</div>
+                        <div>Thursday</div>
+                        <div>Friday</div>
+                        <div>Saturday</div>
+                    </div>
+                    <div class="days">
+                        <div class="prev-date">31</div>
+                        <div class="prev-date">30</div>
+                        <div class="prev-date">29</div>
+                        <div class="prev-date">28</div>
+                        <div class="prev-date">27</div>
+                        <div class="today">1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        <div>12</div>
+                        <div>13</div>
+                        <div>14</div>
+                        <div>15</div>
+                        <div>16</div>
+                        <div>17</div>
+                        <div>18</div>
+                        <div>19</div>
+                        <div>20</div>
+                        <div>21</div>
+                        <div>22</div>
+                        <div>23</div>
+                        <div>24</div>
+                        <div>25</div>
+                        <div>26</div>
+                        <div>27</div>
+                        <div>28</div>
+                        <div>29</div>
+                        <div>30</div>
+                        <div>31</div>
+                        <div class="next-date">1</div>
+                        <div class="next-date">2</div>
+                        <div class="next-date">3</div>
+                        <div class="next-date">4</div>
+                        <div class="next-date">5</div>
+                        <div class="next-date">6</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div id="footer-socials">
+                <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg"></a>
+                <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg"></a>
+                <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg"></a>
+            </div>
+            <div id="footer-links">
+                <a href="today.html" class="footer-link">Today</a>
+                <a href="" class="footer-link">South Africa</a>
+                <a href="../../construction.html" class="footer-link">World</a>
+                <a href="covid.html" class="footer-link">Covid-19</a>
+                <a href="../../construction.html" class="footer-link">Calendar</a>
+            </div>
+            <div id="footer-copyright">
+                <p>&copy;2022 NewsLodge All Rights Reserved</p>
+            </div>
+        </footer>
+        <script src="JS/general.js"></script>
+        <script src="js/calendar.js" async defer></script>
+    </body>
+</html>
