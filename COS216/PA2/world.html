@@ -3,7 +3,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="icon" href="" type="image/x-icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>NewsLodge | Daily News</title>
         <meta name="description" content="News website birning you the latest updates of things happening around the world">
@@ -15,7 +14,6 @@
         <nav>
             <div id="top-bar-container">
                 <div id="top-bar" class="center">
-                    <!--div below will update the current day when website opens, as this is javascript it will be implemented later-->
                     <div id="date-time" class="center">                    
                         <img alt="image of clock" src="img/Time.png">
                         <span>weekday, day month year</span>
@@ -37,11 +35,73 @@
                     <a href="south-africa.html"><span>South Africa</span></a>
                     <a id="active-link" href=""><span>World</span></a>
                     <a href="covid.html"><span>COVID-19</span></a>
-                    <a href="../../construction.html"><span>Calendar</span></a>
+                    <a href="calendar.html"><span>Calendar</span></a>
                 </div>
             </div>
         </nav>
         <main>
+            <div id="loading-background" class="display">
+                <img id="loading" src="img/loading.svg"></img>
+                <p>Loading Articles</p>
+            </div>
+            <section class="general-News">
+                <div class="general-header">
+                    <h2 class="section-title">General</h2>
+                    <div class="general-filters-container">
+                        <span class="general-filter" onclick="getGeneralData()">Find New Articles</span>
+                    </div>
+                </div>
+
+                <div class="general-container">
+                    <div onclick="goToLink(this)" class="general-article1 general-article-base">
+                        <a href="" class="link"></a>
+                        <img class="general-article-image" src="" alt="">
+                        <div class="general-article-content">
+                            <span class="general-article-title">awdadaw</span>
+                            <div class="general-article-tag-container">
+                                <span class="general-tag"></span>
+                                <span class="general-article-author">awdawdaw</span>
+                            </div>
+                            <span class="general-article-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="general-article2 general-article-base">
+                        <a href="" class="link"></a>
+                        <img class="general-article-image" src="" alt="">
+                        <div class="general-article-content">
+                            <span class="general-article-title">awdadaw</span>
+                            <div class="general-article-tag-container">
+                                <span class="general-tag"></span>
+                                <span class="general-article-author">awdawdaw</span>
+                            </div>
+                            <span class="general-article-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="general-article3 general-article-base">
+                        <a href="" class="link"></a>
+                        <img class="general-article-image" src="" alt="">
+                        <div class="general-article-content">
+                            <span class="general-article-title">awdadaw</span>
+                            <div class="general-article-tag-container">
+                                <span class="general-tag"></span>
+                                <span class="general-article-author">awdawdaw</span>
+                            </div>
+                            <span class="general-article-description">awdawda</span>
+                        </div>      
+                    </div>
+                    <div onclick="goToLink(this)" class="general-article4 general-article-base">
+                        <a href="" class="link"></a>
+                        <img class="general-article-image" src="" alt="">
+                        <div class="general-article-content">
+                            <span class="general-article-title">awdadaw</span>
+                            <div class="general-article-tag-container">
+                                <span class="general-tag"></span>
+                                <span class="general-article-author">awdawdaw</span>
+                            </div>
+                            <span class="general-article-description">awdawda</span>
+                        </div>      
+                    </div>                
+            </section>
             <section class="tech-News">
                 <div class="tech-header">
                     <h2 class="section-title">Technology</h2>
@@ -81,15 +141,6 @@
                         </div> 
                     </div>
                     <div onclick="goToLink(this)" class="tech-article-sub2 tech-article-sub-general">
-                        <a href="" class="link"></a>
-                        <img class="tech-article-sub-image" src="" alt="">
-                        <span class="tag tech"></span>
-                        <div class="tech-article-sub-content">
-                            <span class="tech-article-sub-author">awdawdaw</span>
-                            <span class="tech-article-sub-title">awdadaw</span>
-                        </div> 
-                    </div>
-                    <div onclick="goToLink(this)" class="tech-article-sub3 tech-article-sub-general">
                         <a href="" class="link"></a>
                         <img class="tech-article-sub-image" src="" alt="">
                         <span class="tag tech"></span>
@@ -162,6 +213,57 @@
                         <div class="sport-sub-article-content">
                             <span class="sport-sub-author-date">awdawda</span>
                             <span class="sport-sub-article-title">adawdawd</span>
+                        </div>
+                    </div>
+                  </div>
+            </section>
+            <section class="business-news">
+                <div class="business-header">
+                    <h2 class="section-title">Business</h2>
+                    <div class="business-filters-container">
+                        <span class="business-filter" onclick="businessFilter(this)"></span>
+                    </div>
+                </div>
+                
+                <div class="business-container">
+                    <div onclick="goToLink(this)" class="business-article-main">
+                        <a href="" class="link"></a>
+                        <span class="tag business"></span>
+                        <div class="overlay"></div>
+                        <img class="business-main-article-image" src="" alt="">
+                        <div class="business-main-article-content">
+                            <span class="business-main-author-date">awdawda</span>
+                            <span class="business-main-article-title">adawdawd</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="business-article-sub1 business-sub-article-general">
+                        <div class="overlay"></div>
+                        <a href="" class="link"></a>
+                        <img class="business-sub-article-image" src="" alt="">
+                        <span class="tag business"></span>
+                        <div class="business-sub-article-content">
+                            <span class="business-sub-author-date">awdawda</span>
+                            <span class="business-sub-article-title">adawdawd</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="business-article-sub2 business-sub-article-general">
+                        <div class="overlay"></div>
+                        <a href="" class="link"></a>
+                        <img class="business-sub-article-image" src="" alt="">
+                        <span class="tag business"></span>
+                        <div class="business-sub-article-content">
+                            <span class="business-sub-author-date">awdawda</span>
+                            <span class="business-sub-article-title">adawdawd</span>
+                        </div>
+                    </div>
+                    <div onclick="goToLink(this)" class="business-article-sub3 business-sub-article-general">
+                        <div class="overlay"></div>
+                        <a href="" class="link"></a>
+                        <img class="business-sub-article-image" src="" alt="">
+                        <span class="tag business"></span>
+                        <div class="business-sub-article-content">
+                            <span class="business-sub-author-date">awdawda</span>
+                            <span class="business-sub-article-title">adawdawd</span>
                         </div>
                     </div>
                   </div>
