@@ -2,31 +2,20 @@ loadTodayArticles();
 var json;
 
 function loadTodayArticles(){
-    // selecting loading div
     const loader = document.querySelector("#loading-background");
 
-    loader.classList.remove("display");
-    loader.style.display = "none";
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 3000);
 
-    // setTimeout(() => {
-    //     loader.classList.remove("display");
-    // }, 3000);
-
-    // setTimeout(() => {
-    //     loader.style.display = "none";
-    // }, 4000);
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 4000);
 
     const request = new XMLHttpRequest();
 
     request.open("get", "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP");
     request.onload = () => {
-        // try{
-            
-        // }
-        // catch(e) {
-        //     console.warn("Could not retrieve API");
-        // }
-
         json = JSON.parse(request.responseText);
         populateInitialTrendingArticles(json);
         populateMainArticle(json);
