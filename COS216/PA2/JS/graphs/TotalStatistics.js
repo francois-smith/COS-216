@@ -16,10 +16,6 @@ function populateGraph(json){
     const casesMap = new Map(Object.entries(json.cases));
     const recoveredMap = new Map(Object.entries(json.recovered));
     const deathsMap = new Map(Object.entries(json.deaths));
-
-    console.log(casesMap);
-    console.log(recoveredMap);
-    console.log(deathsMap);
     
     let labels = [...casesMap.keys()];
 
@@ -92,9 +88,6 @@ function populateGraph(json){
             title: {
                 display: true,
                 text: 'Total Statistics',
-                font: {
-                    size: 30,
-                }
             },
             interaction: {
                 mode: 'index',
