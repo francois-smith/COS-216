@@ -73,7 +73,7 @@ nav #title-logo {
     display: flex;
     align-items: center;
     font-family: Montserrat, sans-serif;
-    font-weight: light;
+    font-weight: 300;
     letter-spacing: 0.03em;
     font-size: 40px;
     padding-top: 30px;
@@ -260,7 +260,7 @@ footer {
 #loading {
     position: fixed;
     left: 50%;
-    top: 40%;
+    top: 37%;
     margin-top: -100px;
     margin-left: -100px;
     width: 200px;
