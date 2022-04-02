@@ -3,8 +3,8 @@ const date = new Date();
 
 function getNews(searchDate){
 	const request = new XMLHttpRequest();
-
-    request.open("GET", "http://api.mediastack.com/v1/news?limit=5&access_key=7c2da267305e87eeca21143f460ae7fb&sources=en&date="+searchDate);
+    
+    request.open("GET", "http://api.mediastack.com/v1/news?access_key=7c2da267305e87eeca21143f460ae7fb&limit=5&sources=en&date="+searchDate);
 	request.onload = () => {
         json = JSON.parse(request.responseText);
     };
