@@ -50,16 +50,19 @@
                 <div class="container">
                     <div class="Overall-stats grid-container">
                         <div class="counter">
-                            <span class="counter-title">Total Cases</span>
-                            <span class="counter-amount" style="color: #2a81ea;">452,538,325</span>
+                            <span class="counter-title">Global Cases</span>
+                            <span class="counter-amount" style="color: #2a81ea;"></span>
+                            <span class="counter-new" style="color: #2a80eaa8;"></span>
                         </div>
                         <div class="counter">
-                            <span class="counter-title">Recoveries</span>
-                            <span class="counter-amount" style="color: #2eaa49;">379,925,570</span>
+                            <span class="counter-title">Global Recoveries</span>
+                            <span class="counter-amount" style="color: #2eaa49;"></span>
+                            <span class="counter-new" style="color: #2eaa49b0;"></span>
                         </div>
                         <div class="counter">
-                            <span class="counter-title">Total Deaths</span>
-                            <span class="counter-amount" style="color: #ff5f5f;">6,047,631</span>
+                            <span class="counter-title">Global Deaths</span>
+                            <span class="counter-amount" style="color: #ff5f5f;"></span>
+                            <span class="counter-new" style="color: #ff5f5faf;"></span>
                         </div>
                     </div>
                     <div class="infographic">
@@ -75,10 +78,10 @@
                                 The Coronavirus (COVID-19) was first reported in Wuhan, Hubei, China in December 2019, the outbreak was later recognized as a pandemic by the World Health Organization (WHO) on 11 March 2020.
                             </p>
                         </div>
-                        <img src="img/infographic.png" alt="">
+                        <img src="img/infographic.png" alt="Covid Infographic">
                     </div>
                     <div class="Mortailty grid-container">
-                        <h3>Mortality Rate</h3>
+                        <h3>Cases vs Recoveries</h3>
 			            <canvas id="doughnut" height="220px"></canvas>
 			            <canvas id="tooltip-canvas" width="150" height="100"></canvas>
                     </div>
@@ -86,28 +89,28 @@
                         <img class="stat-image" src="img/SVG/covid-svgrepo-com.svg" alt="covid">
                         <div class="stat-info">
                             <span class="stat-title">South Africa New Cases</span>
-                            <span class="stat-amount">1,803</span>
+                            <span class="stat-amount"></span>
                         </div>
                     </div>
                     <div class="deaths-today grid-container stat-card">
                         <img class="stat-image" src="img/SVG/skull.svg" alt="bed">
                         <div class="stat-info">
                             <span class="stat-title">South Africa New Deaths</span>
-                            <span class="stat-amount">25</span>
+                            <span class="stat-amount"></span>
                         </div>
                     </div>
                     <div class="ifr grid-container stat-card">
                         <img class="stat-image" src="img/SVG/blood.svg" alt="drop">
                         <div class="stat-info">
                             <span class="stat-title">IFR Rate</span>
-                            <span class="stat-amount">0.725%</span>
+                            <span class="stat-amount"></span>
                         </div>
                     </div>
                     <div class="cfr grid-container stat-card">
                         <img class="stat-image" src="img/SVG/case.svg" alt="case">
                         <div class="stat-info">
                             <span class="stat-title">CFR Rate</span>
-                            <span class="stat-amount">2.32%</span>
+                            <span class="stat-amount"></span>
                         </div>
                     </div>
                 </div>
@@ -131,8 +134,8 @@
             </div>
         </footer>
         <script src="JS/general.js"></script>
-        <script src="js/graphs/CircleChart.js"></script>
-        <script src="js/graphs/TotalStatistics.js"></script>
-        <script src="js/covid.js"></script>
+        <script src="JS/graphs/CircleChart.js"></script>
+        <script src="JS/graphs/TotalStatistics.js"></script>
+        <script src="JS/covid.js"></script>
     </body>
 </html>
