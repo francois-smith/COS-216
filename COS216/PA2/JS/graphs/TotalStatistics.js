@@ -3,7 +3,7 @@ getCovidData();
 function getCovidData(){
 	const request = new XMLHttpRequest();
 
-    request.open("GET", "https://disease.sh/v3/covid-19/historical/all?lastdays=all");
+    request.open("get", "https://api.covid19api.com/total/dayone/country/south-africa");
 	request.onload = () => {
         let json = JSON.parse(request.responseText);
         populateGraph(json);
@@ -13,59 +13,40 @@ function getCovidData(){
 }
 
 function populateGraph(json){
-    const casesMap = new Map(Object.entries(json.cases));
-    const recoveredMap = new Map(Object.entries(json.recovered));
-    const deathsMap = new Map(Object.entries(json.deaths));
-    
-    let labels = [...casesMap.keys()];
+    const dailyCases = json.map((day, index) => {
+        if (index) return Math.abs(day.Confirmed - json[index -1].Confirmed);
+        else day.Confirmed;
+    });
 
-    console.log(labels.length);
+    const dateFormatter = new Intl.DateTimeFormat("en-SA", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
 
-    const casesArr = [...casesMap.values()];
-    const recoveriesArr = [...recoveredMap.values()];
-    const deathsArr = [...deathsMap.values()];
-
-    var canvas = document.getElementById("statsChart");
-    var blue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-	blue.addColorStop(0, '#2a81ea');
-	blue.addColorStop(1, '#185aaa');
-
-	var green = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-	green.addColorStop(0, '#19792e');
-	green.addColorStop(1, '#2eaa49');
-
-    var red = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-	red.addColorStop(0, '#ff5f5f');
-	red.addColorStop(1, '#a82b2b');
+    const labels = json.map(day => {
+        const trunc = day.Date.substring(0,day.Date.indexOf("T"));
+        const formattedDate = new Date(trunc);
+        return dateFormatter.format(formattedDate);
+    });
 
     var config = {
         type: 'line',
         data:{
             labels: labels,
-            datasets: [
-                {
-                    label: "Recoveries",
-                    fill: false,
-                    backgroundColor: green,
-                    borderColor: green,
-                    data: recoveriesArr
-                },
-                {
+            datasets: [{
                     label: "Cases",
-                    fill: false,
-                    backgroundColor: blue,
-                    borderColor: blue,
-                    data: casesArr
-                },
-                {
-                    label: "Deaths",
-                    fill: false,
-                    backgroundColor: red,
-                    borderColor: red,
-                    data: deathsArr
-                },
-                
-            ]
+                    data: dailyCases,
+                    fill: true,
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#2a80eaa2'
+                    ],
+                    borderColor: [
+                        '#185aaa'
+                    ],
+                    pointBackgroundColor:'#185aaa',
+                }]
         },
         options: {
             scales: {
@@ -82,12 +63,14 @@ function populateGraph(json){
             },
             elements: {
                 point:{
-                    radius: 0
+                    radius: 1,
+                    hoverRadius: 4,
                 },
             },
             title: {
                 display: true,
-                text: 'Total Statistics',
+                text: 'Daily Cases For South Africa',
+                fontSize:24,
             },
             interaction: {
                 mode: 'index',
@@ -98,6 +81,10 @@ function populateGraph(json){
             },
             maintainAspectRatio: false,
             responsive: true,
+            hover:{
+                mode: 'nearest',
+                animationDuration: 400,
+            },
         },
     };
 
