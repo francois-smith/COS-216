@@ -15,6 +15,18 @@ function getGlobalData(){
     request.send();
 }
 
+function dawda(){
+    const request = new XMLHttpRequest();
+    
+    request.open("GET", "https://api.covid19api.com/country/south-africa?from=2020-03-05T00:00:00Z&to=2022-04-01T00:00:00Z");
+    request.onload = () => {
+        json = JSON.parse(request.responseText);
+        console.log(json);
+    };
+
+    request.send();
+}
+
 function populateSouthAfrica(json){
     let data;
     for(let country of json.data){
@@ -26,26 +38,36 @@ function populateSouthAfrica(json){
 
     console.log(data);
 
-    /*
     let casesContainer = document.querySelector(".cases-today");
-    casesContainer.querySelector(".stat-amount").innerHTML = data.confirmed_diff;
+    casesContainer.querySelector(".stat-amount").innerHTML = data["New Cases"];
 
     let deathsContainer = document.querySelector(".deaths-today");
-    deathsContainer.querySelector(".stat-amount").innerHTML = data.deaths_diff;
-    */
+    deathsContainer.querySelector(".stat-amount").innerHTML = data["New Deaths"];
 
-    // let ifr = data.fatality_rate;
-    // let ifrContainer = document.querySelector(".ifr");
-    // ifrContainer.querySelector(".stat-amount").innerHTML = ifr.toPrecision(2) + "%";
+    let mortality = (data["Total Deaths"].replaceAll(',', '')/data.Population.replaceAll(',', ''))*100;
+    let mortalityContainer = document.querySelector(".mortality");
+    mortalityContainer.querySelector(".stat-amount").innerHTML = mortality.toPrecision(2) + "%";
 
-    // let cfr = (data.deaths/data.confirmed)*100;
-    // let cfrContainer = document.querySelector(".cfr");
-    // cfrContainer.querySelector(".stat-amount").innerHTML = cfr.toPrecision(2) + "%";    
+    let ratio = calculateRatio(data);
+    let ratioContainer = document.querySelector(".CRD");
+    ratioContainer.querySelector(".stat-amount").innerHTML = ratio;    
+}
+
+function calculateRatio(data) {
+    let cases = data["Total Cases"].replaceAll(',', '');
+    let recoveries = data["Total Recovered"].replaceAll(',', '');
+    let deaths = data["Total Deaths"].replaceAll(',', '');
+
+    let total = parseInt(cases) + parseInt(recoveries) + parseInt(deaths);
+
+    return (cases/total).toFixed(2)*100 + ":" + (recoveries/total).toFixed(2)*100 + ":" + (deaths/total).toFixed(2)*100;
 }
 
 function populateGlobalData(json){
     let data = json.data[0];
-    console.log(json)
+
+    let criticalContainer = document.querySelector(".critical-cases");
+    criticalContainer.getElementsByClassName("counter-amount")[0].innerHTML = data.Critical;
 
     let overallContainer = document.querySelector(".Overall-stats");
     let counters = overallContainer.getElementsByClassName("counter-amount");
@@ -59,4 +81,16 @@ function populateGlobalData(json){
     news[1].innerHTML = data["New Recovered"];
     news[2].innerHTML = data["New Deaths"];
 
+    calculateCFR(data);
+    calculateIFR(data);
+}
+
+function calculateCFR(data){
+    let cfr = (data["Total Deaths"].replaceAll(',', '')/(data["Total Cases"].replaceAll(',', '')))*100;
+    document.getElementsByClassName("cfr-amount")[0].innerHTML = cfr.toFixed(2) + "%";
+}
+
+function calculateIFR(data){
+    let ifr = (data["Total Deaths"].replaceAll(',', '')/(data["Total Cases"].replaceAll(',', '')*8.71))*100;
+    document.getElementsByClassName("ifr-amount")[0].innerHTML = ifr.toFixed(2) + "%";
 }
