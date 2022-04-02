@@ -26,7 +26,7 @@ function getNews(){
 }
 
 function populateNews(json){
-    console.log(json);
+
 
     let data = json.data;
     let goodArticles = [];
@@ -59,8 +59,6 @@ function populateNews(json){
         
         i++;
     }
-
-    console.log(goodArticles);
 }
 
 function tagGenerator(){

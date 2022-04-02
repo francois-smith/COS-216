@@ -21,7 +21,6 @@ function dawda(){
     request.open("GET", "https://api.covid19api.com/country/south-africa?from=2020-03-05T00:00:00Z&to=2022-04-01T00:00:00Z");
     request.onload = () => {
         json = JSON.parse(request.responseText);
-        console.log(json);
     };
 
     request.send();
@@ -35,8 +34,6 @@ function populateSouthAfrica(json){
             break;
         }
     }
-
-    console.log(data);
 
     let casesContainer = document.querySelector(".cases-today");
     casesContainer.querySelector(".stat-amount").innerHTML = data["New Cases"];

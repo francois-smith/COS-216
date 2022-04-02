@@ -37,7 +37,6 @@ function getGeneralData(){
 function populateGeneralData(json){
     let data = json.results;
     let articles = document.getElementsByClassName("general-article-base");
-    console.log(data);
 
     let goodResults = [];
     for(let article of data){
@@ -155,7 +154,6 @@ function populateBusiness(json){
 
     let i = 1;
     let subArticles = document.getElementsByClassName("business-sub-article-general");
-    console.log(subArticles);
     for(let article of subArticles){
         article.querySelector(".link").setAttribute("href", data[i].url);
         article.querySelector(".business-sub-article-image").src = data[i].promoImage.url;
@@ -197,7 +195,6 @@ function generateBusinessFilters(json){
         clone.style.backgroundColor = tagGenerator();
         container.appendChild(clone);
     }
-    console.log(businesscategories);
 }
 
 function businessFilter(event){
@@ -575,8 +572,6 @@ function sportFilter(event){
             category = item;
         }
     }
-
-    console.log(category);
 
     let loopNum;
     const subArticles = document.getElementsByClassName("sport-sub-article-general");

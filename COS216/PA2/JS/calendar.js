@@ -90,7 +90,6 @@ function selectDate(event){
     getNews(searchDate);
 
     setTimeout(() => {
-        console.log(json.data);
         if(json.data != ""){
             articleContainer.innerHTML = "";
             article.style.display = "flex";

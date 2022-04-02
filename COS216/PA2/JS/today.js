@@ -27,7 +27,6 @@ function loadTodayArticles(){
 }
 
 function populateInitialTrendingArticles(json){
-    console.log(json);
     const articles = document.getElementsByClassName("general-article");
 
     for (let article of articles) {
@@ -227,14 +226,12 @@ function goToLink(event){
 
 function populateSearchResults(json, searchText){
     const articlesList = document.getElementsByClassName("general-article");
-    console.log(json);
     var i = 0;
 
     for (let article of articlesList) {
         //set data variable
         var data = json.articles[i];
         i++;
-        console.log(data);
 
         //set link
         var link = article.querySelector(".link");
@@ -329,8 +326,6 @@ function filter(event){
     for (let article of articles) {
         //set data variable
         var data = filtered[i];
-
-        console.log("wad");
         
         //set link
         var link = article.querySelector(".link");
