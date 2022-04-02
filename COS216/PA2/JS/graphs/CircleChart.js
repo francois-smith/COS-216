@@ -13,7 +13,7 @@ function getDataRequest(){
 		let object = json.data.covid19Stats[0];
 		let data = new Array(2);
 		data[0] = object.confirmed;
-		data[1] = data[0] - object.deaths;
+		data[1] = (data[0] - object.deaths - object.confirmed*0.12).toFixed(0);
 		makeChart(data);
     };
 
