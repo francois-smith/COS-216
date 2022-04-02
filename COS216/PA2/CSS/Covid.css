@@ -15,7 +15,7 @@
 }
 
 #graph-container{
-    width: 90%;
+    width: 80%;
     height: 420px;
     padding: 25px;
     display: table-cell;
@@ -56,6 +56,11 @@
 .counter-amount{
     font-size: 32px;
 }
+
+.counter-new{
+    font-size: 22px;
+}
+
 
 .Mortailty { 
     grid-area: 3 / 1 / 5 / 2; 
