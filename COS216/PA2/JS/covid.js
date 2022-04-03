@@ -1,4 +1,5 @@
 getGlobalData();
+getArticles();
 
 function getGlobalData(){
     const request = new XMLHttpRequest();
@@ -15,12 +16,15 @@ function getGlobalData(){
     request.send();
 }
 
-function dawda(){
+function getArticles(){
     const request = new XMLHttpRequest();
     
-    request.open("GET", "https://api.covid19api.com/country/south-africa?from=2020-03-05T00:00:00Z&to=2022-04-01T00:00:00Z");
+    request.open("GET", "https://covid-19-news.p.rapidapi.com/v1/covid?q=covid&lang=en&media=True");
+    request.setRequestHeader("X-RapidAPI-Host", "covid-19-news.p.rapidapi.com");
+    request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
     request.onload = () => {
-        json = JSON.parse(request.responseText);
+        let json = JSON.parse(request.responseText);
+        scrollText(json.articles);
     };
 
     request.send();
@@ -90,4 +94,51 @@ function calculateCFR(data){
 function calculateIFR(data){
     let ifr = (data["Total Deaths"].replaceAll(',', '')/(data["Total Cases"].replaceAll(',', '')*8.71))*100;
     document.getElementsByClassName("ifr-amount")[0].innerHTML = ifr.toFixed(2) + "%";
+}
+
+function scrollText(articles){
+    let spacing = 200;
+    let items = [];
+    for (let i = 0; i < 8; i++){
+        items.push(articles[i].title + ".");
+    }
+    
+    let textContainer = document.querySelector(".scroll-text");
+    let width = window.innerWidth;
+
+    let widths = []
+    let percentage = 0;
+    for(let item of items){
+        let newItem = document.createElement("span");
+        newItem.innerHTML = item;
+        newItem.style.left = percentage + "px";
+        newItem.style.whiteSpace = "nowrap";
+        textContainer.appendChild(newItem);
+        percentage += newItem.clientWidth + spacing;
+        widths.push(newItem.clientWidth + spacing);
+    }   
+
+    let position = 0;
+    setInterval(() => {
+        for(let span of textContainer.querySelectorAll("span")){ 
+            position = parseInt(span.style.left.replace("px", ""));
+            position = position - 2;
+            if(position < -1 * widths[0]){
+                position = getPosition(widths);
+                val = widths[0];
+                widths.splice(0, 1);
+                widths.push(val);    
+            }
+            span.style.left = position + "px";
+        }
+
+    }, 15)
+}
+
+function getPosition(widths){
+    let pos = 0;
+    for(var i=1; i < 8; i++){
+        pos += widths[i];
+    }
+    return pos;
 }
