@@ -171,6 +171,10 @@
     cursor: pointer;
 }
 
+.filter:hover{
+    filter: brightness(80%);
+}
+
 .grid-article-image-main {
     height: 70%;
 }

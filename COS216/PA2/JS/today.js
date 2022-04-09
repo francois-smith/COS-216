@@ -307,7 +307,7 @@ function filter(event){
 
         //set title of article
         var title = article.querySelector('.sub-article-title');
-        title.innerHTML = "";
+        title.innerHTML = "No article found.";
 
         // //set author and date
         var author_date = article.querySelector('.sub-author-date');

@@ -5,10 +5,10 @@ let generalJSON;
 let businesscategories = [];
 
 loader();
-//getSportData();
-//getTechData();
-//getBusinessData();
-//getGeneralData();
+getSportData();
+getTechData();
+getBusinessData();
+getGeneralData();
 
 function loader(){
     const loader = document.querySelector("#loading-background");
@@ -607,7 +607,7 @@ function sportFilter(event){
 
     for (let article of subArticles){
         article.querySelector(".sport-sub-author-date").innerHTML = "";  
-        article.querySelector(".sport-sub-article-title").innerHTML = "";
+        article.querySelector(".sport-sub-article-title").innerHTML = "No Article Found";
         article.querySelector(".sport-sub-article-image").src = "";
         article.querySelector(".link").setAttribute("href", "");
         article.querySelector(".tag").innerHTML = "";
@@ -626,7 +626,7 @@ function sportFilter(event){
         subArticles[i].querySelector(".sport-sub-article-image").src = category.articles[i+1].mainMedia.gallery.url;
         subArticles[i].querySelector(".link").setAttribute("href", "https://www.livescore.com" + category.articles[i+1].url);
 
-        let tag = subArticles[i+1].querySelector(".tag");
+        let tag = subArticles[i].querySelector(".tag");
         tag.innerHTML = category.articles[i+1].categoryLabel;
         tag.style.background = tagGenerator();  
     }

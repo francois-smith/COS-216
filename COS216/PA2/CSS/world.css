@@ -195,6 +195,10 @@
     cursor: pointer;
 }
 
+.sports-filter:hover{
+    filter: brightness(80%);
+}
+
 .sport-article-image-main {
     height: 70%;
 }
@@ -284,6 +288,10 @@
     padding: 4px 12px;
     margin: 0 5px;
     cursor: pointer;
+}
+
+.tech-filter:hover{
+    filter: brightness(80%);
 }
 
 .tech-container {
@@ -421,6 +429,10 @@
     cursor: pointer;
 }
 
+.business-filter:hover{
+    filter: brightness(80%);
+}
+
 .business-container {
     padding: 0px 75px;
     display: grid; 
@@ -441,7 +453,7 @@
     transition: all 0.4s;
 }
 
-.business-article-main .link{
+.link{
     display: none;
 }
 
@@ -531,7 +543,6 @@
     transform: translateX(10px);
 }
 
-
 .business-sub-author-date{
     color: #fff;
     font-size: 18px;
@@ -562,6 +573,10 @@
     text-transform: capitalize;
 }
 
+.filter:hover{
+    filter: brightness(0.8);
+}
+
 .section-title {
     padding-top: 30px;
     padding-bottom: 10px;
@@ -588,4 +603,12 @@
 
 .business-sub-article-general:hover .overlay{
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.hide-alt {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
