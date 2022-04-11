@@ -1,0 +1,163 @@
+<!--Francois SMith - u21649988-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="../../IMG/Favicon.ico" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NewsLodge | Daily News</title>
+        <meta name="description" content="News website birning you the latest updates of things happening around the world">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../CSS/MainStyle.css">
+        <link rel="stylesheet" href="CSS/Covid.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div id="top-bar-container">
+                <div id="top-bar" class="center">
+                    <div id="date-time" class="center">                    
+                        <img alt="image of clock" src="img/Time.png">
+                        <span>weekday, day month year</span>
+                    </div>
+                    <div id="socials">
+                        <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg" alt="Facebook Icon"></a>
+                        <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg" alt="Instagram Icon"></a>
+                        <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg" alt="Twitter Icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center" id="title-logo">
+                <img src="../../IMG/Logo.png" alt="logo">
+                <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
+            </div>
+            <div class="center" id="links">
+                <div id="link-container">
+                    <a href="today.html"><span>Today</span></a>
+                    <a href="south-africa.html"><span>South Africa</span></a>
+                    <a href="world.html"><span>World</span></a>
+                    <a id="active-link" href=""><span>COVID-19</span></a>
+                    <a href="calendar.html"><span>Calendar</span></a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <section id="covid-section">
+                <div id="graph-container">
+                    <canvas id="statsChart"></canvas>
+                </div>
+                <div class="container">
+                    <div class="Overall-stats grid-container">
+                        <div class="counter">
+                            <span class="counter-title">Global Cases</span>
+                            <span class="counter-amount" style="color: #2a81ea;"></span>
+                            <span class="counter-new" style="color: #2a80eaa8;"></span>
+                        </div>
+                        <div class="counter">
+                            <span class="counter-title">Global Recoveries</span>
+                            <span class="counter-amount" style="color: #2eaa49;"></span>
+                            <span class="counter-new" style="color: #2eaa49b0;"></span>
+                        </div>
+                        <div class="counter">
+                            <span class="counter-title">Global Deaths</span>
+                            <span class="counter-amount" style="color: #ff5f5f;"></span>
+                            <span class="counter-new" style="color: #ff5f5faf;"></span>
+                        </div>
+                    </div>
+                    <div div="scroll-container">
+                        <div class="scroll-text"></div>
+                    </div>
+                    <div class="cfr-ifr-container grid-container">
+                        <div class="ifr">
+                            <img  src="img/SVG/blood.svg" alt="drop">
+                            <div class="ifr-info">
+                                <span class="ifr-title counter-title">IFR Rate</span>
+                                <span class="ifr-amount counter-amount" style="color: #969696;"></span>
+                            </div>
+                        </div>
+                        <div class="critical-cases">
+                                <span class="counter-title">Active Cases</span>
+                                <span class="counter-amount" style="color: #969696;"></span>
+                        </div>
+                        <div class="cfr">
+                            <img src="img/SVG/case.svg" alt="case">
+                            <div class="cfr-info">
+                                <span class="cfr-title counter-title">CFR Rate</span>
+                                <span class="cfr-amount counter-amount" style="color: #969696;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infographic">
+                        <div id="infographic-container">
+                            <div id="infographic-title">
+                                <span id="infographic-main">CORONA</span>
+                                <div id="infographic-float-container">
+                                    <span id="infographic-float">COVID-19</span>
+                                    <span id="infographic-main2">VIRUS</span>
+                                </div>
+                            </div>
+                            <p id="infographic-text">
+                                The Coronavirus (COVID-19) was first reported in Wuhan, Hubei, China in December 2019, the outbreak was later recognized as a pandemic by the World Health Organization (WHO) on 11 March 2020.
+                            </p>
+                        </div>
+                        <img src="img/infographic.png" alt="Covid Infographic">
+                    </div>
+                    <div class="circle-graph grid-container">
+                        <h3>Cases vs Recoveries</h3>
+			            <canvas id="doughnut" height="220"></canvas>
+			            <canvas id="tooltip-canvas" width="150" height="100"></canvas>
+                    </div>
+                    <div class="cases-today grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/covid-svgrepo-com.svg" alt="covid">
+                        <div class="stat-info">
+                            <span class="stat-title">South Africa New Cases</span>
+                            <span class="stat-amount"></span>
+                        </div>
+                    </div>
+                    <div class="deaths-today grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/skull.svg" alt="bed">
+                        <div class="stat-info">
+                            <span class="stat-title">South Africa New Deaths</span>
+                            <span class="stat-amount"></span>
+                        </div>
+                    </div>
+                    <div class="mortality grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/pulse.svg" alt="pulse">
+                        <div class="stat-info">
+                            <span class="stat-title">Mortailty Rate</span>
+                            <span class="stat-amount"></span>
+                        </div>
+                    </div>
+                    <div class="CRD grid-container stat-card">
+                        <img class="stat-image" src="img/SVG/clipboard.svg" alt="clipboard">
+                        <div class="stat-info">
+                            <span class="stat-title">C:R:D Ratio</span>
+                            <span class="stat-amount"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div id="footer-socials">
+                <a href="https://www.facebook.com/"><img src="../../IMG/svg/icons8-facebook.svg" alt="Facebook Icon"></a>
+                <a href="https://www.instagram.com/"><img src="../../IMG/svg/icons8-instagram.svg" alt="Instagram Icon"></a>
+                <a href="https://twitter.com"><img src="../../IMG/svg/icons8-twitter.svg" alt="Twitter Icon"></a>
+            </div>
+            <div id="footer-links">
+                <a href="today.html" class="footer-link">Today</a>
+                <a href="south-africa.html" class="footer-link">South Africa</a>
+                <a href="world.html" class="footer-link">World</a>
+                <a href="covid.html" class="footer-link">Covid-19</a>
+                <a href="calendar.html" class="footer-link">Calendar</a>
+            </div>
+            <div id="footer-copyright">
+                <p>&copy;2022 NewsLodge All Rights Reserved</p>
+            </div>
+        </footer>
+        <script src="JS/general.js"></script>
+        <script src="JS/graphs/CircleChart.js"></script>
+        <script src="JS/graphs/TotalStatistics.js"></script>
+        <script src="JS/covid.js"></script>
+    </body>
+</html>
