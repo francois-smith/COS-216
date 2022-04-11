@@ -20,6 +20,6 @@ function loginPage(){
 }
 
 function registerPage(){
-    var url = 'php/SignupPage/signup.php';
+    var url = '/COS216/PA3/php/SignupPage/signup.php';
     window.location.href = url;
 }
