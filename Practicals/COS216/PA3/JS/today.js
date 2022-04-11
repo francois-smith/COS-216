@@ -1,16 +1,20 @@
-loadTodayArticles();
+//loadTodayArticles();
 var json;
+
+const loader = document.querySelector("#loading-background");
+loader.classList.remove("display");
+loader.style.display = "none";
 
 function loadTodayArticles(){
     const loader = document.querySelector("#loading-background");
 
-    setTimeout(() => {
-        loader.classList.remove("display");
-    }, 3000);
+    // setTimeout(() => {
+    //     loader.classList.remove("display");
+    // }, 3000);
 
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 4000);
+    // setTimeout(() => {
+    //     loader.style.display = "none";
+    // }, 4000);
 
     const request = new XMLHttpRequest();
 
