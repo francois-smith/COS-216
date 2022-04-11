@@ -139,3 +139,39 @@ h2{
 .quote-contianer p{
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.199);
 }
+
+input.invalid{
+    border: 1px solid rgba(223, 60, 60, 0.877);
+    color: rgba(219, 37, 37, 0.877);
+}
+
+.error-message{
+    display: none;
+}
+
+.input-title-container{
+    margin-bottom: -22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-title-container span{
+    padding-bottom: -5px;
+    color: rgba(219, 37, 37, 0.877);
+}
+
+.display-error{
+    display: block
+}
+
+input:focus{
+    color: rgba(0, 0, 0, 0.507);
+}
+
+.visibilty-toggle{
+    position: absolute;
+    width: 25px;
+    margin-top: 20px;
+    margin-left: -35px;
+}
