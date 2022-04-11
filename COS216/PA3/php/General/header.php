@@ -4,23 +4,23 @@
         <html lang="en">
             <head>
                 <meta charset="utf-8">
-                <link rel="icon" href="/Practicals/IMG/Favicon.ico" type="image/x-icon">
+                <link rel="icon" href="/IMG/Favicon.ico" type="image/x-icon">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <title>NewsLodge | Daily News</title>
                 <meta name="description" content="News website birning you the latest updates of things happening around the world">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="/Practicals/CSS/MainStyle.css">
+                <link rel="stylesheet" href="/CSS/MainStyle.css">
             </head>
             <body>
                 <nav>
                     <div id="top-bar-container">
                         <div id="top-bar" class="center">
                             <div id="date-time" class="center">                    
-                                <img alt="image of clock" src="img/Time.png">
+                                <img alt="image of clock" src="/COS216/PA3/img/Time.png">
                                 <span>weekday, day month year</span>
                             </div>
                             <div id="user">
-                                <img src="/Practicals/PA3/img/SVG/user_icon.svg" alt="user icon">
+                                <img src="/COS216/PA3/img/SVG/user_icon.svg" alt="user icon">
                                 <span id="username">My Account</span>
                                 <div id="loginContainer">
                                     <span>Welcome to NewsLodge</span>
@@ -34,20 +34,20 @@
                         </div>
                     </div>
                         <div class="center" id="title-logo">
-                            <img src="/Practicals/IMG/Logo.png" alt="logo">
+                            <img src="/IMG/Logo.png" alt="logo">
                             <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
                         </div>
                     <div class="center" id="links">
                         <div id="link-container">
-                            <a href="/Practicals/PA3/today.html"><span>Today</span></a>
-                            <a href="/Practicals/PA3south-africa.html"><span>South Africa</span></a>
-                            <a href="/Practicals/PA3world.html"><span>World</span></a>
-                            <a href="/Practicals/PA3covid.html"><span>COVID-19</span></a>
-                            <a href="/Practicals/PA3calendar.html"><span>Calendar</span></a>
+                            <a href="/COS216/PA3/today.html"><span>Today</span></a>
+                            <a href="/COS216/PA3/south-africa.html"><span>South Africa</span></a>
+                            <a href="/COS216/PA3/world.html"><span>World</span></a>
+                            <a href="/COS216/PA3/covid.html"><span>COVID-19</span></a>
+                            <a href="/COS216/PA3/calendar.html"><span>Calendar</span></a>
                         </div>
                     </div>
                 </nav>
-                <script src="JS/general.js"></script>
+                <script src="/COS216/PA3/JS/general.js"></script>
             </body>
         </html>
     ';
