@@ -15,6 +15,7 @@
                         <a href="" class="link"></a>
                         <div class="overlay"></div>
                         <img class="card-article-image" src="" alt="a">
+                        <div class="overlay"></div>
                         <span class="tag"></span>
                         <div class="card-article-content">
                             <span class="card-author-date"></span>
@@ -25,6 +26,7 @@
                         <a href="" class="link"></a>
                         <div class="overlay"></div>
                         <img class="card-article-image" src="" alt="a">
+                        <div class="overlay"></div>
                         <span class="tag"></span>
                         <div class="card-article-content">
                             <span class="card-author-date"></span>
@@ -119,7 +121,7 @@
                             <span class="sub-article-title">No Article Found</span>
                         </div>
                     </div>
-                </div>
+                  </div>
             </section>
         </main>
         <script src="JS/today.js"></script>
