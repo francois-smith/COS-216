@@ -14,3 +14,12 @@ function setupDate(){
 
     dateSpan.innerHTML = weekDay + ", " + day + " " + month + " " + year;
 }
+
+function loginPage(){
+    
+}
+
+function registerPage(){
+    var url = 'php/SignupPage/signup.php';
+    window.location.href = url;
+}
