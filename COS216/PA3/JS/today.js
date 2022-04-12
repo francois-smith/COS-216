@@ -1,4 +1,4 @@
-//loadTodayArticles();
+loadTodayArticles();
 var json;
 
 const loader = document.querySelector("#loading-background");
@@ -18,16 +18,15 @@ function loadTodayArticles(){
 
     const request = new XMLHttpRequest();
 
-    request.open("get", "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP");
-    request.onload = () => {
-        json = JSON.parse(request.responseText);
-        populateInitialTrendingArticles(json);
-        populateMainArticle(json);
-        populateSubArticles(json);
-        generateFilters(json);
-    };
+    request.open("POST", "/api.php");
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("key=peen&type=info&return[]=title&return[]=rating&return[]=author");
+    //
+    request.onload = function(){
+        //json = JSON.parse(this.responseText);
+        console.log(this.responseText);
+    }
     
-    request.send();
 }
 
 function populateInitialTrendingArticles(json){
