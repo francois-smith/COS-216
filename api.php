@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
+
     include_once('COS216/PA3/php/General/config.php');
 
     $database = Database::getInstance();
@@ -73,24 +76,82 @@
         $currentTime = time();
 
         $refresh = false;
-        if($currentTime - $refrshedTime >= 7200){
+        if($currentTime - $refrshedTime >= 7200*3){
             $refresh = true;
         }
 
         if($refresh){
-            $url = "https://api.nytimes.com/svc/news/v3/content/all/world.json?limit=40&offset=40&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
-            $request = curl_init( $url);
-            curl_setopt($request, CURLOPT_URL, $url);
-            curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-
-            $response = curl_exec($request);
-            curl_close($request);
-            $articles = json_decode($response, true);
+            $worldURL = "https://api.nytimes.com/svc/news/v3/content/all/world.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $worldRequest = curl_init($worldURL);
+            curl_setopt($worldRequest, CURLOPT_URL, $worldURL);
+            curl_setopt($worldRequest, CURLOPT_RETURNTRANSFER, true);
+            $worldResponse = curl_exec($worldRequest);
+            $worldArticles = json_decode($worldResponse, true);
+            curl_close($worldRequest);
             
 
-            foreach ($articles["results"] as $article) {
-                var_dump($article);
+            $businessURL = "https://api.nytimes.com/svc/news/v3/content/all/business.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $businessRequest = curl_init($businessURL);
+            curl_setopt($businessRequest, CURLOPT_URL, $businessURL);
+            curl_setopt($businessRequest, CURLOPT_RETURNTRANSFER, true);
+            $businessResponse = curl_exec($businessRequest);
+            $businessArticles = json_decode($businessResponse, true);
+
+            $articles = array();
+            foreach($worldArticles["results"] as $article){
+                $articles[] = $article;
+            }
+            foreach($businessArticles["results"] as $article){
+                $articles[] = $article;
+            }
+
+            //var_dump($articles["results"]);
+            /*
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/health.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $health = json_decode($response, true);
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/movies.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $movies = json_decode($response, true);
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/science.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $science = json_decode($response, true);
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/sports.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $sports = json_decode($response, true);
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/technology.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $technology = json_decode($response, true);
+
+            $url = "https://api.nytimes.com/svc/news/v3/content/all/travel.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
+            $request = curl_init($url);
+            $response = curl_exec($request);
+            $travel = json_decode($response, true);
+
+            $articles = array();
+            foreach($worldArticles["results"] as $article){
+                $articles[] = $article;
+            }
+            foreach($businessArticles["results"] as $article){
+                $articles[] = $article;
+            }
+
+            var_dump($articles);
+
+            foreach ($articles as $article) {
+                
             } 
+            */
         }
     }
 ?>
