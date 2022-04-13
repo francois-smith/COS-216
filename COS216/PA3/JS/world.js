@@ -17,7 +17,7 @@ function setupPage() {
     var link = document.createElement('link');
     link.rel = 'stylesheet'; 
     link.type = 'text/css';
-    link.href = '/COS216/PA3/CSS/world.css'; 
+    link.href = '/COS216/PA3/CSS/World.css'; 
 
     head.appendChild(link); 
 }

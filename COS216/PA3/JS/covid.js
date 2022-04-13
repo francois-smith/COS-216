@@ -1,5 +1,22 @@
 getGlobalData();
 getArticles();
+setupPage();
+
+function setupPage() {
+    let head = document.getElementsByTagName('head')[0]; 
+
+    let stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet'; 
+    stylesheet.type = 'text/css';
+    stylesheet.href = '/COS216/PA3/CSS/Covid.css'; 
+
+    head.appendChild(stylesheet); 
+
+    let links = document.getElementById('link-container'); 
+    let link = links.querySelectorAll('a')[3];
+
+    link.setAttribute('id', 'active-link');
+}
 
 function getGlobalData(){
     const request = new XMLHttpRequest();

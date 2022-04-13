@@ -1,6 +1,23 @@
 getWeather();
 getNews();
 loader();
+setupPage();
+
+function setupPage() {
+    let head = document.getElementsByTagName('head')[0]; 
+
+    let stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet'; 
+    stylesheet.type = 'text/css';
+    stylesheet.href = '/COS216/PA3/CSS/SouthAfrica.css'; 
+
+    head.appendChild(stylesheet); 
+
+    let links = document.getElementById('link-container'); 
+    let link = links.querySelectorAll('a')[1];
+
+    link.setAttribute('id', 'active-link');
+}
 
 function loader(){
     const loader = document.querySelector("#loading-background");

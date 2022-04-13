@@ -1,5 +1,22 @@
 let json;
 const date = new Date();
+setupPage();
+
+function setupPage() {
+    let head = document.getElementsByTagName('head')[0]; 
+
+    let stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet'; 
+    stylesheet.type = 'text/css';
+    stylesheet.href = '/COS216/PA3/CSS/Calendar.css'; 
+
+    head.appendChild(stylesheet); 
+
+    let links = document.getElementById('link-container'); 
+    let link = links.querySelectorAll('a')[4];
+
+    link.setAttribute('id', 'active-link');
+}
 
 function getNews(searchDate){
 	const request = new XMLHttpRequest();
