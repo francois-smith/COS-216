@@ -1,17 +1,19 @@
 <?php
-
     class Database{
         private static $instance = null;
         private $connection;
 
-        private $servername = "localhost";
-        private $username = "Francois";
-        private $password = "Faffa0319!";
-        private $db = "users";
+        private $servername = "wheatley.cs.up.ac.za";
+        private $username = "u21649988";
+        private $password = "EGWH7BHBJST7SC6QIHD7RDPXEB2C5DX2";
+        private $db = "u21649988";
 
         private function __construct() {
             session_start();
             $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->db);
+            if($this->connection->connect_error) {
+                die("Connection failed: " . $this->connection->connect_error);
+            } 
             $this->populateDatabase();
         }
 
@@ -117,6 +119,15 @@
             }
     
             if($refresh){
+                $sql = "SELECT * FROM articles";
+                $result = $this->connection->query($sql);
+                $count = mysqli_num_rows($result);
+
+                if($count >= 1000){
+                    $sql = "DELETE FROM articles LIMIT 50";
+                    $result = $this->connection->query($sql);
+                }
+
                 $url = "https://api.nytimes.com/svc/news/v3/content/all/world.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
                 $request = curl_init($url);
                 curl_setopt($request, CURLOPT_URL, $url);
@@ -138,21 +149,13 @@
                 $response = curl_exec($request);
                 $healthArticles = json_decode($response, true);
     
-                $url = "https://api.nytimes.com/svc/news/v3/content/all/movies.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
-                $request = curl_init($url);
-                curl_setopt($request, CURLOPT_URL, $url);
-                curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($request);
-                $moviesArticles = json_decode($response, true);
-    
-  
                 $url = "https://api.nytimes.com/svc/news/v3/content/all/sports.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
                 $request = curl_init($url);
                 curl_setopt($request, CURLOPT_URL, $url);
                 curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
                 $response = curl_exec($request);
                 $sportsArticles = json_decode($response, true);
-    
+
                 $url = "https://api.nytimes.com/svc/news/v3/content/all/technology.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
                 $request = curl_init($url);
                 curl_setopt($request, CURLOPT_URL, $url);
@@ -170,9 +173,6 @@
                 foreach($healthArticles["results"] as $article){
                     $articles[] = $article;
                 }
-                foreach($moviesArticles["results"] as $article){
-                    $articles[] = $article;
-                }
                 foreach($sportsArticles["results"] as $article){
                     $articles[] = $article;
                 }
@@ -181,7 +181,7 @@
                 }
     
                 curl_close($request);
-    
+
                 foreach ($articles as $article) {
                     if($article != null){
                         if($article["multimedia"] != null){
@@ -203,6 +203,43 @@
                         }
                     }
                 } 
+
+                $url = "https://newsapi.org/v2/top-headlines?country=za&apiKey=6177734ee24447ca80a86b6c2a83a3af";
+                $request = curl_init($url);
+                curl_setopt($request, CURLOPT_URL, $url);
+                curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($request);
+                $southAfricaArticles = json_decode($response, true);
+
+                $articles = array();
+                foreach($southAfricaArticles["articles"] as $article){
+                    $articles[] = $article;
+                }
+
+                array_unique($articles, SORT_REGULAR);
+
+                foreach($articles as $article){
+                    if($article != null){
+                        if($article["source"]["name"] == "Google News" || $article["source"]["name"] == "Businesstech.co.za" || $article["source"]["name"] == "News-Medical.Net"){
+                            continue;
+                        }
+                        else{
+                            $title = addslashes($article["title"]);
+                            $author = addslashes($article["author"]);
+                            $tag = "South Africa";
+                            $date = addslashes($article["publishedAt"]);
+                            $link = addslashes($article["url"]);
+                            $description = addslashes($article["content"]);
+                            $image = addslashes($article["urlToImage"]);
+                            $rating = 0;
+
+                            $this->addNews($title, $description, $author, $image, $tag, $date, $link, $rating);
+                        }
+                    }
+                }
+
+                curl_close($request);
+
                 $sql = "UPDATE `refreshed` SET `refreshed`=CURRENT_TIMESTAMP";
                 $this->connection->query($sql);
             }
