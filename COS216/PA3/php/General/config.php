@@ -61,16 +61,13 @@
         private function failMessage($email){
             require_once("../General/header.php");
             echo '
-                <head>
-                    <link rel="stylesheet" href="/COS216/PA3/CSS/signup.css">
-                </head>
                 <main>
                     <div class="form-container">
-                        <div class="successContainer">
-                            <h2>An Error Occured</h2>
+                        <div class="responseContainer">
+                            <h2 class="blue-text">An Error Occured</h2>
                             <p>The following email is already registered: </p>
-                            <span id="email-container">'.$email.'</span>
-                            <p>Please sign in using this email</p>
+                            <span id="responseContainerMessage">'.$email.'</span>
+                            <p>Please <span onclick="loginPage()" id="log-in">log in</span> using this email</p>
                         </div>
                         <div class="quote-contianer">
                             <p><span class="blue-text">Spreading </span><span>Knowledge</span></p>
@@ -85,15 +82,12 @@
         private function successMessage($message, $name){
             require_once("../General/header.php");
             echo '
-                <head>
-                    <link rel="stylesheet" href="/COS216/PA3/CSS/signup.css">
-                </head>
                 <main>
                     <div class="form-container">
-                        <div class="successContainer">
-                            <h2>Welcome '.$name.'</h2>
+                        <div class="responseContainer">
+                            <h2><span class="blue-text">Welcome</span> '.$name.'</h2>
                             <p>Thank your for registering an account with us, you can find you API Key below</p>
-                            <p>'.$message.'</p>
+                            <span id="responseContainerMessage">'.$message.'</span>
                         </div>
                         <div class="quote-contianer">
                             <p><span class="blue-text">Spreading </span><span>Knowledge</span></p>
@@ -151,13 +145,7 @@
                 $response = curl_exec($request);
                 $moviesArticles = json_decode($response, true);
     
-                $url = "https://api.nytimes.com/svc/news/v3/content/all/science.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
-                $request = curl_init($url);
-                curl_setopt($request, CURLOPT_URL, $url);
-                curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($request);
-                $scienceArticles = json_decode($response, true);
-    
+  
                 $url = "https://api.nytimes.com/svc/news/v3/content/all/sports.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
                 $request = curl_init($url);
                 curl_setopt($request, CURLOPT_URL, $url);
@@ -172,13 +160,6 @@
                 $response = curl_exec($request);
                 $technologyArticles = json_decode($response, true);
     
-                $url = "https://api.nytimes.com/svc/news/v3/content/all/travel.json?limit=10&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP";
-                $request = curl_init($url);
-                curl_setopt($request, CURLOPT_URL, $url);
-                curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($request);
-                $travelArticles = json_decode($response, true);
-    
                 $articles = array();
                 foreach($worldArticles["results"] as $article){
                     $articles[] = $article;
@@ -192,16 +173,10 @@
                 foreach($moviesArticles["results"] as $article){
                     $articles[] = $article;
                 }
-                foreach($scienceArticles["results"] as $article){
-                    $articles[] = $article;
-                }
                 foreach($sportsArticles["results"] as $article){
                     $articles[] = $article;
                 }
                 foreach($technologyArticles["results"] as $article){
-                    $articles[] = $article;
-                }
-                foreach($travelArticles["results"] as $article){
                     $articles[] = $article;
                 }
     

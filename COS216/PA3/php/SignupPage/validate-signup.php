@@ -84,12 +84,9 @@
     function failValidate($message){
         require_once("../General/header.php");
         echo '
-            <head>
-                <link rel="stylesheet" href="/COS216/PA3/CSS/signup.css">
-            </head>
             <main>
                 <div class="form-container">
-                    <div class="failContainer">
+                    <div class="responseContainer">
                         <h2>An Error Ocured</h2>
                         <p>'.$message.'</p>
                     </div>
