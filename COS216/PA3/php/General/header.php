@@ -7,12 +7,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="icon" href="/IMG/Favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/u21649988/IMG/Favicon.ico" type="image/x-icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>NewsLodge | Daily News</title>
         <meta name="description" content="News website birning you the latest updates of things happening around the world">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/CSS/MainStyle.css">
+        <link rel="stylesheet" href="/u21649988/CSS/MainStyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
     </head>
@@ -21,11 +21,11 @@
             <div id="top-bar-container">
                 <div id="top-bar" class="center">
                     <div id="date-time" class="center">                    
-                        <img alt="image of clock" src="/COS216/PA3/img/Time.png">
+                        <img alt="image of clock" src="/u21649988/COS216/PA3/img/Time.png">
                         <span>weekday, day month year</span>
                     </div>
                     <div id="user">
-                        <img src="/COS216/PA3/img/SVG/user_icon.svg" alt="user icon">
+                        <img src="/u21649988/COS216/PA3/img/SVG/user_icon.svg" alt="user icon">
                         <span id="username">My Account</span>
                         <div id="loginContainer">
                             <span>Welcome to NewsLodge</span>
@@ -39,16 +39,16 @@
                 </div>
             </div>
             <div class="center" id="title-logo">
-                <img src="/IMG/Logo.png" alt="logo">
+                <img src="/u21649988/IMG/Logo.png" alt="logo">
                 <p><span>NEWS</span><span class="orange-text">LODGE</span></p>
             </div>
             <div class="center" id="links">
                 <div id="link-container">
-                    <a href="/COS216/PA3/index.php"><span>Today</span></a>
-                    <a href="/COS216/PA3/south-africa.php"><span>South Africa</span></a>
-                    <a href="/COS216/PA3/world.php"><span>World</span></a>
-                    <a href="/COS216/PA3/covid.php"><span>COVID-19</span></a>
-                    <a href="/COS216/PA3/calendar.php"><span>Calendar</span></a>
+                    <a href="/u21649988/COS216/PA3/today.php"><span>Today</span></a>
+                    <a href="/u21649988/COS216/PA3/south-africa.php"><span>South Africa</span></a>
+                    <a href="/u21649988/COS216/PA3/world.php"><span>World</span></a>
+                    <a href="/u21649988/COS216/PA3/covid.php"><span>COVID-19</span></a>
+                    <a href="/u21649988/COS216/PA3/calendar.php"><span>Calendar</span></a>
                 </div>
             </div>
         </nav>
