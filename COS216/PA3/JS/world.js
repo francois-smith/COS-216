@@ -9,6 +9,18 @@ getSportData();
 getTechData();
 getBusinessData();
 getGeneralData();
+setupPage();
+
+function setupPage() {
+    var head = document.getElementsByTagName('head')[0]; 
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet'; 
+    link.type = 'text/css';
+    link.href = '/COS216/PA3/CSS/world.css'; 
+
+    head.appendChild(link); 
+}
 
 function loader(){
     const loader = document.querySelector("#loading-background");
