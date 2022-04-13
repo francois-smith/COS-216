@@ -36,7 +36,7 @@ Random numbers are sometime predictably generated but it is fine in this case be
 /*=================Functionality=================*/
 All functionality on the spec has been implemented.
 
-News articles are cached into a table, once config is constructed a call to the database is made retrieving the last refresh time, if 6 hours has elapsed, a call to NYT and ** is made to retrieve new articles from different categories. The table can contain a max of 1000 articles and if this limit is reached the oldest articles are deleted from the table to free up space.
+News articles are cached into a table, once config is constructed a call to the database is made retrieving the last refresh time, if 6 hours has elapsed, a call to NYT and theNews is made to retrieve new articles from different categories. The table can contain a max of 1000 articles and if this limit is reached the oldest articles are deleted from the table to free up space.
 
 All API keys are exactly 48 characters long, so this adds a extra layer of verification on the inputted key parameter.
 
