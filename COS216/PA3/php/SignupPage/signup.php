@@ -4,7 +4,7 @@
     <div class="form-container">
         <div class="input-container">
             <h2>Let's get you started</h2>
-            <form id="signup-form" action="/COS216/PA3/php/SignupPage/validate-signup.php" method="post">
+            <form id="signup-form" action="/u21649988/COS216/PA3/php/SignupPage/validate-signup.php" method="post">
                 <div class="input-title-container">
                     <label for="name">First Name*</label><br>
                     <span class="error-message" id="name-error">Please enter a valid name</span>
