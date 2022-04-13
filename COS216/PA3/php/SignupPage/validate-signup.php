@@ -18,7 +18,7 @@
     }
 
     function testName($data) {
-        if(ctype_alpha($data) && $data.strlen($data) > 2){
+        if(ctype_alpha($data) && strlen($data) > 2){
             return $data;
         }
         else{
@@ -28,7 +28,7 @@
     }
 
     function testSurname($data) {
-        if(ctype_alpha($data) && $data.strlen($data) > 2){
+        if(ctype_alpha($data) && strlen($data) > 2){
             return $data;
         }
         else{
