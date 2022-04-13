@@ -1,15 +1,48 @@
-let email = false;
-let name = false;
-let surname = false;
-let password = false;
-let confirmPass = false;
+let toggles;
 let globalScope = this;
+setupPage();
 
-document.getElementById("name").addEventListener("blur", checkName);
-document.getElementById("surname").addEventListener("blur", checkSurname);
-document.getElementById("email").addEventListener("blur", checkEmail);
-document.getElementById("password").addEventListener("blur", checkPassword);
-document.getElementById("confirmPassword").addEventListener("blur", checkConfirm);
+function setupPage() {
+    let head = document.getElementsByTagName('head')[0]; 
+
+    let stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet'; 
+    stylesheet.type = 'text/css';
+    stylesheet.href = '/COS216/PA3/CSS/Signup.css'; 
+
+    head.appendChild(stylesheet); 
+}
+
+if(document.querySelector(".input-container") != null){
+    let email = false;
+    let name = false;
+    let surname = false;
+    let password = false;
+    let confirmPass = false;
+    
+
+    toggles = document.querySelectorAll(".visibilty-toggle");
+    document.getElementById("name").addEventListener("blur", checkName);
+    document.getElementById("surname").addEventListener("blur", checkSurname);
+    document.getElementById("email").addEventListener("blur", checkEmail);
+    document.getElementById("password").addEventListener("blur", checkPassword);
+    document.getElementById("confirmPassword").addEventListener("blur", checkConfirm);
+
+    document.getElementById('signup-form').addEventListener('submit', function(event){
+        if(globalScope.name && globalScope.surname && globalScope.email && globalScope.password && globalScope.confirmPass){
+            return true;
+        }
+        else{
+            event.preventDefault();
+            checkConfirm();
+            checkPassword();
+            checkEmail();
+            checkName();
+            checkSurname();
+            return false;
+        }
+    });
+}
 
 function checkName() {
     let elementValue = document.getElementById("name").value;
@@ -45,7 +78,7 @@ function checkSurname() {
 
 function checkEmail(){
     let elementValue = document.getElementById("email").value;
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(!emailPattern.test(elementValue)){
         document.getElementById("email").classList.add("invalid");
@@ -103,8 +136,6 @@ function checkConfirm(){
     }
 }
 
-let toggles = document.querySelectorAll(".visibilty-toggle");
-
 function toggleIcon(e){
     let password;
     if(e == toggles[0]){
@@ -123,19 +154,4 @@ function toggleIcon(e){
         e.src = "/COS216/PA3/img/SVG/invisible.svg";
     }
 }
-
-document.getElementById('signup-form').addEventListener('submit', function(event){
-    if(globalScope.name && globalScope.surname && globalScope.email && globalScope.password && globalScope.confirmPass){
-        return true;
-    }
-    else{
-        event.preventDefault();
-        checkConfirm();
-        checkPassword();
-        checkEmail();
-        checkName();
-        checkSurname();
-        return false;
-    }
-});
 
