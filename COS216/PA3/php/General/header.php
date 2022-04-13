@@ -13,6 +13,8 @@
         <meta name="description" content="News website birning you the latest updates of things happening around the world">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/CSS/MainStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
     </head>
     <body>
         <nav>
