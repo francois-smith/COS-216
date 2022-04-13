@@ -8,7 +8,7 @@ function setupPage() {
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet'; 
     stylesheet.type = 'text/css';
-    stylesheet.href = '/COS216/PA3/CSS/Signup.css'; 
+    stylesheet.href = '/u21649988/COS216/PA3/CSS/Signup.css'; 
 
     head.appendChild(stylesheet); 
 }
@@ -148,10 +148,10 @@ function toggleIcon(e){
     password.setAttribute('type', type);
 
     // Toggle the eye slash icon
-    if (e.src.match("/COS216/PA3/img/SVG/invisible.svg")) {
-        e.src = "/COS216/PA3/img/SVG/visible.svg";
+    if (e.src.match("/u21649988/COS216/PA3/img/SVG/invisible.svg")) {
+        e.src = "/u21649988/COS216/PA3/img/SVG/visible.svg";
     } else {
-        e.src = "/COS216/PA3/img/SVG/invisible.svg";
+        e.src = "/u21649988/COS216/PA3/img/SVG/invisible.svg";
     }
 }
 

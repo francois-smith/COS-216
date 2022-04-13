@@ -16,11 +16,11 @@ function setupDate(){
 }
 
 function loginPage(){
-    var url = '/COS216/PA3/php/LoginPage/login.php';
+    var url = '/u21649988/COS216/PA3/php/LoginPage/login.php';
     window.location.href = url;
 }
 
 function registerPage(){
-    var url = '/COS216/PA3/php/SignupPage/signup.php';
+    var url = '/u21649988/COS216/PA3/php/SignupPage/signup.php';
     window.location.href = url;
 }

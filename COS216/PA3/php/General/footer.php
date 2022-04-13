@@ -2,12 +2,12 @@
 
 <html>
     <body>
-        <script src="/COS216/PA3/JS/general.js"></script>
+        <script src="/u21649988/COS216/PA3/JS/general.js"></script>
         <footer>
             <div id="footer-socials">
-                <a href="https://www.facebook.com/"><img src="/IMG/svg/icons8-facebook.svg" alt="Facebook Icon"></a>
-                <a href="https://www.instagram.com/"><img src="/IMG/svg/icons8-instagram.svg" alt="Instagram Icon"></a>
-                <a href="https://twitter.com"><img src="/IMG/svg/icons8-twitter.svg" alt="Twitter Icon"></a>
+                <a href="https://www.facebook.com/"><img src="/u21649988/IMG/svg/icons8-facebook.svg" alt="Facebook Icon"></a>
+                <a href="https://www.instagram.com/"><img src="/u21649988/IMG/svg/icons8-instagram.svg" alt="Instagram Icon"></a>
+                <a href="https://twitter.com"><img src="/u21649988/IMG/svg/icons8-twitter.svg" alt="Twitter Icon"></a>
             </div>
             <div id="footer-links">
                 <a href="today.html" class="footer-link">Today</a>

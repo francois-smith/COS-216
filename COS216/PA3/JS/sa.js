@@ -9,7 +9,7 @@ function setupPage() {
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet'; 
     stylesheet.type = 'text/css';
-    stylesheet.href = '/COS216/PA3/CSS/SouthAfrica.css'; 
+    stylesheet.href = '/u21649988/COS216/PA3/CSS/SouthAfrica.css'; 
 
     head.appendChild(stylesheet); 
 

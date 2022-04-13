@@ -8,7 +8,7 @@ function setupPage() {
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet'; 
     stylesheet.type = 'text/css';
-    stylesheet.href = '/COS216/PA3/CSS/Today.css'; 
+    stylesheet.href = '/u21649988/COS216/PA3/CSS/Today.css'; 
 
     head.appendChild(stylesheet); 
 
@@ -31,7 +31,7 @@ function loadTodayArticles(){
 
     const request = new XMLHttpRequest();
 
-    request.open("POST", "/api.php");
+    request.open("POST", "https://wheatley.cs.up.ac.za/u21649988/api.php");
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*");
     request.onload = function(){
