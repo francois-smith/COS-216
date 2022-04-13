@@ -39,13 +39,13 @@
         }
 
         public function addUser($name, $surname, $email, $password, $salt){
-            $result = $this->connection->query("SELECT * FROM users WHERE email = '$email'");
-            if ($result) {
+            $result = $this->connection->query("SELECT * FROM `users` WHERE `email` = '$email'");
+            if($result) {
                 if($result->num_rows == 0) {
                     $api_key = bin2hex(random_bytes(24));
-                    $sql = "INSERT INTO users (name, surname, email, password, api_key) VALUES ('".$name."', '".$surname."', '".$email."', '".$password."', '".$api_key."')";
+                    $sql = "INSERT INTO users (`name`, `surname`, `email`, `password`, `theme`, `preference`, `api_key`) VALUES ('".$name."', '".$surname."', '".$email."', '".$password."', 'light', 'none', '".$api_key."')";
                     $this->connection->query($sql);
-                    $sql = "INSERT INTO usersalts (id, salt) VALUES ('".$this->connection->insert_id."', '".$salt."')";
+                    $sql = "INSERT INTO usersalts (`id`, `salt`) VALUES ('".$this->connection->insert_id."', '".$salt."')";
                     $this->connection->query($sql);
                     $this->successMessage($api_key, $name);
                 } else {
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </main>
-                <script src="/COS216/PA3/JS/signup.js"></script>
+                <script src="/u21649988/COS216/PA3/JS/signup.js"></script>
             ';
             require_once("../General/footer.php");
         }
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                 </main>
-                <script src="/COS216/PA3/JS/signup.js"></script>
+                <script src="/u21649988/COS216/PA3/JS/signup.js"></script>
             ';
             require_once("../General/footer.php");
         }
