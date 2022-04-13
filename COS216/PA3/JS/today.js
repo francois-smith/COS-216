@@ -33,8 +33,7 @@ function loadTodayArticles(){
 
     request.open("POST", "/api.php");
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=title&return[]=author");
-    //
+    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*");
     request.onload = function(){
         json = JSON.parse(this.responseText);
         console.log(json);
