@@ -1,15 +1,9 @@
-let sportsJSON;
-let techJSON;
-let businessJSON;
-let generalJSON;
-let businesscategories = [];
-
 loader();
-getSportData();
-getTechData();
-getBusinessData();
-getGeneralData();
 setupPage();
+let sportsJSON;
+let generalJSON;
+//getSportData();
+//getGeneralData();
 
 function setupPage() {
     var head = document.getElementsByTagName('head')[0]; 
@@ -33,82 +27,16 @@ function loader(){
     }, 4000);
 }
 
-function getGeneralData(){
-    const request = new XMLHttpRequest();
-
-    let offset = Math.floor(Math.random()*10);
-    request.open("GET", "https://api.nytimes.com/svc/news/v3/content/all/world.json?limit=40&offset="+offset+"&api-key=D0YjNaMce336nUyLTHmot0vTCSFEUgdP");
-    request.onload = () => {
-        generalJSON = JSON.parse(request.responseText);
-        populateGeneralData(generalJSON);
-    };
-    
-    request.send();
-}
-
-function populateGeneralData(json){
-    let data = json.results;
-    let articles = document.getElementsByClassName("general-article-base");
-
-    let goodResults = [];
-    for(let article of data){
-        if(article.title != null && article.multimedia != null){
-            goodResults.push(article);
-        }
-    }
-
-    let i = 1;
-    for(let article of articles){
-        article.querySelector(".link").setAttribute("href", goodResults[i].url);
-        article.querySelector(".general-article-image").src = goodResults[i].multimedia[2].url;
-
-        let title;
-        if(goodResults[i].title == null){
-            title = "No article title";
-        }
-        else{
-            title = goodResults[i].title;
-        }
-        article.querySelector(".general-article-title").innerHTML = title;
-
-        let description;
-        if(goodResults[i].abstract == ""){
-            description = "No article description given.";
-        }
-        else{
-            description = goodResults[i].abstract;
-        }
-        article.querySelector(".general-article-description").innerHTML = description;
-
-        let author_date = article.querySelector('.general-article-author');
-        let author = goodResults[0].byline;
-        if(author == "")
-        {
-            author = "Unknown Author";
-        } 
-        author_date.innerHTML = author + " - " + goodResults[i].created_date.split('T')[0];
-
-        let tag = article.querySelector(".general-tag")
-        tag.innerHTML = goodResults[i].subsection;
-        if(tag.innerHTML == ""){
-            tag.innerHTML = goodResults[i].section;
-        }
-        tag.style.background = tagGenerator();
-
-        i+=4;
-    }
-}
-
 function getSportData(){
     const request = new XMLHttpRequest();
 
-    request.open("GET", "https://livescore6.p.rapidapi.com/news/v2/list");
-    request.setRequestHeader("X-RapidAPI-Host", "livescore6.p.rapidapi.com");
-    request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
+    request.open("GET", "https://livescore6.p.rapidapi.com/news/v2/list?rapidapi-key=d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
     request.onload = () => {
         sportsJSON = JSON.parse(request.responseText);
-        populateSports(sportsJSON);
-        generateSportsFilters(sportsJSON)
+        console.log(sportsJSON);
+
+        //populateSports(sportsJSON);
+        //generateSportsFilters(sportsJSON)
     };
     
     request.send();
@@ -128,7 +56,7 @@ function getTechData(){
     request.send();
 }
 
-function getBusinessData(){
+function getGeneralData(){
 
     const request = new XMLHttpRequest();
 
@@ -136,23 +64,22 @@ function getBusinessData(){
     request.setRequestHeader("X-RapidAPI-Host", "cnbc.p.rapidapi.com");
     request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
     request.onload = () => {
-        businessJSON = JSON.parse(request.responseText);
-        populateBusiness(businessJSON);
-        generateBusinessFilters(businessJSON);
+        generalJSON = JSON.parse(request.responseText);
+        populateGeneral(generalJSON);
     };
     
     request.send();
 }
 
-function populateBusiness(json){
+function populateGeneral(json){
     let data = json.data.sectionsEntries[0].assets;
 
-    let mainArticle = document.querySelector(".business-article-main");
+    let mainArticle = document.querySelector(".General-article-main");
     mainArticle.querySelector(".link").setAttribute("href", data[0].url);
-    mainArticle.querySelector(".business-main-article-image").src = data[0].promoImage.url;
-    mainArticle.querySelector(".business-main-article-title").innerHTML = data[0].headline;
+    mainArticle.querySelector(".General-main-article-image").src = data[0].promoImage.url;
+    mainArticle.querySelector(".General-main-article-title").innerHTML = data[0].headline;
 
-    let author_date = mainArticle.querySelector('.business-main-author-date');
+    let author_date = mainArticle.querySelector('.General-main-author-date');
     let author = data[0].authorFormatted;
     if(author == "")
     {
@@ -165,13 +92,13 @@ function populateBusiness(json){
     tag.style.background = tagGenerator();
 
     let i = 1;
-    let subArticles = document.getElementsByClassName("business-sub-article-general");
+    let subArticles = document.getElementsByClassName("General-sub-article-general");
     for(let article of subArticles){
         article.querySelector(".link").setAttribute("href", data[i].url);
-        article.querySelector(".business-sub-article-image").src = data[i].promoImage.url;
-        article.querySelector(".business-sub-article-title").innerHTML = data[i].headline;
+        article.querySelector(".General-sub-article-image").src = data[i].promoImage.url;
+        article.querySelector(".General-sub-article-title").innerHTML = data[i].headline;
 
-        let author_date = article.querySelector('.business-sub-author-date');
+        let author_date = article.querySelector('.General-sub-author-date');
         let author = data[0].authorFormatted;
         if(author == "")
         {
@@ -187,29 +114,7 @@ function populateBusiness(json){
     }
 }
 
-function generateBusinessFilters(json){
-    const container = document.querySelector(".business-filters-container");
-    
-    json.data.sectionsEntries[0].assets.forEach(result => {
-        if(businesscategories.indexOf(result.section.shortestHeadline) == -1) businesscategories.push(result.section.shortestHeadline);
-    });
-
-    var filter = document.querySelector(".business-filter");
-    const clone = filter.cloneNode(true);
-    filter.innerHTML = "All";
-    filter.style.backgroundColor = tagGenerator();
-    container.appendChild(filter);
-
-    for(var i = 0; i < businesscategories.length; i++){
-        const clone = filter.cloneNode(true);
-        clone.innerHTML = businesscategories[i];
-        clone.innerHTML = clone.innerHTML.substring(0,1).toUpperCase() + clone.innerHTML.substring(1).toLowerCase();
-        clone.style.backgroundColor = tagGenerator();
-        container.appendChild(clone);
-    }
-}
-
-function businessFilter(event){
+function GeneralFilter(event){
     const filterType = event.innerHTML.toLowerCase();
     let filteredResults = [];
    
@@ -218,7 +123,7 @@ function businessFilter(event){
         return;
     }
 
-    for(let article of businessJSON.data.sectionsEntries[0].assets){
+    for(let article of generalJSON.data.sectionsEntries[0].assets){
         if(article.section.shortestHeadline != null){ 
             if(article.section.shortestHeadline.toUpperCase() === filterType.toUpperCase()){
                 filteredResults.push(article);
@@ -226,20 +131,20 @@ function businessFilter(event){
         }   
     }
 
-    let mainTechArticle = document.querySelector(".business-article-main");
+    let mainTechArticle = document.querySelector(".General-article-main");
     mainTechArticle.querySelector(".link").setAttribute("href", "");
-    mainTechArticle.querySelector('.business-main-article-title').innerHTML = "No Article Found";
-    mainTechArticle.querySelector(".business-main-article-image").src = "";
-    mainTechArticle.querySelector('.business-main-author-date').innerHTML = "";
+    mainTechArticle.querySelector('.General-main-article-title').innerHTML = "No Article Found";
+    mainTechArticle.querySelector(".General-main-article-image").src = "";
+    mainTechArticle.querySelector('.General-main-author-date').innerHTML = "";
     mainTechArticle.querySelector(".tag").innerHTML = "";
 
 
-    let subBusinessArticles = document.getElementsByClassName("business-sub-article-general");
-    for(let article of subBusinessArticles){
+    let subGeneralArticles = document.getElementsByClassName("General-sub-article-general");
+    for(let article of subGeneralArticles){
         article.querySelector(".link").setAttribute("href", "");
-        article.querySelector('.business-sub-article-title').innerHTML = "No Article Found";
-        article.querySelector(".business-sub-article-image").src = "";
-        article.querySelector('.business-sub-author-date').innerHTML = "";
+        article.querySelector('.General-sub-article-title').innerHTML = "No Article Found";
+        article.querySelector(".General-sub-article-image").src = "";
+        article.querySelector('.General-sub-author-date').innerHTML = "";
         article.querySelector(".tag").innerHTML = "";
     }
 
@@ -249,10 +154,10 @@ function businessFilter(event){
 
         if(i < 1){
             mainTechArticle.querySelector(".link").setAttribute("href", article.url);
-            mainTechArticle.querySelector(".business-main-article-image").src = article.promoImage.url;
-            mainTechArticle.querySelector(".business-main-article-title").innerHTML = article.headline;
+            mainTechArticle.querySelector(".General-main-article-image").src = article.promoImage.url;
+            mainTechArticle.querySelector(".General-main-article-title").innerHTML = article.headline;
 
-            let author_date = mainTechArticle.querySelector('.business-main-author-date');
+            let author_date = mainTechArticle.querySelector('.General-main-author-date');
             let author = article.authorFormatted;
             if(author == "")
             {
@@ -265,11 +170,11 @@ function businessFilter(event){
             tag.style.background = tagGenerator();
         }
         else{
-            subBusinessArticles[i-1].querySelector(".link").setAttribute("href", article.url);
-            subBusinessArticles[i-1].querySelector(".business-sub-article-image").src = article.promoImage.url;
-            subBusinessArticles[i-1].querySelector(".business-sub-article-title").innerHTML = article.headline;
+            subGeneralArticles[i-1].querySelector(".link").setAttribute("href", article.url);
+            subGeneralArticles[i-1].querySelector(".General-sub-article-image").src = article.promoImage.url;
+            subGeneralArticles[i-1].querySelector(".General-sub-article-title").innerHTML = article.headline;
 
-            let author_date = subBusinessArticles[i-1].querySelector('.business-sub-author-date');
+            let author_date = subGeneralArticles[i-1].querySelector('.General-sub-author-date');
             let author = article.authorFormatted;
             if(author == "")
             {
@@ -277,210 +182,11 @@ function businessFilter(event){
             } 
             author_date.innerHTML = author + " - " + article.dateFirstPublished.split('T')[0];
 
-            let tag = subBusinessArticles[i-1].querySelector(".tag")
+            let tag = subGeneralArticles[i-1].querySelector(".tag")
             tag.innerHTML = article.section.shortestHeadline;
             tag.style.background = tagGenerator();
         }   
         i++;
-    }
-}
-
-function populateTech(json){
-    let mainTechArticles = document.getElementsByClassName("tech-article-main-general");
-
-    let i = 0;
-    for(let article of mainTechArticles){
-        let data = json.results[i];
-
-        article.querySelector(".link").setAttribute("href", data.url);
-        article.querySelector('.tech-article-main-title').innerHTML = data.title;
-        article.querySelector(".tech-article-main-image").src = data.multimedia[2].url;
-        article.querySelector(".tech-article-main-description").innerHTML= data.abstract;
-
-        let author_date = article.querySelector('.tech-article-main-author');
-        let author = data.byline;
-        if(author == "")
-        {
-            author = "By New York Times";
-        } 
-        author_date.innerHTML = author + " - " + data.published_date.split('T')[0];
-
-        let tag = article.querySelector(".tag")
-        tag.innerHTML = getTag(data.des_facet);
-        tag.style.background = tagGenerator();
-
-        i++;
-    }
-
-    let subTechArticles = document.getElementsByClassName("tech-article-sub-general");
-    for(let article of subTechArticles){
-        let data = json.results[i];
-
-        article.querySelector(".link").setAttribute("href", data.url);
-        article.querySelector('.tech-article-sub-title').innerHTML = data.title;
-        article.querySelector(".tech-article-sub-image").src = data.multimedia[2].url;
-
-        let author_date = article.querySelector('.tech-article-sub-author');
-        let author = data.byline;
-        if(author == "")
-        {
-            author = "By New York Times";
-        } 
-        author_date.innerHTML = author + " - " + data.published_date.split('T')[0];
-
-        let tag = article.querySelector(".tag")
-        tag.innerHTML = getTag(data.des_facet);
-        tag.style.background = tagGenerator();
-
-        i++;
-    }
-}
-
-function techFilter(event){
-    const filterType = getFilerType(event.innerHTML);
-    let filteredResults = [];
-
-    if(filterType == "all"){
-        populateTech(techJSON);
-        return;
-    }
-
-    for(let article of techJSON.results){
-        if(article.des_facet != null){ 
-            if(article.des_facet.includes(filterType)){
-                filteredResults.push(article);
-            }
-        }   
-    }
-
-    let mainTechArticles = document.getElementsByClassName("tech-article-main-general");
-    for(let article of mainTechArticles){
-        article.querySelector(".link").setAttribute("href", "");
-        article.querySelector('.tech-article-main-title').innerHTML = "No Article Found";
-        article.querySelector(".tech-article-main-image").src = "";
-        article.querySelector(".tech-article-main-description").innerHTML = "";
-        article.querySelector('.tech-article-main-author').innerHTML = "";
-        article.querySelector(".tag").innerHTML = "";
-    }
-    let subTechArticles = document.getElementsByClassName("tech-article-sub-general");
-    for(let article of subTechArticles){
-        article.querySelector(".link").setAttribute("href", "");
-        article.querySelector('.tech-article-sub-title').innerHTML = "No Article Found";
-        article.querySelector(".tech-article-sub-image").src = "";
-        article.querySelector('.tech-article-sub-author').innerHTML = "";
-        article.querySelector(".tag").innerHTML = "";
-    }
-
-    let i = 0;
-    for(let article of filteredResults){
-        if(i > 3) break;
-
-        if(i < 2){
-            mainTechArticles[i].querySelector(".link").setAttribute("href", article.url);
-            mainTechArticles[i].querySelector('.tech-article-main-title').innerHTML = article.title;
-            mainTechArticles[i].querySelector(".tech-article-main-image").src = article.multimedia[2].url;
-            mainTechArticles[i].querySelector(".tech-article-main-description").innerHTML= article.abstract;
-
-            let author_date = mainTechArticles[i].querySelector('.tech-article-main-author');
-            let author = article.byline;
-            if(author == "")
-            {
-                author = "By New York Times";
-            } 
-            author_date.innerHTML = author + " - " + article.published_date.split('T')[0];
-
-            let tag = mainTechArticles[i].querySelector(".tag")
-            tag.innerHTML = getTag(article.des_facet);
-            tag.style.background = tagGenerator();
-        }
-        else{
-            subTechArticles[i-2].querySelector(".link").setAttribute("href", article.url);
-            subTechArticles[i-2].querySelector('.tech-article-sub-title').innerHTML = article.title;
-            subTechArticles[i-2].querySelector(".tech-article-sub-image").src = article.multimedia[2].url;
-
-            let author_date = subTechArticles[i-2].querySelector('.tech-article-sub-author');
-            let author = article.byline;
-            if(author == "")
-            {
-                author = "By New York Times";
-            } 
-            author_date.innerHTML = author + " - " + article.published_date.split('T')[0];
-
-            let tag = subTechArticles[i-2].querySelector(".tag")
-            tag.innerHTML = getTag(article.des_facet);
-            tag.style.background = tagGenerator();
-        }   
-        i++;
-    }
-}
-
-function getFilerType(filter){
-    switch(filter){
-        case "Social media":
-            return "Social Media";
-
-        case "Computers":
-            return "Computers and the Internet";
-            
-        case "Artificial intelligence":
-            return "Artificial Intelligence";
-
-        case "Virtual currency":
-            return "Virtual Currency";
-
-        case "Mobile":
-            return "Mobile Applications";
-
-        case "Streaming":
-            return "Video Recordings, Downloads and Streaming";
-    }
-}
-
-function getTag(filters){
-    let array = ["Social Media", "Computers and the Internet", "Artificial Intelligence", "Virtual Currency", "Mobile Applications", "Video Recordings, Downloads and Streaming"];
-
-    for(let filter of filters){
-        if(array.includes(filter)){
-            switch(filter){
-                case "Social Media":
-                    return "Social Media";
-
-                case "Computers and the Internet":
-                    return "Computers";
-
-                case "Artificial Intelligence":
-                    return "AI";
-
-                case "Virtual Currency":
-                    return "Virtual Currency";
-
-                case "Mobile Applications":
-                    return "Mobile";
-
-                case "Video Recordings, Downloads and Streaming":
-                    return "Streaming";
-            }
-        } 
-    }
-    return "Technology";
-}
-
-function generateTechFilters(){
-    var categories = ["Social Media", "Computers", "Artificial intelligence", "Virtual Currency", "Mobile", "Streaming"];
-    const container = document.querySelector(".tech-filters-container");
-
-    var filter = document.querySelector(".tech-filter");
-    const clone = filter.cloneNode(true);
-    filter.innerHTML = "All";
-    filter.style.backgroundColor = tagGenerator();
-    container.appendChild(filter);
-
-    for(var i = 0; i < categories.length; i++){
-        const clone = filter.cloneNode(true);
-        clone.innerHTML = categories[i];
-        clone.innerHTML = clone.innerHTML.substring(0,1).toUpperCase() + clone.innerHTML.substring(1).toLowerCase();
-        clone.style.backgroundColor = tagGenerator();
-        container.appendChild(clone);
     }
 }
 
