@@ -28,5 +28,8 @@ SHA512 is also slower than SHA216 but in context of security this is good, becau
 I used bin2hex(random_bytes(24)) to allow all API's to be the same length of 48 characters long, this will limit the odds of duplicates but not remove it completely.
 Random numbers are sometime predictably generated but it is fine in this case because its not used for security reasons but just to generate a random set of alpha-numeric characters to be saved as a users API key.
 
+/*=================API Paramaters================*/
+if no optional "title", "author", "date" or "rating" parameters are included in request, the first 20 articles are returned.
+
 /*=================Functionality=================*/
 All functionality on the spec has been implemented.
