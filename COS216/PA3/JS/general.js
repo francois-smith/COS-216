@@ -16,7 +16,8 @@ function setupDate(){
 }
 
 function loginPage(){
-    
+    var url = '/COS216/PA3/php/LoginPage/login.php';
+    window.location.href = url;
 }
 
 function registerPage(){
