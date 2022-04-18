@@ -8,7 +8,7 @@ function setupPage() {
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet'; 
     stylesheet.type = 'text/css';
-    stylesheet.href = '/u21649988/COS216/PA3/CSS/Today.css'; 
+    stylesheet.href = '/u21649988/COS216/PA4/CSS/Today.css'; 
 
     head.appendChild(stylesheet); 
 
@@ -31,114 +31,68 @@ function loadTodayArticles(){
 
     const request = new XMLHttpRequest();
 
-
-
+    date = getDate();
     request.open("POST", "/u21649988/api.php");
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&date=04-18&return[]=title&return[]=description");
+    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&date="+date+"&return[]=*&limit=50");
     request.onload = function(){
         json = JSON.parse(this.responseText);
         console.log(json);
+        populateInitialTrendingArticles(json);
+        populateMainArticle(json);
+        populateSubArticles(json);
     }
-    
 }
 
 function populateInitialTrendingArticles(json){
     const articles = document.getElementsByClassName("general-article");
 
     for (let article of articles) {
-        //set data variable
-        let data = json.results[Math.floor(Math.random()*json.num_results)];
+        let data = json.data[Math.floor(Math.random()*json.data.length)];
 
-        //set link
         let link = article.querySelector(".link");
-        link.setAttribute("href", data.url);
+        link.setAttribute("href", data.link);
 
-        //set title of article
         let title = article.querySelector('.card-article-title, .card-article-title-small');
         title.innerHTML = data.title;
 
-        //set author and date
         let author_date = article.querySelector('.card-author-date');
-        let author = data.byline;
-        if(author == "")
-        {
-            author = "By New York Times";
-        } 
+        let author = data.author;
+        let date = data.date;
+        author_date.innerHTML = author + " - " + date.split("T", 1)[0];
 
-        const formatter = new Intl.DateTimeFormat("en-SA", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-        })
-        const date = new Date();
-        const result = formatter.format(date);
-        author_date.innerHTML = author + " - " + result;
-
-        //set image
         let image = article.querySelector(".card-article-image");
-        image.src = data.multimedia[0].url;
+        image.src = data.image;
 
-        //set tag category with random color
         let tag = article.querySelector(".tag");
-        if(data.subsection == "")
-        {
-            tag.innerHTML = "World";
-        }
-        else {
-            tag.innerHTML = data.section;
-        }   
+        tag.innerHTML = data.tag;
         tag.style.background = tagGenerator();
     }    
 }
 
 function populateMainArticle(json){
     const mainArticle = document.querySelector(".main-article");
+    let data = json.data[Math.floor(Math.random()*json.data.length)];
 
-    let data = json.results[Math.floor(Math.random()*json.num_results)];
-
-    //set title of article
     let title = mainArticle.querySelector('.grid-article-title');
     title.innerHTML = data.title;
 
-    //set link
     let link = mainArticle.querySelector(".link");
-    link.setAttribute("href", data.url)
+    link.setAttribute("href", data.link)
 
-    //set author and date
     let author_date = mainArticle.querySelector('.grid-author-date');
-    let author = data.byline;
-    if(author == "")
-    {
-        author = "By New York Times";
-    } 
+    let author = data.author;
+    let date = data.date;
+    author_date.innerHTML = author + " - " + date.split("T", 1)[0];
 
-    const formatter = new Intl.DateTimeFormat("en-SA", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-    })
-    const date = new Date()
-    const result = formatter.format(date)
-    author_date.innerHTML = author + " - " + result;
-
-    //set image
     let image = mainArticle.querySelector(".grid-article-image-main");
-    image.src = data.multimedia[0].url;
+    image.src = data.image;
 
-    //set description
     let description  = mainArticle.querySelector(".grid-article-description");
-    description.innerHTML = data.abstract;
+    description.innerHTML = data.description;
 
-    //set tag category with random color
     let tag = mainArticle.querySelector(".tag");
-    if(data.subsection == "")
-    {
-        tag.innerHTML = "World";
-    }
-    else {
-        tag.innerHTML = data.section;
-    }   
+    tag.innerHTML = data.tag;  
     tag.style.background = tagGenerator();  
 }
 
@@ -146,40 +100,24 @@ function populateSubArticles(json){
     const articles = document.getElementsByClassName("sub-article-general");
 
     for (let article of articles) {
-        //set data variable
-        let data = json.results[Math.floor(Math.random()*json.num_results)];
+        let data = json.data[Math.floor(Math.random()*json.data.length)];
 
-        //set link
         let link = article.querySelector(".link");
-        link.setAttribute("href", data.url)
+        link.setAttribute("href", data.link)
 
-        //set title of article
         let title = article.querySelector('.sub-article-title');
         title.innerHTML = data.title;
 
-        // //set author and date
         let author_date = article.querySelector('.sub-author-date');
-        let author = data.byline;
-        if(author == "")
-        {
-            author = "By New York Times";
-        } 
+        let author = data.author;
+        let date = data.date;
+        author_date.innerHTML = author + " - " + date.split("T", 1)[0];
 
-        const formatter = new Intl.DateTimeFormat("en-SA", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-        })
-        const date = new Date()
-        const result = formatter.format(date)
-        author_date.innerHTML = author + " - " + result;
-
-        //set image
         let image = article.querySelector(".grid-article-image-sub");
-        image.src = data.multimedia[0].url;
+        image.src = data.image;
 
         let tag = article.querySelector(".tag");
-        tag.innerHTML = data.section;
+        tag.innerHTML = data.tag;
     }   
 }
 
