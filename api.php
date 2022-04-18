@@ -50,7 +50,16 @@
                 if(!array_key_exists("rating", $_POST)) $rating = "";
                 else $rating = $_POST["rating"];
 
-                $API->getArticle($database, $title, $author, $date, $rating, $_POST["return"]);
+                if(!array_key_exists("tag", $_POST)) $tag = "";
+                else {
+                    $arr = explode(" ", $_POST["tag"], 2);
+                    $tag = $arr[0];
+                }
+
+                if(!array_key_exists("limit", $_POST)) $limit = 20;
+                else $limit = $_POST["limit"];
+
+                $API->getArticle($database, $title, $author, $date, $rating, $_POST["return"], $tag, $limit);
                 break;
             case "update":
                 echo json_encode($API->failMessage("API type update does not exist"));
@@ -84,12 +93,12 @@
             return ["status"=> "failed", "timestamp"=>time(), "data"=>["message"=>$message]];
         }
     
-        function getArticle($database, $title, $author, $date, $rating, $types){
+        function getArticle($database, $title, $author, $date, $rating, $types, $tag, $limit){
             $database->populateDatabase();
     
             $articles = [];
             if($title != ""){
-                $query = "SELECT * FROM `articles` WHERE title LIKE '%$title%'";
+                $query = "SELECT * FROM `articles` WHERE title LIKE '%$title%' ORDER BY `id` DESC";
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
@@ -99,7 +108,7 @@
             }
     
             if($author != ""){
-                $query = "SELECT * FROM `articles` WHERE author LIKE '% $author %'";
+                $query = "SELECT * FROM `articles` WHERE author LIKE '% $author %' ORDER BY `id` DESC";
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
@@ -109,7 +118,17 @@
             }
     
             if($date != ""){
-                $query = "SELECT * FROM `articles` WHERE `date` LIKE '%$date%'";
+                $query = "SELECT * FROM `articles` WHERE `date` LIKE '%$date%' ORDER BY `id` DESC";
+                $result = $database->getConnection()->query($query);
+    
+                $row = null;
+                while($row = $result->fetch_assoc()){          
+                    $articles[] = $row;
+                }
+            }
+
+            if($tag != ""){
+                $query = "SELECT * FROM `articles` WHERE `tag` LIKE '$tag%' ORDER BY `id` DESC";
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
@@ -119,7 +138,7 @@
             }
     
             if($rating != ""){
-                $query = "SELECT * FROM `articles` WHERE `rating`='.$rating.'";
+                $query = "SELECT * FROM `articles` WHERE `rating`='$rating' ORDER BY `id` DESC";
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
@@ -128,8 +147,8 @@
                 }
             }
     
-            if($title == "" && $date == "" && $author == "" && $rating == ""){
-                $query = "SELECT * FROM `articles` LIMIT 20";
+            if($title == "" && $date == "" && $author == "" && $rating == "" && $tag == ""){
+                $query = "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT ".$limit;
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
@@ -151,7 +170,7 @@
             $element = null;
             $num = 0;
             foreach($articles as $article){
-                if($num < 20){
+                if($num < $limit){
                     foreach($types as $type){
                         if($type == "*"){
                             $element = $article;
