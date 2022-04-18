@@ -27,7 +27,7 @@
                     <label for="email">Create Password*</label><br>
                     <span class="error-message" id="password-error">Please enter a valid password</span>
                 </div><br/>
-                <input type="password" id="password" name="password" required><img onclick="toggleIcon(this)" class="visibilty-toggle" src="/u21649988/COS216/PA3/img/SVG/invisible.svg" alt="none"><br>
+                <input type="password" id="password" name="password" required><img onclick="toggleIcon(this)" class="visibilty-toggle" src="/u21649988/COS216/PA4/img/SVG/invisible.svg" alt="none"><br>
 
                 <div id="password-tips">
                     <ul>
@@ -42,7 +42,7 @@
                     <label for="confirmPassword">Confirm Password*</label><br>
                     <span class="error-message" id="confirm-error" required>Passwords do not match</span>
                 </div><br/>
-                <input type="password" id="confirmPassword" name="confirmPassword"><img onclick="toggleIcon(this)" class="visibilty-toggle" src="/u21649988/COS216/PA3/img/SVG/invisible.svg" alt="none"><br>
+                <input type="password" id="confirmPassword" name="confirmPassword"><img onclick="toggleIcon(this)" class="visibilty-toggle" src="/u21649988/COS216/PA4/img/SVG/invisible.svg" alt="none"><br>
 
                 <input type="submit" value="Sign Up">
             </form>

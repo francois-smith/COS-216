@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </main>
-            <script src="/u21649988/COS216/PA3/JS/signup.js"></script>
+            <script src="/u21649988/COS216/PA4/JS/signup.js"></script>
         ';
         require_once("../General/footer.php");
     }

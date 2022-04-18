@@ -1,7 +1,6 @@
 <?php ?>
 <html>
     <body>
-        <script src="/u21649988/COS216/PA4/JS/general.js"></script>
         <footer>
             <div id="footer-socials">
                 <a href="https://www.facebook.com/"><img src="/u21649988/IMG/svg/icons8-facebook.svg" alt="Facebook Icon"></a>

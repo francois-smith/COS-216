@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </main>
-                <script src="/u21649988/COS216/PA3/JS/signup.js"></script>
+                <script src="/u21649988/COS216/PA4/JS/signup.js"></script>
             ';
             require_once("../General/footer.php");
         }
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </main>
-                <script src="/u21649988/COS216/PA3/JS/signup.js"></script>
+                <script src="/u21649988/COS216/PA4/JS/signup.js"></script>
             ';
             require_once("../General/footer.php");
         }
@@ -186,8 +186,10 @@
                 foreach ($articles as $article) {
                     if($article != null){
                         if($article["multimedia"] != null){
-                            $description = addslashes($article["multimedia"][0]["caption"]);
-                            $image = addslashes($article["multimedia"][0]["url"]);
+                            $description = addslashes($article["multimedia"][3]["caption"]);
+                            $imageURL = $article["multimedia"][3]["url"];
+                            $imageURL = str_replace("-articleInline", "-superJumbo", $imageURL);
+                            $image = addslashes($imageURL);
                         }
                         else{
                             continue;
