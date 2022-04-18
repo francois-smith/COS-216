@@ -21,11 +21,11 @@
             <div id="top-bar-container">
                 <div id="top-bar" class="center">
                     <div id="date-time" class="center">                    
-                        <img alt="image of clock" src="/u21649988/COS216/PA3/img/Time.png">
+                        <img alt="image of clock" src="/u21649988/COS216/PA4/img/Time.png">
                         <span>weekday, day month year</span>
                     </div>
                     <div id="user">
-                        <img src="/u21649988/COS216/PA3/img/SVG/user_icon.svg" alt="user icon">
+                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
                         <span id="username">My Account</span>
                         <div id="loginContainer">
                             <span>Welcome to NewsLodge</span>
@@ -44,11 +44,11 @@
             </div>
             <div class="center" id="links">
                 <div id="link-container">
-                    <a href="/u21649988/COS216/PA3/today.php"><span>Today</span></a>
-                    <a href="/u21649988/COS216/PA3/south-africa.php"><span>South Africa</span></a>
-                    <a href="/u21649988/COS216/PA3/world.php"><span>World</span></a>
-                    <a href="/u21649988/COS216/PA3/covid.php"><span>COVID-19</span></a>
-                    <a href="/u21649988/COS216/PA3/calendar.php"><span>Calendar</span></a>
+                    <a href="/u21649988/COS216/PA4/today.php"><span>Today</span></a>
+                    <a href="/u21649988/COS216/PA4/south-africa.php"><span>South Africa</span></a>
+                    <a href="/u21649988/COS216/PA4/world.php"><span>World</span></a>
+                    <a href="/u21649988/COS216/PA4/covid.php"><span>COVID-19</span></a>
+                    <a href="/u21649988/COS216/PA4/calendar.php"><span>Calendar</span></a>
                 </div>
             </div>
         </nav>

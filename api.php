@@ -1,5 +1,5 @@
 <?php
-    include_once('COS216/PA3/php/General/config.php');
+    include_once('COS216/PA4/php/General/config.php');
     $database = Database::getInstance();
     $API = API::getInstance();
     
@@ -99,7 +99,7 @@
             }
     
             if($author != ""){
-                $query = "SELECT * FROM `articles` WHERE author LIKE '%$author%'";
+                $query = "SELECT * FROM `articles` WHERE author LIKE '% $author %'";
                 $result = $database->getConnection()->query($query);
     
                 $row = null;
