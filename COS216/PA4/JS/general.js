@@ -16,11 +16,27 @@ function setupDate(){
 }
 
 function loginPage(){
-    var url = '/u21649988/COS216/PA3/php/LoginPage/login.php';
+    var url = '/u21649988/COS216/PA4/php/LoginPage/login.php';
     window.location.href = url;
 }
 
 function registerPage(){
-    var url = '/u21649988/COS216/PA3/php/SignupPage/signup.php';
+    var url = '/u21649988/COS216/PA4/php/SignupPage/signup.php';
     window.location.href = url;
+}
+
+function getDate() {
+    var d = new Date(),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) {
+        month = '0' + month;
+    }
+    if (day.length < 2) {
+        day = '0' + day;
+    }
+
+    return [year, month, day].join('-');
 }
