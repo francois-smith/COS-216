@@ -9,7 +9,7 @@ function setupPage() {
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet'; 
     stylesheet.type = 'text/css';
-    stylesheet.href = '/u21649988/COS216/PA3/CSS/SouthAfrica.css'; 
+    stylesheet.href = '/u21649988/COS216/PA4/CSS/SouthAfrica.css'; 
 
     head.appendChild(stylesheet); 
 
@@ -31,50 +31,37 @@ function loader(){
 }
 
 function getNews(){
-    const request = new XMLHttpRequest();
+    let request = new XMLHttpRequest();
 
-    request.open("GET", "http://api.mediastack.com/v1/news?access_key=7c2da267305e87eeca21143f460ae7fb&languages=en&countries=za&sources=-News24&offset=2");
-    request.onload = () => {
-        let json = JSON.parse(request.responseText);
+    request.open("POST", "/u21649988/api.php");
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&limit=20&tag=South Africa");
+    request.onload = function(){
+        let json = JSON.parse(this.responseText);
         populateNews(json);
-    };
-    
-    request.send();
+    }
 }
 
 function populateNews(json){
-
-
-    let data = json.data;
-    let goodArticles = [];
-
-    for(let article of data){
-        if(article.image != null){
-            goodArticles.push(article);
-        }
-    }
-
     let articles = document.getElementsByClassName("general-latest-article");
 
-    let i = 0;
     for(let article of articles){
-        article.querySelector("a").setAttribute("href", goodArticles[i].url);
-        article.querySelector(".latest-article-image").src = goodArticles[i].image;
-        article.querySelector(".latest-article-title").innerHTML = goodArticles[i].title;
-        article.querySelector(".latest-article-description").innerHTML = goodArticles[i].description.substring(0, 300);
+        let data = json.data[Math.floor(Math.random()*json.data.length)];
+        article.querySelector("a").setAttribute("href", data.link);
+        article.querySelector(".latest-article-image").src = data.image;
+        article.querySelector(".latest-article-title").innerHTML = data.title;
+        article.querySelector(".latest-article-description").innerHTML = data.description;
 
-        let author = goodArticles[i].author;
-        if(author == null){
-            author = "Unknown Author";
+        let author = data.author;
+        if(author == ""){
+            author = "Unknow Author"
         }
-        let date = goodArticles[i].published_at;
+        let date = data.date;
         article.querySelector(".latest-article-author").innerHTML = author + " - " + date.split('T')[0];  
 
         let tag = article.querySelector(".tag");
-        tag.innerHTML = goodArticles[i].category;
+        tag.innerHTML = data.tag;
         tag.style.backgroundColor = tagGenerator();
-        
-        i++;
     }
 }
 
