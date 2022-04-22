@@ -40,3 +40,11 @@ function getDate() {
 
     return [year, month, day].join('-');
 }
+
+function openSettings(){
+
+}
+
+function logOut(){
+
+}

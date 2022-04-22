@@ -54,7 +54,7 @@ function emptyRequest(){
 function getPreferenceData(){
     const request = new XMLHttpRequest();
 
-    let userPreference = "Sports";
+    let userPreference = "Business";
     request.open("POST", "/u21649988/api.php");
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&limit=50&tag="+userPreference+"");

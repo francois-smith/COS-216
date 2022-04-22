@@ -36,15 +36,22 @@ function getGlobalData(){
 function getArticles(){
     const request = new XMLHttpRequest();
     
-    request.open("GET", "https://covid-19-news.p.rapidapi.com/v1/covid?q=covid&lang=en&media=True");
-    request.setRequestHeader("X-RapidAPI-Host", "covid-19-news.p.rapidapi.com");
-    request.setRequestHeader("X-RapidAPI-Key", "d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
-    request.onload = () => {
-        let json = JSON.parse(request.responseText);
-        scrollText(json.articles);
-    };
+    request.open("POST", "/u21649988/api.php");
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&title=covid");
+    request.onload = function(){
+        articles = JSON.parse(this.responseText);
+        if(articles.data.data == "No articles found matching request criteria"){
+            emptyRequest();
+        }
+        else{
+            scrollText(articles);
+        } 
+    }
+}
 
-    request.send();
+function emptyRequest(){
+
 }
 
 function populateSouthAfrica(json){
@@ -55,6 +62,8 @@ function populateSouthAfrica(json){
             break;
         }
     }
+
+    console.log(data);
 
     let casesContainer = document.querySelector(".cases-today");
     casesContainer.querySelector(".stat-amount").innerHTML = data["New Cases"];
@@ -113,7 +122,10 @@ function calculateIFR(data){
     document.getElementsByClassName("ifr-amount")[0].innerHTML = ifr.toFixed(2) + "%";
 }
 
-function scrollText(articles){
+function scrollText(json){
+    let articles = json.data;
+    console.log(json);
+
     let spacing = 200;
     let items = [];
     for (let i = 0; i < 8; i++){
