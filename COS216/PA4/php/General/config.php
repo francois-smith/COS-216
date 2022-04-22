@@ -1,4 +1,20 @@
 <?php
+    if(!isset($_SESSION)){
+        session_start();
+        if(!isset($_SESSION["api_key"])){
+            $_SESSION["api_key"] = "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96";
+        }
+        if(!isset($_SESSION["logged_in"])){
+            $_SESSION["logged_in"] = false;
+        }
+        if(!isset($_SESSION["user_id"])){
+            $_SESSION["user_id"] = "";
+        }
+        if(!isset($_SESSION["user_name"])){
+            $_SESSION["user_name"] = "";
+        }
+    }
+
     class Database{
         private static $instance = null;
         private $connection;
@@ -9,8 +25,6 @@
         private $db = "u21649988";
 
         private function __construct() {
-            session_start();
-            
             $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->db);
             if($this->connection->connect_error) {
                 die("Connection failed: " . $this->connection->connect_error);
@@ -28,26 +42,59 @@
 
         public function __destruct() { 
             $this->connection->close();
-            session_destroy();
         }
 
         public function getConnection(){
             return $this->connection;
         }
         
-        public function retrieveUser($username){ 
-            
+        public function retrieveUser($email){ 
+            $query = "SELECT * FROM  `users` WHERE `email` = '$email'";
+            $result = $this->connection->query($query);
+    
+            if($result){
+                if($result->num_rows == 0) {
+                    return "";
+                }
+                else{
+                    return $result->fetch_assoc();
+                }
+            }
+            else{
+                return "";
+            }
+        }
+
+        public function getUserSalt($id){
+            $return = "";
+            $query = "SELECT * FROM  `usersalts` WHERE `id` = '$id'";
+            $result = $this->connection->query($query);
+            if($result){
+                $return = $result->fetch_assoc()["salt"];
+            }
+            return $return;
         }
 
         public function addUser($name, $surname, $email, $password, $salt){
-            $result = $this->connection->query("SELECT * FROM `users` WHERE `email` = '$email'");
-            if($result) {
-                if($result->num_rows == 0) {
+            $stmt = $this->connection->prepare("SELECT * FROM  `users` WHERE `email` = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+            if($stmt) {
+                if($stmt->num_rows == 0) {
                     $api_key = bin2hex(random_bytes(24));
-                    $sql = "INSERT INTO users (`name`, `surname`, `email`, `password`, `theme`, `preference`, `api_key`) VALUES ('".$name."', '".$surname."', '".$email."', '".$password."', 'light', 'none', '".$api_key."')";
-                    $this->connection->query($sql);
-                    $sql = "INSERT INTO usersalts (`id`, `salt`) VALUES ('".$this->connection->insert_id."', '".$salt."')";
-                    $this->connection->query($sql);
+                    $theme = "light";
+                    $preference = "none";
+
+                    $stmt = $this->connection->prepare("INSERT INTO users (`name`, `surname`, `email`, `password`, `theme`, `preference`, `api_key`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sssssss", $name, $surname, $email, $password, $theme, $preference, $api_key);
+                    $stmt->execute();
+                    $stmt->store_result();
+
+                    $insert_id = $stmt->insert_id; 
+                    $stmt2 = $this->connection->prepare("INSERT INTO usersalts (`id`, `salt`) VALUES (?, ?)");
+                    $stmt2->bind_param("is", $insert_id, $salt);
+                    $stmt2->execute();
                     $this->successMessage($api_key, $name);
                 } else {
                     $this->failMessage($email);
@@ -56,9 +103,14 @@
         }
 
         public function addNews($title, $description, $author, $image, $tag, $articleDate, $link, $rating){
-            $sql1 = "INSERT INTO articles (title, description, author, image, tag, date, link, rating)";
-            $sql2 = " VALUES ('".$title."', '".$description."', '".$author."', '".$image."', '".$tag."', '".$articleDate."', '".$link."', '".$rating."')";
-            $this->connection->query($sql1.$sql2);
+            $stmt = $this->connection->prepare("SELECT * FROM  `users` WHERE `email` = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            $stmt = $this->connection->prepare("INSERT INTO articles (`title`, `description`, `author`, `image`, `tag`, `date`, `link`, `rating`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $title, $description, $author, $image, $tag, $articleDate, $link, $rating);
+            $stmt->execute();
         }
 
         private function failMessage($email){
