@@ -43,6 +43,10 @@ input[type=submit]{
     font-weight: 400;
 }
 
+input[type=submit]:hover{
+    filter: brightness(0.8);
+}
+
 input[type=text], input[type=email], input[type=password] {
     width: 100%;
     padding: 12px 12px;
@@ -175,7 +179,7 @@ input:focus{
     text-align: center;
 }
 
-#log-in{
+#login-link{
     color: var(--accent-color);
     text-decoration: underline;
     cursor: pointer;
