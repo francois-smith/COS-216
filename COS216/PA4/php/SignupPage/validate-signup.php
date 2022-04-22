@@ -62,7 +62,6 @@
             $rounds = '500000';
             $cryptSalt = '$'.$algo.'$rounds='.$rounds.'$'.$salt;
             $hashedPassword = crypt($data, $cryptSalt);
-            //echo(crypt($data, $hashedPassword) == $hashedPassword);
             return $hashedPassword;
         }
     }
