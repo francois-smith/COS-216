@@ -4,16 +4,6 @@
     $API = API::getInstance();
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if(!isset($_POST["key"])){
-            echo json_encode($API->failMessage("Key parameter not set"));
-            return;
-        }
-
-        if(strlen($_POST["key"]) != 48){
-            echo json_encode($API->failMessage("Key parameter is invalid"));
-            return;
-        }
-
         if(!isset($_POST["type"])){
             echo json_encode($API->failMessage("Type parameter not set"));
             return;
@@ -25,19 +15,19 @@
             return;
         }
 
-        if(!isset($_POST["return"])){
-            echo json_encode($API->failMessage("No return parameters not set"));
-            return;
-        }
-
-        $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*"];
-        if(empty(array_intersect($returnTypes, $_POST["return"]))){
-            echo json_encode($API->failMessage("Invalid return parameter"));
-            return;
-        }
-
         switch ($_POST["type"]) {
             case "info":
+                if(!isset($_POST["return"])){
+                    echo json_encode($API->failMessage("No return parameters not set"));
+                    return;
+                }
+        
+                $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*"];
+                if(empty(array_intersect($returnTypes, $_POST["return"]))){
+                    echo json_encode($API->failMessage("Invalid return parameter"));
+                    return;
+                }
+
                 if(!array_key_exists("title", $_POST)) $title = "";
                 else $title = $_POST["title"];
 
@@ -50,10 +40,17 @@
                 if(!array_key_exists("rating", $_POST)) $rating = "";
                 else $rating = $_POST["rating"];
 
-                if(!array_key_exists("tag", $_POST)) $tag = "";
+                if(!array_key_exists("tag", $_POST)){
+                    $tag = "";
+                } 
                 else {
-                    $arr = explode(" ", $_POST["tag"], 2);
-                    $tag = $arr[0];
+                    if($_POST["tag"] == "none"){
+                        $tag = "";
+                    }
+                    else{
+                        $arr = explode(" ", $_POST["tag"], 2);
+                        $tag = $arr[0];
+                    }
                 }
 
                 if(!array_key_exists("limit", $_POST)) $limit = 20;
@@ -65,7 +62,20 @@
                 echo json_encode($API->failMessage("API type update does not exist"));
                 break;
             case "login":
-                echo json_encode($API->failMessage("API type login does not exist"));
+                if(!array_key_exists("password", $_POST)){
+                    echo json_encode($API->failMessage("Invalid Login Credentials"));
+                    return;
+                } 
+                else $password = $_POST["password"];
+
+                if(!array_key_exists("email", $_POST)){
+                    echo json_encode($API->failMessage("Invalid Login Credentials"));
+                    return;
+                } 
+                else $email = $_POST["email"];
+                var_dump($email);
+                
+                $API->logIn($email, $password);
                 break;
             case "rate":
                 echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Article rated with value 0"]]);
@@ -91,6 +101,17 @@
 
         function failMessage($message){
             return ["status"=> "failed", "timestamp"=>time(), "data"=>["message"=>$message]];
+        }
+
+        function logIn($email, $password){
+            include_once("COS216/PA4/php/LoginPage/validate-login.php");
+            $return = validateLogin($email, $password);
+            if(!$return){
+                echo json_encode($API->failMessage("Invalid Login Credentials"));
+            }
+            else{
+                header('Location: /u21649988/COS216/PA4/');
+            }
         }
     
         function getArticle($database, $title, $author, $date, $rating, $types, $tag, $limit){
