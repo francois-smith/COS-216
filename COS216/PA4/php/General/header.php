@@ -1,6 +1,10 @@
 <?php 
     require_once("config.php");
     $instance = Database::getInstance();
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +28,42 @@
                         <img alt="image of clock" src="/u21649988/COS216/PA4/img/Time.png">
                         <span>weekday, day month year</span>
                     </div>
-                    <div id="user">
-                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
-                        <span id="username">My Account</span>
-                        <div id="loginContainer">
-                            <span>Welcome to NewsLodge</span>
-                            <div id="divider"></div>
-                            <div id="buttons-container">
-                                <span onclick="loginPage()" id="login">Login</span>
-                                <span onclick="registerPage()" id="register">Register</span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                        if(isset($_SESSION)){
+                            if($_SESSION["logged_in"] == false){
+                                echo '
+                                    <div id="user">
+                                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
+                                        <span id="username">My Account</span>
+                                        <div id="loginContainer">
+                                            <span>Welcome to NewsLodge</span>
+                                            <div id="divider"></div>
+                                            <div id="buttons-container">
+                                                <span onclick="loginPage()" id="login">Login</span>
+                                                <span onclick="registerPage()" id="register">Register</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                            else{
+                                echo '
+                                    <div id="user">
+                                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
+                                        <span id="username">My Account</span>
+                                        <div id="loginContainer">
+                                            <span>Welcome '.$_SESSION["user_name"].'</span>
+                                            <div id="divider"></div>
+                                            <div id="buttons-container">
+                                                <span onclick="openSettings()" id="preferences">My Profile</span>
+                                                <span onclick="logOut()" id="logout">Log Out</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>
                 </div>
             </div>
             <div class="center" id="title-logo">
