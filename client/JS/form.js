@@ -80,11 +80,60 @@ function loginUser(user){
 
     //remove login screen from view
     closeLogin();
+
+    //Select the user popup and set height higher to accomodate for more content
+    let userSection = document.querySelector("#user-account");
+    userSection.innerHTML = "";
+    userSection.style.height = "110px";
+
+    //create a div that will flex to show user name underneath title
+    let userContainer = document.createElement("div");
+    userContainer.style.display = "flex";
+    userContainer.style.flexDirection = "column";
+    
+    //create title
+    let span1 = document.createElement("span");
+    span1.innerHTML = "Logged In as:";
+    userContainer.appendChild(span1);
+
+    //create a "b" element to hold logged in user
+    let b = document.createElement("b");
+    b.innerHTML = user.data.message.name;
+    userContainer.appendChild(b);
+
+    //append the flex div
+    userSection.appendChild(userContainer);
+
+    //add button with onclick to log out again
+    let button = document.createElement("button");
+    button.innerHTML = "Sign Out";
+    button.setAttribute("onclick", "logOut()");
+    userSection.appendChild(button);
 }
 
 //clear storage and remove reference to user
 function logOut(){
+    //clear session variables
     sessionStorage.clear();
+
+    //reset user popup to correct height
+    let userSection = document.querySelector("#user-account");
+    userSection.innerHTML = "";
+    userSection.style.height = "85px";
+
+    //create default title and store in a span
+    let span = document.createElement("span");
+    span.innerHTML = "Log Into Your Account";
+    userSection.appendChild(span);
+
+    //create default login button with onclick to log in again
+    let button = document.createElement("button");
+    button.innerHTML = "Login";
+    button.setAttribute("onclick", "openLogin()");
+    userSection.appendChild(button);
+
+    //reset theme to default
+    setTheme('light');
 }
 
 //simple regex for email validation, checks basic so request isnt bad by default
