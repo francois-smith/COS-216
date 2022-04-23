@@ -110,7 +110,7 @@
                 echo json_encode($API->failMessage("Invalid Login Credentials"));
             }
             else{
-                header('Location: /u21649988/COS216/PA4/');
+                echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Login Successful"]]);
             }
         }
     
