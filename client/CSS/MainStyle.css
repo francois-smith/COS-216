@@ -7,14 +7,18 @@
 
 :root.light{
     --font-color: #393939;
-    --background-color: #fff;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
     --elements-background: #383838;
     --elements-text: #cfcfcf;
 }
 
 :root.dark{
     --font-color: #cecece;
+    --font--hover: #919191;
     --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
     --elements-background: #222222;
     --elements-text: #d4d4d4;
 }
@@ -40,7 +44,7 @@ body {
     width: 100vw;
 
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 75px 1fr;
     grid-template-rows: 1fr;
 }
 
@@ -48,32 +52,60 @@ body {
 
 nav{
     grid-area: 1 / 1 / 2 / 2;
-    background-color: #aaaa;
+    background-color: var(--background-color);
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    font-size: 20px;
+    overflow: hidden;
 }
 
-#theme-toggle{
+#article-section{
+
+}
+
+#bottom-section{
     display: flex;
-    padding: 10px 0px 20px;
+    flex-direction: column;
+    padding: 25px;
+}
+
+#user-account-container{
+    display: flex;
+    margin: 0px 0px 20px;
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+#user-account-container span{
+    
+}
+
+#user-account-container i{
+    font-size: 25px;
+    padding-right: 30px;
+}
+
+#user-account{
+
+}
+
+#theme-toggle-container{
+    display: flex;
+}
+
+#theme-icon-container{
+    padding-right: 30px;
 }
 
 #light-theme{
-    color: var(--elements-text);
-    transform: scale(1.75);
-    cursor: pointer;
+    transform: scale(1.4);
 }
 
-#light-theme:hover{
-    color:var(--accent-color)
-}
-
-#dark-theme{
-    color: var(--elements-text);
-    transform: scale(1.5);
-    cursor: pointer;
-}
-
-#dark-theme:hover{
-    color:var(--accent-color)
+#dark-theme {
+    transform: scale(1.1);
 }
 
 .display-none-theme{
@@ -90,23 +122,27 @@ main{
 
 .chat-container{
     grid-area: 1 / 1 / 2 / 2;
-    background-color: rgba(209, 209, 209, 0.667);
+    background-color: var(--background-color-offset);
 }
 
 .article-container{
     grid-area: 1 / 2 / 2 / 3;
-    background-color: rgba(107, 107, 107, 0.667);
+    background-color: var(--background-color);
 }
 
 /*======================================Login Container============================================*/
 
 .form-container{
+    top: 50%;
+    right: 50%;
+    transform: translate(200%, -50%);
     position: absolute;
     width: 60vw;
     display: grid;
     grid-template-columns: 0.6fr 0.4fr;
     grid-template-rows: minmax(400px, 1fr);
     box-shadow: 0 1px 12px 0 rgba(0,0,0,0.2);
+    transition: all 0.5s;
 }
 
 .input-container{
@@ -139,6 +175,8 @@ input[type=submit]{
     background-color: var(--accent-color);
     color: #fff;
     font-weight: 400;
+    z-index: 10;
+    position: relative;
 }
 
 input[type=submit]:hover{
@@ -146,6 +184,7 @@ input[type=submit]:hover{
 }
 
 input[type=text], input[type=email], input[type=password] {
+    position: relative;
     width: 100%;
     padding: 12px 12px;
     font-size: 16px;
@@ -157,11 +196,20 @@ input[type=text], input[type=email], input[type=password] {
     color: var(--font-color);
     background-color: var(--background-color);
     margin-bottom: 25px;
+    z-index: 10;
 }
 
 h2{
     font-weight: 500;
     font-size: 30px;
+}
+
+.toast {
+    top: 40px;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, 0px);
+    z-index: 9999;
 }
 
 .input-container p{
@@ -176,10 +224,10 @@ h2{
 #logo-background{
     position: absolute;
     height: 800px;
-    z-index: -1;
+    z-index: 1;
     opacity: 0.05;
     left: calc(-15%);
-    top: calc(20%);
+    top: calc(10%);
 }
 
 .blue-text{
@@ -231,4 +279,66 @@ input:focus{
     margin-top: 20px;
     margin-left: -35px;
     color: var(--font-color);
+}
+
+.form-close{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    z-index: 2000;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/*======================================Custom Toastr Styling============================================*/
+
+.toast-message a, .toast-message label {
+    color: var(--elements-text) !important;
+}
+
+.toast-message a:hover {
+    color: var(--elements-text) !important;
+}
+
+.toast-close-button {
+
+    color: var(--elements-text) !important;
+}
+
+.toast-close-button:hover, .toast-close-button:focus {
+    color:  var(--elements-text) !important;
+}
+  
+#toast-container > div {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    color:  var(--elements-text) !important;
+}
+
+#toast-container > div:hover {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none  !important;
+    box-shadow: none  !important;
+}
+
+.toast {
+    background-color:  var(--elements-background) !important;
+}
+
+.toast-success {
+    background-color: #51A351 !important;
+}
+
+.toast-error {
+    background-color: rgb(223, 60, 60) !important;
+}
+
+.toast-info {
+    background-color: #2F96B4 !important;
+}
+
+.toast-warning {
+    background-color: #F89406 !important;
 }
