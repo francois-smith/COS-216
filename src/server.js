@@ -6,6 +6,74 @@ const app = express();
 const http = require("http").Server(app);
 const io = require('socket.io')(http);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//adwwwwwwwwwwwwwwwwwwwwwwwwww
+
+var httpRequest = require('http');
+
+var username = 'u21649988';
+var password = 'Faffa0319';
+var auth = 'Basic ' + Buffer.from(username + ':' + password).toString('base64');
+
+const data = JSON.stringify({
+    type:"login",
+    email:"Test@gmail.com",
+    password: "TestPass1!",
+    return: ["*"]
+});
+
+var hostName = "wheatley.cs.up.ac.za";
+var path = "/u21649988/api.php";
+
+const options = {
+    hostname: hostName,
+    path: path,
+    port: 80,
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': auth,
+        'Content-Length': Buffer.byteLength(data)
+    }
+};
+
+const req = httpRequest.request(options, (res) => {
+    console.log(`statusCode: ${res.statusCode}`)
+    res.on('data', (response) => {
+        process.stdout.write(response);
+    });
+});
+
+req.on('error', (error) => {
+    console.log('error is ' + error);
+});
+
+req.write(data);
+req.end();
+
+
+
+
+
+
+
+
+
+
+
+
 //Url to api and allow server to use post requests
 const api_url = "u21649988:Faffa0319!@wheatley.cs.up.ac.za/u21649988/api.php";
 app.use(express.json());
