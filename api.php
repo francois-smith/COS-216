@@ -1,5 +1,5 @@
 <?php
-    include_once('COS216/PA4/php/General/config.php');
+    include_once(dirname(__FILE__).'/COS216/PA4/php/General/config.php');
     $database = Database::getInstance();
     $API = API::getInstance();
     
@@ -112,7 +112,7 @@
         }
 
         function logIn($email, $password){
-            include_once("COS216/PA4/php/LoginPage/validate-login.php");
+            include_once(dirname(__FILE__)."/COS216/PA4/php/LoginPage/validate-login.php");
             $return = validateLogin($email, $password);
             if(!$return){
                 echo json_encode($this->failMessage("Invalid Login Credentials"));
