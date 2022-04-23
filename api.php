@@ -1,12 +1,13 @@
 <?php
     ini_set('display_errors', '1');
-    include_once('COS216/PA4/php/General/config.php');
+    include_once('./COS216/PA4/php/General/config.php');
     $database = Database::getInstance();
     $API = API::getInstance();
     
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(!isset($data["type"])){
             echo json_encode($API->failMessage("Type parameter not set"));
@@ -84,7 +85,7 @@
                     return;
                 }
                 
-                $API->logIn($email, $password,  $data["return"]);
+                $API->logIn($email, $password, $database);
                 break;
             case "rate":
                 echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Article rated with value 0"]]);
@@ -112,9 +113,9 @@
             return ["status"=> "failed", "timestamp"=>time(), "data"=>["message"=>$message]];
         }
 
-        function logIn($email, $password){
-            include_once(dirname(__FILE__)."/COS216/PA4/php/LoginPage/validate-login.php");
-            $return = validateLogin($email, $password);
+        function logIn($email, $password, $database){
+            include_once("./COS216/PA4/php/LoginPage/validate-login.php");
+            $return = validateLogin($email, $password, $database);
             if(!$return){
                 echo json_encode($this->failMessage("Invalid Login Credentials"));
                 return;
@@ -220,4 +221,5 @@
             echo json_encode($returnString);
         }
     }
+    
 ?>
