@@ -1,5 +1,6 @@
 <?php
-    include_once(dirname(__FILE__).'/COS216/PA4/php/General/config.php');
+    ini_set('display_errors', '1');
+    include_once('COS216/PA4/php/General/config.php');
     $database = Database::getInstance();
     $API = API::getInstance();
     
