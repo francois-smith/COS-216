@@ -1,3 +1,5 @@
+setupNavigation();
+
 const port = ('; '+document.cookie).split(`; port_number=`).pop().split(';')[0];
 
 //checks what theme is active and swaps it for the other option
@@ -40,4 +42,17 @@ function openLogin(){
 function closeLogin(){
     let form = document.querySelector(".form-container");
     form.style.transform = "translate(200%, -50%)";
+}
+
+function setupNavigation(){
+    let navbar = document.querySelector("nav");
+    let body = document.querySelector("body");
+
+    navbar.addEventListener("mouseout", function(){
+        console.log("yeet");
+    });
+
+    navbar.addEventListener("mouseover", function(){
+        document.getElementById("myDIV").style.gridTemplateColumns = "50px 50px";
+    });
 }
