@@ -3,79 +3,87 @@
     $database = Database::getInstance();
     $API = API::getInstance();
     
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if(!isset($_POST["type"])){
+        if(!isset($data["type"])){
             echo json_encode($API->failMessage("Type parameter not set"));
             return;
         }
 
         $requestTypes = ["info", "update", "login", "rate", "chat"];
-        if(!in_array($_POST["type"], $requestTypes)){
+        if(!in_array($data["type"], $requestTypes)){
             echo json_encode($API->failMessage("Type parameter not set"));
             return;
         }
 
-        switch ($_POST["type"]) {
+        switch ($data["type"]) {
             case "info":
-                if(!isset($_POST["return"])){
+                if(!isset($data["return"])){
                     echo json_encode($API->failMessage("No return parameters not set"));
                     return;
                 }
         
-                $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*"];
-                if(empty(array_intersect($returnTypes, $_POST["return"]))){
+                $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*", "user_name", "user_surname", "user_id", "user_theme", "user_preference", "user_key", "user_email"];
+                if(empty(array_intersect($returnTypes, $data["return"]))){
                     echo json_encode($API->failMessage("Invalid return parameter"));
                     return;
                 }
 
-                if(!array_key_exists("title", $_POST)) $title = "";
-                else $title = $_POST["title"];
+                if(!array_key_exists("title", $data)) $title = "";
+                else $title = $data["title"];
 
-                if(!array_key_exists("author", $_POST)) $author = "";
-                else $author = $_POST["author"];
+                if(!array_key_exists("author", $data)) $author = "";
+                else $author = $data["author"];
 
-                if(!array_key_exists("date", $_POST)) $date = "";
-                else $date = $_POST["date"];
+                if(!array_key_exists("date", $data)) $date = "";
+                else $date = $data["date"];
 
-                if(!array_key_exists("rating", $_POST)) $rating = "";
-                else $rating = $_POST["rating"];
+                if(!array_key_exists("rating", $data)) $rating = "";
+                else $rating = $data["rating"];
 
-                if(!array_key_exists("tag", $_POST)){
+                if(!array_key_exists("tag", $data)){
                     $tag = "";
                 } 
                 else {
-                    if($_POST["tag"] == "none"){
+                    if($data["tag"] == "none"){
                         $tag = "";
                     }
                     else{
-                        $arr = explode(" ", $_POST["tag"], 2);
+                        $arr = explode(" ", $data["tag"], 2);
                         $tag = $arr[0];
                     }
                 }
 
-                if(!array_key_exists("limit", $_POST)) $limit = 20;
-                else $limit = $_POST["limit"];
+                if(!array_key_exists("limit", $data)) $limit = 20;
+                else $limit = $data["limit"];
 
-                $API->getArticle($database, $title, $author, $date, $rating, $_POST["return"], $tag, $limit);
+                $API->getArticle($database, $title, $author, $date, $rating, $data["return"], $tag, $limit);
                 break;
             case "update":
                 echo json_encode($API->failMessage("API type update does not exist"));
                 break;
             case "login":
-                if(!array_key_exists("password", $_POST)){
+                if(!array_key_exists("password", $data)){
                     echo json_encode($API->failMessage("Invalid Login Credentials"));
                     return;
                 } 
-                else $password = $_POST["password"];
+                else $password = $data["password"];
 
-                if(!array_key_exists("email", $_POST)){
+                if(!array_key_exists("email", $data)){
                     echo json_encode($API->failMessage("Invalid Login Credentials"));
                     return;
                 } 
-                else $email = $_POST["email"];
-                var_dump($email);
+                else $email = $data["email"];
+
+                $returnTypes = ["*"];
+                if(empty(array_intersect($returnTypes, $data["return"]))){
+                    echo json_encode($API->failMessage("Invalid return parameter"));
+                    return;
+                }
                 
-                $API->logIn($email, $password);
+                $API->logIn($email, $password,  $data["return"]);
                 break;
             case "rate":
                 echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Article rated with value 0"]]);
@@ -107,11 +115,10 @@
             include_once("COS216/PA4/php/LoginPage/validate-login.php");
             $return = validateLogin($email, $password);
             if(!$return){
-                echo json_encode($API->failMessage("Invalid Login Credentials"));
+                echo json_encode($this->failMessage("Invalid Login Credentials"));
+                return;
             }
-            else{
-                echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Login Successful"]]);
-            }
+            echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>$return]]);
         }
     
         function getArticle($database, $title, $author, $date, $rating, $types, $tag, $limit){
