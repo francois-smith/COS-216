@@ -1,19 +1,24 @@
 document.getElementById("email").addEventListener("blur", checkEmail);
 
-document.getElementById('signup-form').addEventListener('submit', function(event){
-    event.preventDefault();
+$("#login-form").submit(function(e) {
+    e.preventDefault();
 
     if(checkEmail()){
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
 
-        const request = new XMLHttpRequest();
-        request.open("POST", "/u21649988/api.php");
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send("type=login&email="+email+"&password="+password);
-        request.onload = function(){
-            console.log(this.responseText);
-        }
+        $.ajax({
+            url: "http://localhost:"+port+"/login",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'email': email,
+                'password': password,
+            }),
+            error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+        });
     }
     else{
         checkEmail();
