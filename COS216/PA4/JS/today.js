@@ -31,13 +31,19 @@ function loadTodayArticles(){
 
     const request = new XMLHttpRequest();
 
-    date = getDate();
     request.open("POST", "/u21649988/api.php");
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&date="+date+"&return[]=*&limit=50");
+    request.setRequestHeader("Content-type", "application/json");
+
+    date = getDate();
+    let requestData = {
+        "type":"info",
+        "date":date,
+        "return":["*"],
+        "limit":50
+    };
+    request.send(JSON.stringify(requestData));
     request.onload = function(){
         json = JSON.parse(this.responseText);
-        console.log(json);
         populateInitialTrendingArticles(json);
         populateMainArticle(json);
         populateSubArticles(json);
