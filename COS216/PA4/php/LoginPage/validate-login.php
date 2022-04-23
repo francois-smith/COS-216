@@ -1,11 +1,11 @@
 <?php
+ini_set('display_errors', '1');
+
     if(!isset($_SESSION)){
         session_start();
     }
 
-    function validateLogin($email, $password){
-        include_once($_SERVER['DOCUMENT_ROOT']."/u21649988/COS216/PA4/php/General/config.php");
-        $instance = Database::getInstance();
+    function validateLogin($email, $password, $instance){
         $user = $instance->retrieveUser($email);
 
         if($user == null || $user == ""){
