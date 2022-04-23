@@ -20,14 +20,14 @@ function toggleTheme(){
 //passed in by successful user login, if a user logged in successfully thier saved theme will be loaded and applied to chat client
 function setTheme(theme){
     if(theme == "light"){
-        document.querySelector("#light-theme").classList.add("display-none-theme");
-        document.querySelector("#dark-theme").classList.remove("display-none-theme");
+        document.querySelector("#light-theme").classList.remove("display-none-theme");
+        document.querySelector("#dark-theme").classList.add("display-none-theme");
         document.documentElement.className = "light";
     }
 
     if(theme == "dark"){
-        document.querySelector("#dark-theme").classList.add("display-none-theme");
-        document.querySelector("#light-theme").classList.remove("display-none-theme");
+        document.querySelector("#dark-theme").classList.remove("display-none-theme");
+        document.querySelector("#light-theme").classList.add("display-none-theme");
         document.documentElement.className = "dark";
     }
 }
@@ -46,13 +46,30 @@ function closeLogin(){
 
 function setupNavigation(){
     let navbar = document.querySelector("nav");
-    let body = document.querySelector("body");
 
-    navbar.addEventListener("mouseout", function(){
-        console.log("yeet");
+    navbar.addEventListener("mouseleave", function(){
+        navbar.style.width = "75px";
+        let userButton = document.querySelector('#user-account');
+        if(!userButton.classList.contains('hidden')) {
+            userButton.classList.add('hidden');
+            userButton.classList.remove('flex');
+        }
     });
 
-    navbar.addEventListener("mouseover", function(){
-        document.getElementById("myDIV").style.gridTemplateColumns = "50px 50px";
+    navbar.addEventListener("mouseenter", function(){
+        navbar.style.width = "250px";
     });
+}
+
+let userButtonActive = false;
+function showUserAccount(){
+    let userButton = document.querySelector('#user-account');
+    if(userButton.classList.contains('hidden')) {
+        userButton.classList.remove('hidden');
+        userButton.classList.add('flex');
+    }
+    else {
+        userButton.classList.add('hidden');
+        userButton.classList.remove('flex');
+    }
 }
