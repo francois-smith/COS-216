@@ -10,7 +10,6 @@
 
         if($user == null || $user == ""){
             return false;
-            $fail = true;
         }
         else{
             $salt = $instance->getUserSalt($user["id"]);
@@ -27,7 +26,10 @@
                     $_SESSION["user_name"] = $user["name"];
                     $_SESSION["user_id"] = $user["id"];
                     $_SESSION["api_key"] = $user["api_key"];
-                    return true;
+                    
+                    $returnData = $user;
+                    unset($returnData["password"]);
+                    return $returnData;
                 }
                 else{
                     return false;
