@@ -71,6 +71,7 @@ app.post("/login", (req, res) => {
     const request = https.request(options, (res) => {
         res.on('data', (response) => {
             returnString = response;
+            console.log(response.toString());
         });
     });
 
