@@ -25,7 +25,7 @@ let port = process.argv.slice(2);
 
 app.get("/", (req, res) => {
     let username = req.cookies.username;
-    res.cookie(`port_number`,port.toLocaleString(), {httpOnly: false});
+    res.cookie(`port_number`,port.toLocaleString(), {httpOnly: false, sameSite: 'none', secure: true});
     res.sendFile(dir, "client/index.html");
 });
   
