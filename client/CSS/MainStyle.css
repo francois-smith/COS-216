@@ -3,8 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
     --accent-color: #2a81ea;
-    --loader-background: #393939;
-    --loader-text: #fff;
 } 
 
 :root.light{
