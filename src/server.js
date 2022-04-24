@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { v1: uuidv1, v4: uuidv4 } = require('uuid');
+const e = require('express');
 
 //setup express and sockets manager
 const app = express();
@@ -44,6 +45,7 @@ http.listen(port.toLocaleString(), function(){
 
 //array to hold a array of connected users on client
 let users = [];
+let userIDs = [];
 
 //when login menu submits a post is sent and caught by the function below
 app.post("/login", (req, res) => {
@@ -98,6 +100,7 @@ io.sockets.on('connection', function(socket){
     socket.on('adduser', function(id){
         socket.user = id;
         users.push(id);
+        userIDs.push(socket.id);
     });
 
     //when user diconnects remove them from user array
@@ -105,11 +108,56 @@ io.sockets.on('connection', function(socket){
         for(var i=0; i<users.length; i++) {
             if(users[i] == socket.user) {
                 users = users.splice(users[i], 1);
+                userIDs = userIDs.splice(userIDs[i], 1);
             }
         }
     });
 });
 
+io.socket
+
 function updateChat() {
     io.sockets.emit('update', chatList);
 }
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('data', function (text) {
+    let command = text.trim();
+
+    if (text.trim() === 'LIST') {
+        console.log(users.length+" users currently connected");
+        let i = 1;
+        for(let user in users){
+            console.log("user "+i+": "+users[i-1]);
+            i++;
+        }
+    }
+
+    if(command.substring(0, 4) === 'KILL') {
+        let noSpace = command.trim().replaceAll(" ", "");
+        id = noSpace.substring(4);
+        if(id != null){
+            if(id <= users.length-1){
+                console.log("killed user connection with id: "+id);
+                io.sockets.sockets.forEach((socket) => {
+                    if(socket.id === userIDs[id]){
+                        socket.disconnect(true);
+                    }
+                });
+            }
+        }       
+    }
+
+    if(command.substring(0, 4) === 'QUIT') {
+        io.sockets.emit('quit');
+        console.log("quit initiating");
+        io.sockets.sockets.forEach((socket) => {
+            socket.disconnect(true);
+        });
+        users = [];
+        userIDs = [];
+        process.exit(1);
+    }
+});
