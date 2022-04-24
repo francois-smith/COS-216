@@ -84,8 +84,9 @@ function setupArticles(){
             articles = data.data;
         }
     }).done(function(){
-        let article = articles[articles.length-2];
+        let article = articles[articles.length-3];
         console.log(article);
+        $('#article-id').html = article.id;
     });
 }
 
