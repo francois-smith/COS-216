@@ -204,7 +204,6 @@
                     foreach($types as $type){
                         if($type == "*"){
                             $element = $article;
-                            unset($element["id"]);
                             break;
                         }
                         $element[$type] = $article[$type];
