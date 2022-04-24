@@ -1,6 +1,7 @@
-setupNavigation();
-
 const port = ('; '+document.cookie).split(`; port_number=`).pop().split(';')[0];
+
+setupNavigation();
+setupArticles();
 
 //checks what theme is active and swaps it for the other option
 function toggleTheme(){
@@ -57,7 +58,7 @@ function setupNavigation(){
     });
 
     navbar.addEventListener("mouseenter", function(){
-        navbar.style.width = "250px";
+        navbar.style.width = "220px";
     });
 }
 
@@ -72,4 +73,32 @@ function showUserAccount(){
         userButton.classList.add('hidden');
         userButton.classList.remove('flex');
     }
+}
+
+function setupArticles(){
+    let articles;
+    $.ajax({
+        url: "http://localhost:"+port+"/get_articles",
+        type: "POST",
+        success: function(data){
+            articles = data.data;
+        }
+    }).done(function(){
+        let article = articles[articles.length-2];
+        console.log(article);
+    });
+}
+
+/*
+    <span id="article-id" style="display: none;"></span>
+    <a></a>
+    <span id="article-date"></span>
+    <h2 id="article-title"></h2>
+    <span id="article-author"></span>
+    <img onclick="goToArticle()">
+    <p id="article-description"></p>
+*/
+
+function goToArticle(){
+
 }
