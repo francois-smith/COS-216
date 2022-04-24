@@ -69,7 +69,26 @@ nav{
 }
 
 #article-section{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
 
+#logo-container{
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+#logo-container img{
+    height: 50px;
+}
+
+#title{
+    white-space: nowrap;
+    padding-left: 25px;
+    font-size: 22px;
+    letter-spacing: 0.02em;
 }
 
 #bottom-section{
@@ -85,10 +104,10 @@ nav{
     cursor: pointer;
     position: relative;
 }
+
 #user-account-container i{
     font-size: 25px;
     padding-right: 30px;
-   
 }
 
 #user-account-container:hover i{
@@ -186,24 +205,6 @@ main{
     scrollbar-width: thin;  
     scrollbar-color: var(--elements-background) var(--background-color-offset) ;
 }
-
-/* 
-
-#message-container::-webkit-scrollbar:vertical {
-    width: 50px;
-}
-   
-#message-container::-webkit-scrollbar-track {
-    background: var(--background-color-offset);
-}
-  
-#message-container::-webkit-scrollbar-thumb {
-    background: var(--elements-background);
-}
-
-#message-container::-webkit-scrollbar-thumb:hover {
-    background: rgb(24, 24, 24);
-} */
 
 .message{
     width: 90%;
