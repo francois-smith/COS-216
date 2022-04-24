@@ -75,6 +75,45 @@ function showUserAccount(){
     }
 }
 
+function submitMessage(){
+    if(sessionStorage.getItem('logged_in') == null){
+        openLogin();
+    }
+    else{
+        if(document.getElementsByName("message")[0].value != ""){
+            $.ajax({
+                url: "http://localhost:"+port+"/login",
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id: $('#article-id').html(),
+                    is_reply: ,
+                    reply_id: ,
+                    message_contents: document.getElementsByName("message")[0].value,
+                    user_id: ,
+                    time: ,
+                    article_id: 
+                }),
+                success: function(data){
+                    console.log(data);
+    
+                    // if(data.data.message != "Message was unable to send"){
+                    //     //document.querySelector('#login-form').reset();
+                    // }
+                    // else{
+                    //     //else display toastr message
+                    //     //displayMessageError();
+                    // }
+                }
+            }) 
+        }
+    }
+}
+
+function displayMessageError(){
+
+}
+
 function setupArticles(){
     let articles;
     $.ajax({
@@ -86,20 +125,20 @@ function setupArticles(){
     }).done(function(){
         let article = articles[articles.length-3];
         console.log(article);
-        $('#article-id').html = article.id;
+        $('#article-id').html(article.id);
+        $('#article-link').attr("href", article.link);
+
+        let date = (article.date).split("T")[0];
+        let time = (article.date).split("T")[1].split("-")[1];
+        $('#article-date').html("Published " + date + " " + time);
+        $('#article-title').html(article.title);
+        $('#article-author').html(article.author);
+        $('#article-image').attr("src", article.image)
+        $('#article-description').html(article.description);
     });
 }
 
-/*
-    <span id="article-id" style="display: none;"></span>
-    <a></a>
-    <span id="article-date"></span>
-    <h2 id="article-title"></h2>
-    <span id="article-author"></span>
-    <img onclick="goToArticle()">
-    <p id="article-description"></p>
-*/
-
-function goToArticle(){
-
+function goToArticle(event){
+    let link = event.parentElement.querySelector("#article-link").getAttribute("href");;
+    window.open(link, '_blank');
 }
