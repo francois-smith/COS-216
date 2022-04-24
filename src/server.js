@@ -93,7 +93,7 @@ app.post("/login", (req, res) => {
     request.end();
 });
 
-//when login menu submits a post is sent and caught by the function below
+//get list of articles for a user to display and have the ability to leave comments on
 app.post("/get_articles", (req, res) => {
     //setup required header
     const https = require('https');
@@ -103,6 +103,51 @@ app.post("/get_articles", (req, res) => {
         type:"info",
         return: ["*"],
         limit: 20
+    });
+
+    //setup wheatley location and connection path
+    var hostName = "wheatley.cs.up.ac.za";
+    var path = "/u21649988/api.php";
+
+    //setup post options for POSTing to Wheatley
+    const options = {
+        hostname: hostName,
+        path: path,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    //run request, always return status 200(asuming Wheatley will recieve request)
+    //request is turned into JSON and passed back to client
+    const request = https.request(options, (returnData) => {
+        returnData.on('data', (response) => {
+            res.status(200).json(JSON.parse(response.toString()));
+        });
+    });
+
+    //if a error occured, log error to server console
+    request.on('error', (error) => {
+        console.log(error);
+    });
+
+    //close request, resulting in response to client
+    request.write(data);
+    request.end();
+});
+
+app.post("/post_message", (req, res) => {
+    //setup required header
+    const https = require('https');
+    
+    //populate data to send to wheatley
+    const data = JSON.stringify({
+        type:"chat",
+        message: req.body.message,
+        return: ["*"]
     });
 
     //setup wheatley location and connection path
@@ -163,12 +208,16 @@ function updateChat() {
     io.sockets.emit('update', chatList);
 }
 
+//start pickup of console commands and set encoding
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
+//when enter is pressed in console, consume the text
 process.stdin.on('data', function (text) {
+    //remove whitespace around the command
     let command = text.trim();
 
+    //if LIST command, display a list of connected users by displaying their ID
     if (text.trim() === 'LIST') {
         console.log(users.length+" users currently connected");
         let i = 1;
@@ -178,27 +227,44 @@ process.stdin.on('data', function (text) {
         }
     }
 
+    //if KILL request is called
     if(command.substring(0, 4) === 'KILL') {
+        //remove all whitespace including spaces between words
         let noSpace = command.trim().replaceAll(" ", "");
+
+        //remove KILL from request(should leave only user number to delete)
         id = noSpace.substring(4);
+
+        //if the id is not set, then there is no connection to KILL
         if(id != null){
+            //check if id is out of bounds of user list
             if(id <= users.length-1){
-                console.log("killed user connection with id: "+id);
+                //search through connected users for user with passed in ID
                 io.sockets.sockets.forEach((socket) => {
                     if(socket.id === userIDs[id]){
+                        //if user is found disconnect them and display in console that user was removed
                         socket.disconnect(true);
+                        console.log("killed user connection with id: "+id);
                     }
                 });
             }
         }       
     }
 
+    //when quit command is called
     if(command.substring(0, 4) === 'QUIT') {
+        //emit quit command to all user, this will display a popup informing them that server has closed
         io.sockets.emit('quit');
-        console.log("quit initiating");
+
+        //log to console that quit is active
+        console.log("server is shutting down, disconnecting all users");
+
+        //loop through all active users and disconnect them
         io.sockets.sockets.forEach((socket) => {
             socket.disconnect(true);
         });
+
+        //clear all references to users and close server
         users = [];
         userIDs = [];
         process.exit(1);
