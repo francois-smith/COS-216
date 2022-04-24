@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { v1: uuidv1, v4: uuidv4 } = require('uuid');
-const e = require('express');
 
 //setup express and sockets manager
 const app = express();
@@ -93,6 +92,52 @@ app.post("/login", (req, res) => {
     request.write(data);
     request.end();
 });
+
+//when login menu submits a post is sent and caught by the function below
+app.post("/get_articles", (req, res) => {
+    //setup required header
+    const https = require('https');
+    
+    //populate data to send to wheatley
+    const data = JSON.stringify({
+        type:"info",
+        return: ["*"],
+        limit: 20
+    });
+
+    //setup wheatley location and connection path
+    var hostName = "wheatley.cs.up.ac.za";
+    var path = "/u21649988/api.php";
+
+    //setup post options for POSTing to Wheatley
+    const options = {
+        hostname: hostName,
+        path: path,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    //run request, always return status 200(asuming Wheatley will recieve request)
+    //request is turned into JSON and passed back to client
+    const request = https.request(options, (returnData) => {
+        returnData.on('data', (response) => {
+            res.status(200).json(JSON.parse(response.toString()));
+        });
+    });
+
+    //if a error occured, log error to server console
+    request.on('error', (error) => {
+        console.log(error);
+    });
+
+    //close request, resulting in response to client
+    request.write(data);
+    request.end();
+});
   
 //contains functions for user connections
 io.sockets.on('connection', function(socket){
@@ -113,8 +158,6 @@ io.sockets.on('connection', function(socket){
         }
     });
 });
-
-io.socket
 
 function updateChat() {
     io.sockets.emit('update', chatList);
