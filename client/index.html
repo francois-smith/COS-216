@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="IMG/favicon.ico" type="IMG/Favicon.ico">  
-        <title>NewsLodge | Daily News</title>
+        <title>NewsLodge | Chat Client</title>
         <meta name="description" content="News website birning you the latest updates of things happening around the world">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -21,7 +21,10 @@
     <body>
         <nav>
             <div id="article-section">
-
+                <div id="logo-container">
+                    <img src="IMG/logo.svg">
+                    <span id="title">NEWS<span class="blue-text">LODGE</span></span>
+                </div>
             </div>
             <div id="bottom-section">
                 <div onclick="showUserAccount()" id="user-account-container">
@@ -128,7 +131,13 @@
                 </div>
             </div>
             <div class="article-container">
-                
+                <span id="article-id" style="display: none;"></span>
+                <a></a>
+                <span id="article-date"></span>
+                <h2 id="article-title"></h2>
+                <span id="article-author"></span>
+                <img onclick="goToArticle()">
+                <p id="article-description"></p>
             </div>
             <div class="form-container">
                 <div onclick="closeLogin()" class="form-close">
