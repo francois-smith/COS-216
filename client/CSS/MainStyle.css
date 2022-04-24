@@ -209,11 +209,29 @@ main{
 .message{
     width: 90%;
     background-color: var(--background-color);
-    padding: 25px;
+    padding: 15px;
     margin: 20px 0px;
-    border-radius: 6px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
+}
+
+.message svg{
+    height: 20px;
+    color: var(--font-color);
+    margin-right: 5px;
+}
+
+.reply-container{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.reply-container:hover{
+    transform: translateX(10px);
 }
 
 .user-time-container{
@@ -223,7 +241,7 @@ main{
 }
 
 .user-name{
-    font-size: 22px;
+    font-size: 25px;
 }
 
 .time-posted{
@@ -232,9 +250,34 @@ main{
 }
 
 .message-contents{
-    padding-top: 20px;
+    padding-top: 10px;
     font-size: 18px;
     color: var(--message-text);
+}
+
+.reply-message{
+    color: var(--font--hover);
+    
+}
+
+.reply-button-container{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    padding: 5px 5px 0px 0px;
+    
+}
+
+.reply-button{
+    color: var(--accent-color);
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.reply-button:hover{
+    transform: translateY(-4px);
 }
 
 #message-form{
@@ -282,6 +325,42 @@ main{
 
 .article-container{
     grid-area: 1 / 2 / 2 / 3;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+}
+
+#article-date{
+    font-weight: 300;
+    color: var(--font--hover);
+    font-size: 20px;
+}
+
+#article-title{
+    color: var(--font-color);
+    font-size: 35px;
+    font-weight: 500;
+}
+
+#article-author{
+    font-weight: 300;
+    color: var(--font--hover);
+    font-size: 20px;
+    padding: 10px 0px;
+}
+
+#article-image{
+    width: 80%;
+}
+
+#article-description{
+    width: 60%;
+    color: var(--font--hover);
+    font-size: 18px;
+    padding-top: 10px;
 }
 
 /*======================================Login Container============================================*/
