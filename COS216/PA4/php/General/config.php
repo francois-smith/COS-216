@@ -103,11 +103,6 @@
         }
 
         public function addNews($title, $description, $author, $image, $tag, $articleDate, $link, $rating){
-            $stmt = $this->connection->prepare("SELECT * FROM  `users` WHERE `email` = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->store_result();
-
             $stmt = $this->connection->prepare("INSERT INTO articles (`title`, `description`, `author`, `image`, `tag`, `date`, `link`, `rating`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssss", $title, $description, $author, $image, $tag, $articleDate, $link, $rating);
             $stmt->execute();
