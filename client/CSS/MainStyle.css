@@ -197,6 +197,7 @@ main{
 }
 
 #message-container{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -256,71 +257,37 @@ main{
 }
 
 .reply-message{
-    color: var(--font--hover);
-    
+    color: var(--font--hover);  
 }
 
-.reply-button-container{
+#send-container{
     display: flex;
     width: 100%;
-    justify-content: end;
-    padding: 5px 5px 0px 0px;
-    
+    bottom: 0px;
+    background-color: var(--background-color-offset);
+    padding: 25px;
 }
 
-.reply-button{
-    color: var(--accent-color);
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.15s;
+#send-container-message{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
 
-.reply-button:hover{
-    transform: translateY(-4px);
+#reply-message-container{
+
 }
 
 #message-form{
-    position: absolute;
-    bottom: 30px;
-    left: 5%;
-    width: 80%;
+
 }
 
 #message-form textarea{
-    width: 100%;
-    resize: none;
-    height: 120px;
-    padding: 10px;
-    color: var(--font-color);
-    background-color: var(--background-color-offset);
-    border: 1px solid var(--font-color);
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-#message-form textarea:focus{
-    outline: 2px solid var(--accent-color);
+    width: 80%;
 }
 
 #send-message{
-    position: absolute;
-    padding: 10px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    bottom: 100px;
-    right: 4%;
-}
 
-#send-message svg{
-    transition: all 0.2s;
-    color: var(--accent-color-offset);
-}
-
-#send-message:hover svg{
-    transform: translate(3px, -3px);
 }
 
 .article-container{
@@ -341,8 +308,10 @@ main{
 
 #article-title{
     color: var(--font-color);
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 500;
+    width: 80%;
+    text-align: center;
 }
 
 #article-author{
