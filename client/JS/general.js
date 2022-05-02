@@ -1,4 +1,6 @@
 const port = ('; '+document.cookie).split(`; port_number=`).pop().split(';')[0];
+let reply_message = "";
+let is_reply = false;
 
 setupNavigation();
 setupArticles();
@@ -17,6 +19,7 @@ function toggleTheme(){
         document.documentElement.className = "light";
     }
 }
+
 
 //passed in by successful user login, if a user logged in successfully thier saved theme will be loaded and applied to chat client
 function setTheme(theme){
@@ -87,12 +90,12 @@ function submitMessage(){
                 contentType: 'application/json',
                 data: JSON.stringify({
                     id: $('#article-id').html(),
-                    is_reply: ,
-                    reply_id: ,
-                    message_contents: document.getElementsByName("message")[0].value,
-                    user_id: ,
-                    time: ,
-                    article_id: 
+                    // is_reply: ,
+                    // reply_id: ,
+                    // message_contents: document.getElementsByName("message")[0].value,
+                    // user_id: ,
+                    // time: ,
+                    // article_id: 
                 }),
                 success: function(data){
                     console.log(data);
@@ -110,10 +113,6 @@ function submitMessage(){
     }
 }
 
-function displayMessageError(){
-
-}
-
 function setupArticles(){
     let articles;
     $.ajax({
@@ -123,15 +122,22 @@ function setupArticles(){
             articles = data.data;
         }
     }).done(function(){
-        let article = articles[articles.length-3];
-        console.log(article);
+        let article = articles[1];
         $('#article-id').html(article.id);
         $('#article-link').attr("href", article.link);
 
         let date = (article.date).split("T")[0];
         let time = (article.date).split("T")[1].split("-")[1];
+        if(time == 'undefined'){
+            time = "";
+        }
         $('#article-date').html("Published " + date + " " + time);
-        $('#article-title').html(article.title);
+        if(article.title == ""){
+            $('#article-title').html("By Unknown Author");
+        }
+        else{
+            $('#article-title').html(article.title);
+        }
         $('#article-author').html(article.author);
         $('#article-image').attr("src", article.image)
         $('#article-description').html(article.description);
@@ -141,4 +147,25 @@ function setupArticles(){
 function goToArticle(event){
     let link = event.parentElement.querySelector("#article-link").getAttribute("href");;
     window.open(link, '_blank');
+}
+
+function toggleReply(e){
+    let message = e.parentElement.parentElement;
+
+    if(is_reply){
+        if(message.querySelector(".message_id").innerHTML == reply_message){
+            reply_message = "";
+            is_reply = false;
+
+            doc
+        }
+        else{
+            reply_message = message.querySelector(".message_id").innerHTML;
+            is_reply = true;
+        }
+    }
+    else{
+        reply_message = message.querySelector(".message_id").innerHTML;
+        is_reply = true;
+    }
 }
