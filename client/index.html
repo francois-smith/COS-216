@@ -53,6 +53,7 @@
                 <h3>Comments</h3>
                 <div id="message-container">
                     <div class="message">
+                        <span class="message_id" style="display: none;">1</span>
                         <div class="reply-container">
                             <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg><span class="reply-message">Reply To: yeeet skadded 2</span>
                         </div>
@@ -62,15 +63,34 @@
                         </div>
                         <span class="message-contents">Yeet dawdwa daw dwad awd wad awd awd awd aw dawd aw adwd skadeet, this is a message</span>
                         <div class="reply-button-container">
-                            <img class="reply-button" src="IMG/reply.svg">
+                            <img class="reply-button" onclick="toggleReply(this)" src="IMG/reply.svg">
+                        </div>
+                    </div>
+                    <div class="message">
+                        <span class="message_id" style="display: none;">2</span>
+                        <div class="reply-container">
+                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg><span class="reply-message">Reply To: yeeet skadded 2</span>
+                        </div>
+                        <div class="user-time-container">
+                            <span class="user-name">John Doe</span>
+                            <span class="time-posted">2022-04-24</span>
+                        </div>
+                        <span class="message-contents">Yeet dawdwa daw dwad awd wad awd awd awd aw dawd aw adwd skadeet, this is a message</span>
+                        <div class="reply-button-container">
+                            <img class="reply-button" onclick="toggleReply(this)" src="IMG/reply.svg">
                         </div>
                     </div>
                 </div>
-                <form method="post" id="message-form">
-                    <textarea name="message" id="message" placeholder="Type something to send...."></textarea>
-                </form>
-                <div onclick="submitMessage()" id="send-message">
-                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                <div id="send-container">
+                    <div id="send-container-message">
+                        <span id="reply-message-container"></span>
+                        <form method="post" id="message-form">
+                            <textarea name="message" placeholder="Type something to send...."></textarea>
+                        </form>
+                    </div>
+                    <div onclick="submitMessage()" id="send-message">
+                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                    </div>
                 </div>
             </div>
             <div class="article-container">
