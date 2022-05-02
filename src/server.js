@@ -19,6 +19,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//set port to listen to based on input arguments
+let port = process.argv.slice(2);
+
 //create a cookie for every client that connects to allow dynamic ports to be accessible
 //put before client static library to allow cookies to be set
 app.get("/", (req, res) => {
@@ -30,9 +33,6 @@ app.get("/", (req, res) => {
 //set directiory root relative to server.js file
 let dir = __dirname;
 dir = dir.replace("src", "");
-
-//set port to listen to based on input arguments
-let port = process.argv.slice(2);
 
 //make static library for loading od client assets and files
 app.use(express.static(dir + 'client'));
