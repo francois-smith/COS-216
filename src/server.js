@@ -39,7 +39,7 @@ app.use(express.static(dir + 'client'));
 
 //setup port and log that server was setup correctly to desired port
 http.listen(port.toLocaleString(), function(){
-    console.log('listening on :'+port)
+    console.log('listening on:'+port)
 });
 
 //array to hold a array of connected users on client
