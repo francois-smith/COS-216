@@ -52,28 +52,6 @@ function checkEmail(){
     }
 }
 
-// function checkPassword() {
-//     let elementValue = document.getElementById("password").value;
-//     var passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    
-//     if(!passwordPattern.test(elementValue)){
-//         document.getElementById("password").classList.add("invalid");
-//         document.getElementById("password-error").classList.add("display-error");
-//         if(document.getElementById("confirmPassword").value.trim().length != 0){
-//             checkConfirm();
-//         }
-//         globalScope.password = false;
-//     }
-//     else{
-//         document.getElementById("password").classList.remove("invalid");
-//         document.getElementById("password-error").classList.remove("display-error");
-//         if(document.getElementById("confirmPassword").value.trim().length != 0){
-//             checkConfirm();
-//         }
-//         globalScope.password = true;
-//     }
-// }
-
 function toggleIcon(e){
     let password = document.getElementById("password");
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
