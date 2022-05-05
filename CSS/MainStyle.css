@@ -3,13 +3,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
     --accent-color: #2a81ea;
+    --accent-color-offset: rgb(228, 228, 228);
+} 
+
+:root.light{
     --font-color: #393939;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
+    --misc-background: #383838;
+    --misc-text: #cfcfcf;
+    --highlights: rgba(246, 80, 80, 15%);
+}
+
+:root.dark{
+    --font-color: #acacac;
+    --font--hover: #919191;
+    --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
+    --misc-background: #222222;
+    --misc-text: #d4d4d4;
+    --highlights: rgba(19, 4, 4, 0.15);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s;
 }
   
 html {
@@ -21,6 +42,7 @@ html {
   
 body {
     min-height: 100vh;
+    background-color: var(--background-color);
     color: var(--font-color);
     font-family: 'Oswald', sans-serif;
     width: 100vw;
@@ -35,7 +57,7 @@ main{
 
 nav #top-bar-container{
     height: 40px;
-    box-shadow: 0px 1px 10px rgba(246, 80, 80, 15%);
+    box-shadow: 0px 1px 10px var(--highlights);
 }
 
 nav #top-bar{
@@ -52,7 +74,7 @@ nav #top-bar{
     width: 200px;
     height: 150px;
     background-color: var(--font-color);
-    color: #fff;
+    color: var(--font-color);
     top: 40px;
     left: -35px;
     cursor: default;
@@ -66,19 +88,19 @@ nav #top-bar{
     margin: 0;
 }
 
-#date-time img {
-    height: 20px;
+#date-time i {
+    font-size: 20px;
     padding-right: 10px;
 }
 
-#user img{
-    filter: invert(40%) sepia(3%) saturate(19%) hue-rotate(314deg) brightness(92%) contrast(79%);
+#user i{
+    color: var(--font-color);
+    font-size: 22px;
     margin-right: 10px;
-    width: 36px;
 }
 
-#user:hover img{
-    filter: invert(58%) sepia(45%) saturate(6825%) hue-rotate(195deg) brightness(93%) contrast(98%);
+#user:hover i{
+    color: var(--accent-color);
 }
 
 #user:hover #loginContainer{
@@ -132,20 +154,6 @@ nav #top-bar{
     text-decoration: underline;
 }
 
-/*
-    <div id="user">
-        <img src="img/SVG/user_icon.svg" alt="user icon">
-        <span id="username">My Account</span>
-        <div id="loginContainer">
-            <span>Welcome to NewsLodge</span>
-            <div id="divider"></div>
-            <div id="buttons-container">
-                <div id="login">Login</div>
-                <div id="register">Register</div>
-            </div>
-        </div>
-*/
-
 #loginContainer span{
     font-weight: 200;
     font-size: 20px;
@@ -172,8 +180,8 @@ nav #title-logo img {
 
 
 nav #links {
-    color: #fff;
-    background-color: #393939;
+    color: var(--misc-text);
+    background-color: var(--misc-background);
     height: 60px;
     position: relative;
     display: flex;
@@ -189,7 +197,7 @@ nav #link-container{
 nav #links a{
     position: relative;
     text-decoration: none;
-    color: #fff;
+    color: var(--misc-text);
     display: flex;
     align-items: center;
     padding: 0px 20px;
@@ -204,7 +212,7 @@ nav #search-bar{
 
 nav #search-bar input {
     color: rgba(255, 255, 255, 0.3);
-    background-color: #393939;
+    background-color: var(--misc-background);
     font-size: 16px;
     border: none;
     border-left: solid 1px rgba(255, 255, 255, 0.3);
@@ -248,6 +256,7 @@ nav #link-container a:hover {
 
 #active-link span{
     border-bottom: 2px solid #fff;
+    color: #fff;
     padding-bottom: 5px;
 }
 
@@ -255,8 +264,8 @@ nav #link-container a:hover {
 
 footer {
     width: 100%;
-    background-color: #222222;
-    color: #a1a1a1;
+    background-color: var(--misc-background);
+    color: var(--misc-text);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -271,13 +280,13 @@ footer {
     padding: 0px 5px;
 }
 
-#footer-socials img{
-    filter: invert(72%) sepia(3%) saturate(19%) hue-rotate(314deg) brightness(92%) contrast(79%);
-    width: 50px;
+#footer-socials i{
+    color: var(--misc-text);
+    font-size: 50px;
 }
 
-#footer-socials img:hover{
-    filter: invert(58%) sepia(45%) saturate(6825%) hue-rotate(195deg) brightness(93%) contrast(98%);
+#footer-socials i:hover{
+    color: var(--accent-color);
 }
 
 #footer-links {
@@ -289,7 +298,7 @@ footer {
 
 .footer-link {
     text-decoration: none;
-    color: #a1a1a1;
+    color: var(--misc-text);
     font-size: 20px;
 }
 
@@ -302,7 +311,44 @@ footer {
     font-size: 18px;
 }
 
-/*======================================General Classes============================================*/
+#theme-toggle-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 25px 0px 0px;
+}
+
+#theme-icon-container{
+    margin: 5px 0px 5px 5px;
+}
+
+#theme-toggle-container:hover svg{
+    color: var(--accent-color);
+}
+
+#light-theme{
+    transform: scale(1.8);
+}
+
+#dark-theme {
+    transform: scale(1.5);
+}
+
+.hidden{
+    display: none;
+}
+
+.flex{
+    display: flex;
+}
+
+.display-none-theme{
+    display: none;
+}
+
+/*====================================General Classes==========================================*/
 
 .orange-text{
     color: var(--accent-color);
