@@ -117,7 +117,7 @@
                             <h2 class="blue-text">An Error Occured</h2>
                             <p>The following email is already registered: </p>
                             <span id="responseContainerMessage">'.$email.'</span>
-                            <p>Please <span onclick="loginPage()" id="log-in">log in</span> using this email</p>
+                            <p>Please <span onclick="loginPage()" id="login-link">log in</span> using this email</p>
                         </div>
                         <div class="quote-contianer">
                             <p><span class="blue-text">Spreading </span><span>Knowledge</span></p>
