@@ -39,8 +39,8 @@ function makeChart(data) {
 		var ctx = tooltipCanvas.getContext('2d');
 		ctx.clearRect(0, 0, tooltipCanvas.width, tooltipCanvas.height)
 		ctx.restore();
-			
-		ctx.fillStyle = '#333333';
+		
+		ctx.fillStyle = '#575757';
 		ctx.font = '30px sans-serif';
 		ctx.textBaseline = 'middle';
 
