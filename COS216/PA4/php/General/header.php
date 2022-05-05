@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  class="dark">
     <head>
         <meta charset="utf-8">
         <link rel="icon" href="/u21649988/IMG/Favicon.ico" type="image/x-icon">
@@ -25,7 +25,7 @@
             <div id="top-bar-container">
                 <div id="top-bar" class="center">
                     <div id="date-time" class="center">                    
-                        <img alt="image of clock" src="/u21649988/COS216/PA4/img/Time.png">
+                        <i class="far fa-clock"></i>
                         <span>weekday, day month year</span>
                     </div>
                     <?php 
@@ -33,7 +33,7 @@
                             if($_SESSION["logged_in"] == false){
                                 echo '
                                     <div id="user">
-                                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
+                                        <i class="fas fa-user"></i>
                                         <span id="username">My Account</span>
                                         <div id="loginContainer">
                                             <span>Welcome to NewsLodge</span>
@@ -49,7 +49,7 @@
                             else{
                                 echo '
                                     <div id="user">
-                                        <img src="/u21649988/COS216/PA4/img/SVG/user_icon.svg" alt="user icon">
+                                        <i class="fas fa-user"></i>
                                         <span id="username">My Account</span>
                                         <div id="loginContainer">
                                             <span>Welcome '.$_SESSION["user_name"].'</span>

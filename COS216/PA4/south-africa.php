@@ -85,21 +85,21 @@
                     <ul>
                         <li id="facebook">
                             <div class="social-text">
-                                <img src="img/SVG/icons8-facebook(1).svg" alt="Facebook Icon">
+                                <i class="fab fa-facebook-square"></i>
                                 Facebook
                             </div>
                             <span class="social-prompt">Like</span>
                         </li>
                         <li id="instagram">
                             <div class="social-text">
-                                <img src="img/SVG/icons8-instagram(1).svg" alt="Instagram Icon">
+                                <i class="fab fa-instagram"></i>
                                 Instagram
                             </div>
                             <span class="social-prompt">Follow</span>
                         </li>
                         <li id="twitter">
                             <div class="social-text">
-                                <img src="img/SVG/icons8-twitter(1).svg" alt="Twitter Icon"> 
+                                <i class="fab fa-twitter-square"></i>
                                 Twitter
                             </div>
                             <span class="social-prompt">Follow</span>
