@@ -1,7 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
     --accent-color: #2a81ea;
+    --accent-color-offset: rgb(228, 228, 228);
+} 
+
+:root.light{
     --font-color: #393939;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
+    --misc-background: #383838;
+    --misc-text: #cfcfcf;
+    --highlights: rgba(246, 80, 80, 15%);
+}
+
+:root.dark{
+    --font-color: #acacac;
+    --font--hover: #919191;
+    --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
+    --misc-background: #222222;
+    --misc-text: #d4d4d4;
+    --highlights: rgba(19, 4, 4, 0.15);
 }
 
 .form-container{
@@ -55,8 +75,9 @@ input[type=text], input[type=email], input[type=password] {
     font-weight: 200;
     margin: 8px 0;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.315);
-    color: rgba(0, 0, 0, 0.507);
+    border: 1px solid var(--font-color);
+    color: var(--font--hover);
+    background-color: var(--background-color);
     margin-bottom: 25px;
 }
 
@@ -67,7 +88,7 @@ h2{
 
 .input-container p{
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.37);
+    color: var(--font--color);
     font-size: 18px;
     text-align: center;
     width: 100%;
@@ -84,7 +105,7 @@ h2{
     margin-left: 15px;
     margin-top: -22px;
     margin-bottom: 25px;
-    color: rgba(0, 0, 0, 0.507);
+    color: var(--font--hover);
     font-weight: 300;
     letter-spacing: 0.02em;
 }
@@ -105,7 +126,7 @@ h2{
 .quote-contianer{
     grid-area: 1 / 2 / 2 / 3;
     background: rgb(71,71,71);
-    background: linear-gradient(135deg, rgba(71,71,71,1) 0%, rgba(18,18,18,1) 100%);
+    background: var(--misc-background);
     font-size: 42px;
     display: flex;
     justify-content: center;
@@ -118,8 +139,8 @@ h2{
 }
 
 input.invalid{
-    border: 1px solid rgba(223, 60, 60, 0.877);
-    color: rgba(219, 37, 37, 0.877);
+    border: 1px solid rgba(199, 49, 49, 0.877);
+    color: rgba(179, 51, 51, 0.877);
 }
 
 .error-message{
@@ -135,7 +156,7 @@ input.invalid{
 
 .input-title-container span{
     padding-bottom: -5px;
-    color: rgba(219, 37, 37, 0.877);
+    color: rgba(179, 51, 51, 0.877);
 }
 
 .display-error{
@@ -143,7 +164,7 @@ input.invalid{
 }
 
 input:focus{
-    color: rgba(0, 0, 0, 0.507);
+    color: var(--font--color);
 }
 
 .visibilty-toggle{
@@ -173,8 +194,8 @@ input:focus{
 
 #responseContainerMessage{
     padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.315);
-    color: rgba(0, 0, 0, 0.507);
+    border: 1px solid var(--font-color);
+    color: var(--font--hover);
     border-radius: 5px;
     text-align: center;
 }
