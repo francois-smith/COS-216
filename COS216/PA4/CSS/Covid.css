@@ -3,9 +3,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
     --accent-color: #2a81ea;
+    --accent-color-offset: rgb(228, 228, 228);
+} 
+
+:root.light{
     --font-color: #393939;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
+    --misc-background: #383838;
+    --misc-text: #cfcfcf;
+    --highlights: rgba(246, 80, 80, 15%);
 }
 
+:root.dark{
+    --font-color: #acacac;
+    --font--hover: #919191;
+    --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
+    --misc-background: #222222;
+    --misc-text: #d4d4d4;
+    --highlights: rgba(19, 4, 4, 0.15);
+}
 /*===========================================Covid Page Styling===================================*/
 
 #covid-section{
@@ -20,6 +39,10 @@
     padding: 25px;
     display: table-cell;
     margin: 20px 0px;
+}
+
+canvas{
+    color: #fff !important;
 }
 
 .grid-container{
@@ -156,7 +179,7 @@
 .stat-title{
     font-size: 22px;
     font-weight: 400;
-    color: #393939bd;
+    color: var(--font--hover);
 }
 
 .stat-amount{
@@ -253,13 +276,13 @@
 #infographic-main {
     font-weight: 700;
     font-size: 90px;
-    color: #393939c0;
+    color: var(--font-color);
 }
 
 #infographic-main2 {
     font-weight: 700;
     font-size: 50px;
-    color: #393939c0;
+    color: var(--font-color);
     margin-top: -20px;
     padding-bottom: 12px;
 }
@@ -279,6 +302,6 @@
 
 #infographic-text {
     font-weight: 300;
-    color: #393939c0;
+    color: var(--font--hover);
     font-size: 22px;
 }

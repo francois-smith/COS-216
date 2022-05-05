@@ -2,8 +2,28 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root{
-    --accent-color: #056cc4;
+    --accent-color: #2a81ea;
+    --accent-color-offset: rgb(228, 228, 228);
+} 
+
+:root.light{
     --font-color: #393939;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
+    --misc-background: #383838;
+    --misc-text: #cfcfcf;
+    --highlights: rgba(246, 80, 80, 15%);
+}
+
+:root.dark{
+    --font-color: #acacac;
+    --font--hover: #919191;
+    --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
+    --misc-background: #222222;
+    --misc-text: #d4d4d4;
+    --highlights: rgba(19, 4, 4, 0.15);
 }
 
 /*===========================================LatestNews===================================*/
@@ -155,12 +175,13 @@ div.img-container:hover span {
     list-style: none;
 }
 
-#social-links img{
-    width: 50px;
+#social-links i{
+    font-size: 50px;
+    padding: 4px 10px 4px;
 }
 
 #social-links li{
-    box-shadow: 2px 2px 5px #393939;
+    box-shadow: 2px 2px 5px var(--highlights);
     margin-bottom: 10px;
     color: #fff;
     font-size: 20px;
