@@ -31,13 +31,21 @@ function loader(){
 }
 
 function getNews(){
-    let request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
 
     request.open("POST", "/u21649988/api.php");
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&limit=20&tag=South Africa");
+    request.setRequestHeader("Content-type", "application/json");
+
+    date = getDate();
+    let requestData = {
+        "type":"info",
+        "tag": "South Africa",
+        "return":["*"],
+        "limit":20,
+    };
+    request.send(JSON.stringify(requestData));
     request.onload = function(){
-        let json = JSON.parse(this.responseText);
+        json = JSON.parse(this.responseText);
         populateNews(json);
     }
 }
