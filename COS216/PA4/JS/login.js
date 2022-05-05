@@ -23,10 +23,24 @@ if(document.querySelector(".input-container") != null){
 
             const request = new XMLHttpRequest();
             request.open("POST", "/u21649988/api.php");
-            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.send("type=login&email="+email+"&password="+password);
+            request.setRequestHeader("Content-type", "application/json");
+
+            date = getDate();
+            let requestData = {
+                "type":"login",
+                "email":email,
+                "password":password,
+                "return":["*"]
+            };
+            request.send(JSON.stringify(requestData));
             request.onload = function(){
-                console.log(this.responseText);
+                json = JSON.parse(this.responseText);
+                if(json.status == "success"){
+                    console.log("yeet");
+                }
+                else{
+                    console.log("dumbo");
+                }
             }
         }
         else{
