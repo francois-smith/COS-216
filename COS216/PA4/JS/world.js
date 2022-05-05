@@ -34,8 +34,15 @@ function getGeneralData(){
     const request = new XMLHttpRequest();
 
     request.open("POST", "/u21649988/api.php");
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&limit=50");
+    request.setRequestHeader("Content-type", "application/json");
+
+    date = getDate();
+    let requestData = {
+        "type":"info",
+        "return":["*"],
+        "limit":50
+    };
+    request.send(JSON.stringify(requestData));
     request.onload = function(){
         generalJSON = JSON.parse(this.responseText);
         if(generalJSON.data.data == "No articles found matching request criteria"){
@@ -54,10 +61,18 @@ function emptyRequest(){
 function getPreferenceData(){
     const request = new XMLHttpRequest();
 
-    let userPreference = "Business";
     request.open("POST", "/u21649988/api.php");
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&return[]=*&limit=50&tag="+userPreference+"");
+    request.setRequestHeader("Content-type", "application/json");
+
+    let userPreference = "Business";
+    date = getDate();
+    let requestData = {
+        "type":"info",
+        "tag": userPreference,
+        "return":["*"],
+        "limit":50
+    };
+    request.send(JSON.stringify(requestData));
     request.onload = function(){
         preferenceJSON = JSON.parse(this.responseText);
         if(preferenceJSON.data.data == "No articles found matching request criteria"){
