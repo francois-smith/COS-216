@@ -24,8 +24,12 @@ ini_set('display_errors', '1');
                 if(crypt($password, $hashedPassword) == $user["password"]){
                     $_SESSION["logged_in"] = true;
                     $_SESSION["user_name"] = $user["name"];
+                    $_SESSION["user_surname"] = $user["surname"];
                     $_SESSION["user_id"] = $user["id"];
                     $_SESSION["api_key"] = $user["api_key"];
+                    $_SESSION["preference"] = $user["preference"];
+                    $_SESSION["theme"] = $user["theme"];
+                    $_SESSION["email"] = $user["email"];
                     
                     $returnData = $user;
                     unset($returnData["password"]);
