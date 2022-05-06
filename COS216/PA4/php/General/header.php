@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en"  class="dark">
+<html lang="en" class="light">
     <head>
         <meta charset="utf-8">
         <link rel="icon" href="/u21649988/IMG/Favicon.ico" type="image/x-icon">
@@ -19,6 +19,16 @@
         <link rel="stylesheet" href="/u21649988/CSS/MainStyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
+        <script> 
+            var logged_in = "<?php echo $_SESSION["logged_in"]; ?>";
+            var user_name = "<?php echo $_SESSION["user_name"]; ?>";
+            var user_surname = "<?php echo $_SESSION["user_surname"]; ?>";
+            var user_id = "<?php echo $_SESSION["user_id"]; ?>"; 
+            var api_key = "<?php echo $_SESSION['api_key']; ?>";
+            var preference = "<?php echo $_SESSION["preference"]; ?>"; 
+            var theme = "<?php echo $_SESSION["theme"]; ?>";
+            var email = "<?php echo $_SESSION["email"]; ?>"; 
+        </script>
     </head>
     <body>
         <nav>
@@ -81,5 +91,13 @@
             </div>
         </nav>
         <script src="/u21649988/COS216/PA4/JS/general.js"></script>
+
+        <?php
+            if(isset($_SESSION)){
+                if($_SESSION["logged_in"] == true){
+                    require_once("php/Preferences/Preferences.php");
+                }
+            }
+        ?>
     </body>
 </html>
