@@ -26,6 +26,12 @@
         </div>
     </div>
 </main>
+
+<div class="notification-container">
+    <div class="notification">
+        Invalid Login Credentials
+    </div>
+</div>
 <script src="/u21649988/COS216/PA4/JS/login.js"></script>
 
 <?php require_once("../General/footer.php"); ?>
