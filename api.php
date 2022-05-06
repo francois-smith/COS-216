@@ -22,6 +22,11 @@
 
         switch ($data["type"]) {
             case "info":
+                if(!isset($data["key"])){
+                    echo json_encode($API->failMessage("API key not set"));
+                    return;
+                }
+                
                 if(!isset($data["return"])){
                     echo json_encode($API->failMessage("No return parameters not set"));
                     return;
@@ -64,7 +69,20 @@
                 $API->getArticle($database, $title, $author, $date, $rating, $data["return"], $tag, $limit);
                 break;
             case "update":
-                echo json_encode($API->failMessage("API type update does not exist"));
+                if(!array_key_exists("key", $data)){
+                    echo json_encode($API->failMessage("API key not set"));
+                    return;
+                }
+
+                if(strlen($data["key"]) != 48){
+                    echo json_encode($API->failMessage("Invalid key provided"));
+                    return;
+                }
+
+                if($data["key"] == "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96"){
+                    echo json_encode($API->failMessage("Please log in to use this functionality"));
+                    return;
+                }
                 break;
             case "login":
                 if(!array_key_exists("password", $data)){
@@ -88,10 +106,38 @@
                 $API->logIn($email, $password, $database);
                 break;
             case "rate":
-                echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Article rated with value 0"]]);
+                if(!array_key_exists("key", $data)){
+                    echo json_encode($API->failMessage("API key not set"));
+                    return;
+                }
+
+                if(strlen($data["key"]) != 48){
+                    echo json_encode($API->failMessage("Invalid key provided"));
+                    return;
+                }
+
+                if($data["key"] == "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96"){
+                    echo json_encode($API->failMessage("Please log in to use this functionality"));
+                    return;
+                }
+
                 break;
             case "chat":
-                echo json_encode($API->failMessage("API type chat does not exist"));
+                if(!array_key_exists("key", $data)){
+                    echo json_encode($API->failMessage("API key not set"));
+                    return;
+                }
+
+                if(strlen($data["key"]) != 48){
+                    echo json_encode($API->failMessage("Invalid key provided"));
+                    return;
+                }
+
+                if($data["key"] == "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96"){
+                    echo json_encode($API->failMessage("Please log in to use this functionality"));
+                    return;
+                }
+
                 break;
             default:
                 echo json_encode($API->failMessage("Unexpected error occured"));
