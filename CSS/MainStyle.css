@@ -157,6 +157,7 @@ nav #top-bar{
 #loginContainer span{
     font-weight: 200;
     font-size: 20px;
+    color: var(--misc-text);
 }
 
 nav #title-logo {
@@ -348,9 +349,127 @@ footer {
     display: none;
 }
 
+/*======================================Preferences============================================*/
+
+#preferences-container{
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99;
+}
+
+.preferences{
+    position: relative;
+    display: flex;
+    width: 60%;
+    background-color: var(--background-color-offset);
+}
+
+#close-preferences{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    color: var(--font-color);
+}
+
+#close-preferences:hover{
+    color: var(--accent-color);
+}
+
+#preferences-form h2{
+    padding-top: 30px;
+}
+
+.preferences-info{
+    padding: 30px 40px;
+    width: 60%;
+}
+
+.preferences-info h1{
+    text-decoration: underline;
+}
+
+.preferences-form-info{
+    display: flex;
+    align-items: center;
+}
+
+.preference-titles{
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0px;
+}
+
+.preference-title{
+    font-size: 22px;
+    font-weight: 300;
+    padding: 8px 0px;
+}
+
+.preference-fields{
+    padding: 6px 0px 6px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.preference-field{
+    padding: 6px 2px;
+    margin: 6px 0px;
+    background-color: var(--background-color-offset);
+    border: none;
+    border-bottom: 1px solid var(--misc-text);
+    color: var(--misc-text);
+    font-size: 20px;
+}
+
+.preference-button{
+    padding: 6px 10px;
+    font-size: 20px;
+    margin-top: 20px;
+    border: none;
+    margin-right: 8px;
+} 
+
+.discard{
+    background-color: #b3b3b3;
+    color: rgb(65, 65, 65);
+}
+
+.save{
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.preference-button:hover{
+    filter: brightness(0.8);
+}
+
+.preferences-quote-contianer{
+    width: 40%;
+    background: rgb(24, 24, 24);
+    font-size: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.preferences-quote-contianer p{
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.199);
+}
+
 /*====================================General Classes==========================================*/
 
 .orange-text{
+    color: var(--accent-color);
+}
+
+.blue-text{
     color: var(--accent-color);
 }
 
