@@ -45,7 +45,6 @@ function getGeneralData(){
     };
     request.send(JSON.stringify(requestData));
     request.onload = function(){
-        console.log(this.responseText);
         generalJSON = JSON.parse(this.responseText);
         if(generalJSON.data.data == "No articles found matching request criteria"){
             emptyRequest();

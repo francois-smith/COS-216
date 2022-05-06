@@ -41,7 +41,6 @@ if(document.querySelector(".input-container") != null){
                 }
                 else{
                     let popup = document.querySelector(".notification-container");
-                    console.log(popup);
                     popup.style.transform = "translateY(150px)";
 
                     setTimeout(function(){
