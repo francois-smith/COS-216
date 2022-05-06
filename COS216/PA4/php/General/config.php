@@ -13,6 +13,18 @@
         if(!isset($_SESSION["user_name"])){
             $_SESSION["user_name"] = "";
         }
+        if(!isset($_SESSION["user_surname"])){
+            $_SESSION["user_surname"] = "";
+        }
+        if(!isset($_SESSION["preference"])){
+            $_SESSION["preference"] = "none";
+        }
+        if(!isset($_SESSION["theme"])){
+            $_SESSION["theme"] = "light";
+        }
+        if(!isset($_SESSION["email"])){
+            $_SESSION["email"] = "";
+        }
     }
 
     class Database{
