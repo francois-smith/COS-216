@@ -60,6 +60,29 @@
             return $this->connection;
         }
         
+        public function updateUser($email, $key, $updatedInfo){ 
+            $user = $this->retrieveUser($email);
+            if($user != "" || $user != null){
+                if($user["email"] == $email && $user["api_key"] == $key){
+                    if(array_key_exists("newName", $updatedInfo) && array_key_exists("newSurname", $updatedInfo) && array_key_exists("newTheme", $updatedInfo) && array_key_exists("newPreference", $updatedInfo)){
+                        $query = "UPDATE `users` SET `name`='".$updatedInfo['newName']."', `surname`='".$updatedInfo['newSurname']."', `theme`='".$updatedInfo['newTheme']."', `preference`='".$updatedInfo['newPreference']."' WHERE `id` = ".$user["id"];
+                        $result = $this->connection->query($query);
+                        $user = $this->retrieveUser($email);
+                        return $user;
+                    }
+                    else{
+                        return "Details could not be updated";
+                    }
+                }
+                else{
+                    return "Details could not be updated";
+                }
+            }
+            else{
+                return "Details could not be updated";
+            }
+        }
+
         public function retrieveUser($email){ 
             $query = "SELECT * FROM  `users` WHERE `email` = '$email'";
             $result = $this->connection->query($query);
