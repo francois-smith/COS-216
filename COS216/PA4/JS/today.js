@@ -20,14 +20,16 @@ function setupPage() {
 
 function loadTodayArticles(){
     const loader = document.querySelector("#loading-background");
+    loader.classList.remove("display");
+    loader.style.display = "none";
 
-    setTimeout(() => {
-        loader.classList.remove("display");
-    }, 3000);
+    // setTimeout(() => {
+    //     loader.classList.remove("display");
+    // }, 3000);
 
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 4000);
+    // setTimeout(() => {
+    //     loader.style.display = "none";
+    // }, 4000);
 
     const request = new XMLHttpRequest();
 
@@ -36,6 +38,7 @@ function loadTodayArticles(){
 
     date = getDate();
     let requestData = {
+        "key": api_key,
         "type":"info",
         "date":date,
         "return":["*"],

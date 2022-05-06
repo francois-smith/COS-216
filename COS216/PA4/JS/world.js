@@ -38,12 +38,14 @@ function getGeneralData(){
 
     date = getDate();
     let requestData = {
+        "key": api_key,
         "type":"info",
         "return":["*"],
         "limit":50
     };
     request.send(JSON.stringify(requestData));
     request.onload = function(){
+        console.log(this.responseText);
         generalJSON = JSON.parse(this.responseText);
         if(generalJSON.data.data == "No articles found matching request criteria"){
             emptyRequest();
@@ -64,11 +66,11 @@ function getPreferenceData(){
     request.open("POST", "/u21649988/api.php");
     request.setRequestHeader("Content-type", "application/json");
 
-    let userPreference = "Business";
     date = getDate();
     let requestData = {
+        "key": api_key,
         "type":"info",
-        "tag": userPreference,
+        "tag": preference,
         "return":["*"],
         "limit":50
     };
@@ -79,7 +81,13 @@ function getPreferenceData(){
             emptyRequest();
         }
         else{
-            document.querySelector(".preferences-header").querySelector("h2").innerHTML = userPreference;
+            if(preference == "none"){
+                document.querySelector(".preferences-header").querySelector("h2").innerHTML = "General";
+            }
+            else{
+                document.querySelector(".preferences-header").querySelector("h2").innerHTML = preference;
+            }
+            
             populatePreference(preferenceJSON);
         }
     }

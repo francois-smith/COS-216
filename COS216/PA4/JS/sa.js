@@ -38,10 +38,11 @@ function getNews(){
 
     date = getDate();
     let requestData = {
-        "type":"info",
+        "key": api_key,
+        "type": "info",
         "tag": "South Africa",
-        "return":["*"],
-        "limit":20,
+        "return": ["*"],
+        "limit": 20,
     };
     request.send(JSON.stringify(requestData));
     request.onload = function(){

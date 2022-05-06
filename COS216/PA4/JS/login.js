@@ -36,10 +36,17 @@ if(document.querySelector(".input-container") != null){
             request.onload = function(){
                 json = JSON.parse(this.responseText);
                 if(json.status == "success"){
-                    console.log("yeet");
+                    var url = '/u21649988/COS216/PA4/index.php';
+                    window.location.href = url;
                 }
                 else{
-                    console.log("dumbo");
+                    let popup = document.querySelector(".notification-container");
+                    console.log(popup);
+                    popup.style.transform = "translateY(150px)";
+
+                    setTimeout(function(){
+                        popup.style.transform = "translateY(0px)";
+                    }, 2500);
                 }
             }
         }
