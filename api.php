@@ -32,7 +32,7 @@
                     return;
                 }
         
-                $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*", "user_name", "user_surname", "user_id", "user_theme", "user_preference", "user_key", "user_email"];
+                $returnTypes = ["title", "description", "image", "author", "tag", "date", "rating", "link", "*"];
                 if(empty(array_intersect($returnTypes, $data["return"]))){
                     echo json_encode($API->failMessage("Invalid return parameter"));
                     return;
@@ -74,6 +74,16 @@
                     return;
                 }
 
+                if(!array_key_exists("updatedInfo", $data)){
+                    echo json_encode($API->failMessage("Invalid new information"));
+                    return;
+                }
+
+                if(!array_key_exists("email", $data)){
+                    echo json_encode($API->failMessage("No email provided"));
+                    return;
+                }
+
                 if(strlen($data["key"]) != 48){
                     echo json_encode($API->failMessage("Invalid key provided"));
                     return;
@@ -82,6 +92,20 @@
                 if($data["key"] == "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96"){
                     echo json_encode($API->failMessage("Please log in to use this functionality"));
                     return;
+                }
+
+                $result = $database->updateUser($data["email"], $data["key"], $data["updatedInfo"]);
+                if($result == "Details could not be updated"){
+                    echo json_encode($API->failMessage("Details could not be updated"));
+                }
+                else{
+                    $_SESSION["user_name"] = $result["name"];
+                    $_SESSION["user_surname"] = $result["surname"];
+                    $_SESSION["api_key"] = $result["api_key"];
+                    $_SESSION["preference"] = $result["preference"];
+                    $_SESSION["theme"] = $result["theme"];
+                    $_SESSION["email"] = $result["email"];
+                    echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Details updated successfully"]]);
                 }
                 break;
             case "login":
