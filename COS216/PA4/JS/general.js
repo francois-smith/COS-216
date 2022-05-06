@@ -45,10 +45,6 @@ function getDate() {
     return [year, month, day].join('-');
 }
 
-function openSettings(){
-
-}
-
 function logOut(){
     var url = '/u21649988/COS216/PA4/php/logOut/Logout.php';
     window.location.href = url; 
@@ -68,14 +64,14 @@ function toggleTheme(){
     }
 }
 
-function setTheme(theme){
-    if(theme == "light"){
+function setTheme(themeChange){
+    if(themeChange == "light"){
         document.querySelector("#light-theme").classList.remove("display-none-theme");
         document.querySelector("#dark-theme").classList.add("display-none-theme");
         document.documentElement.className = "light";
     }
 
-    if(theme == "dark"){
+    if(themeChange == "dark"){
         document.querySelector("#dark-theme").classList.remove("display-none-theme");
         document.querySelector("#light-theme").classList.add("display-none-theme");
         document.documentElement.className = "dark";
