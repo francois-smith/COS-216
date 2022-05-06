@@ -65,8 +65,8 @@
                                             <span>Welcome '.$_SESSION["user_name"].'</span>
                                             <div id="divider"></div>
                                             <div id="buttons-container">
-                                                <span onclick="openSettings()" id="preferences">My Profile</span>
-                                                <span onclick="logOut()" id="logout">Log Out</span>
+                                                <span onclick="openPrefs()" id="my-profile">My Profile</span>
+                                                <span onclick="logOut()" id="logout">Log Out</span> 
                                             </div>
                                         </div>
                                     </div>
