@@ -1,5 +1,9 @@
 setupDate();
 
+window.addEventListener('load', function () {
+    setTheme(theme);
+})
+
 function setupDate(){
     const date = new Date();
     let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -46,7 +50,8 @@ function openSettings(){
 }
 
 function logOut(){
-
+    var url = '/u21649988/COS216/PA4/php/logOut/Logout.php';
+    window.location.href = url; 
 }
 
 function toggleTheme(){
@@ -60,5 +65,19 @@ function toggleTheme(){
         document.querySelector("#dark-theme").classList.add("display-none-theme");
         document.querySelector("#light-theme").classList.remove("display-none-theme");
         document.documentElement.className = "light";
+    }
+}
+
+function setTheme(theme){
+    if(theme == "light"){
+        document.querySelector("#light-theme").classList.remove("display-none-theme");
+        document.querySelector("#dark-theme").classList.add("display-none-theme");
+        document.documentElement.className = "light";
+    }
+
+    if(theme == "dark"){
+        document.querySelector("#dark-theme").classList.remove("display-none-theme");
+        document.querySelector("#light-theme").classList.add("display-none-theme");
+        document.documentElement.className = "dark";
     }
 }
