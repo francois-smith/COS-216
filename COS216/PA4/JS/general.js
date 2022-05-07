@@ -78,14 +78,89 @@ function setTheme(themeChange){
     }
 }
 
-function setStars(ratingObject, article){
-    if(article.rating.avgRating >= 5) ratingObject.querySelector("star5").checked;
-    if(article.rating.avgRating >= 4) ratingObject.querySelector("star4").checked;
-    if(article.rating.avgRating >= 3) ratingObject.querySelector("star3").checked;
-    if(article.rating.avgRating >= 2) ratingObject.querySelector("star2").checked;
-    if(article.rating.avgRating >= 1) ratingObject.querySelector("star1").checked;
+function setStars(ratingObject, avgRating){
+    if(avgRating >= 5){
+        ratingObject.querySelectorAll("input")[0].checked = true;
+        return;
+    } 
+    if(avgRating >= 4){
+        ratingObject.querySelectorAll("input")[1].checked = true;
+        return;
+    } 
+    if(avgRating >= 3){
+        ratingObject.querySelectorAll("input")[2].checked = true;
+        return;
+    } 
+    if(avgRating >= 2){
+        ratingObject.querySelectorAll("input")[3].checked = true;
+        return;
+    } 
+    if(avgRating >= 1){
+        ratingObject.querySelectorAll("input")[4].checked = true;
+        return;
+    } 
 }
 
-function rate(e){
-    e.stopPropagation();
+function rate(event){
+    event.stopPropagation();
+
+    if(typeof event.target.type !== 'undefined'){
+        if(logged_in){
+            let article = event.target.closest('.article');
+            let articleID = article.querySelector(".article_id").innerHTML;
+            let rating = event.target.value;
+
+            const request = new XMLHttpRequest();
+
+            request.open("POST", "/u21649988/api.php");
+            request.setRequestHeader("Content-type", "application/json");
+
+            date = getDate();
+            let requestData = {
+                "key": api_key,
+                "type":"rate",
+                "rating":rating,
+                "article_id": articleID,
+                "user_id": user_id,
+                "return":["*"]
+            };
+            request.send(JSON.stringify(requestData));
+            request.onload = function(){
+                json = JSON.parse(this.responseText);
+
+                if(json.status == "success"){                      
+                    let popup = document.querySelector(".notification-container");
+                    popup.children[0].style.backgroundColor = "rgb(64, 187, 40)";
+                    popup.children[0].innerHTML = json.data.message;
+                    popup.style.transform = "translateY(150px)";
+
+                    setTimeout(function(){
+                        popup.style.transform = "translateY(0px)";
+                    }, 2500);
+                }else if(json.status == "failed"){
+                    let popup = document.querySelector(".notification-container");
+                    popup.children[0].style.backgroundColor = "rgb(179, 51, 51)";
+                    popup.children[0].innerHTML = json.data.message;
+                    popup.style.transform = "translateY(150px)";
+
+                    setTimeout(function(){
+                        popup.style.transform = "translateY(0px)";
+                    }, 2500);
+                }
+                
+                console.log(json);
+                setStars(event.target.parentElement.parentElement, json.data.rating.avgRating);
+            }
+        }
+        else{
+            let popup = document.querySelector(".notification-container");
+            popup.children[0].style.backgroundColor = "rgb(179, 51, 51)";
+            popup.children[0].innerHTML = "Please Login To Rate This Article";
+            popup.style.transform = "translateY(150px)";
+
+            setTimeout(function(){
+                popup.style.transform = "translateY(0px)";
+            }, 2500);   
+        }
+    }
 }
