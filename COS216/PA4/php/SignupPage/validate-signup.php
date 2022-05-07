@@ -8,12 +8,13 @@
         $email = testEmail($_POST["email"]);
         $confirmPass = testConfirm($_POST["confirmPassword"], $_POST["password"]);
         $salt = generateSalt();
-        $password = testPassword($_POST["password"], $salt);
+        $passwordHashed = testPassword($_POST["password"], $salt);
 
         if($validated){
             include '../General/config.php';
             $instance = Database::getInstance();
-            $instance->addUser($name, $surname, $email, $password, $salt);
+            $instance->addUser($name, $surname, $email, $passwordHashed, $salt, $password);
+            header('Location: /u21649988/COS216/PA4/index.php');
         }
     }
 
