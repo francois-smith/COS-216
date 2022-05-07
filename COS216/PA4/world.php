@@ -5,8 +5,9 @@
             <h2 class="section-title">General</h2>
         </div>
         <div class="general-container">
-            <div onclick="goToLink(this)" class="general-article-main">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="general-article-main article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="main1_star5" name="rating" value="5">
                         <label for="main1_star5"></label>
@@ -19,7 +20,7 @@
                         <input type="radio" id="main1_star1" name="rating" value="1">
                         <label for="main1_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <span class="tag general"></span>
                 <div class="overlay"></div>
@@ -29,8 +30,9 @@
                     <span class="general-main-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="general-article-sub1 general-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="general-article-sub1 general-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="main2_star5" name="rating" value="5">
                         <label for="main2_star5"></label>
@@ -43,7 +45,7 @@
                         <input type="radio" id="main2_star1" name="rating" value="1">
                         <label for="main2_star1"></label>
                     </div>
-                </div>
+                </form>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -53,8 +55,9 @@
                     <span class="general-sub-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="general-article-sub2 general-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="general-article-sub2 general-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="main3_star5" name="rating" value="5">
                         <label for="main3_star5"></label>
@@ -67,7 +70,7 @@
                         <input type="radio" id="main3_star1" name="rating" value="1">
                         <label for="main3_star1"></label>
                     </div>
-                </div>
+                </form>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -77,8 +80,9 @@
                     <span class="general-sub-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="general-article-sub3 general-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="general-article-sub3 general-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="main4_star5" name="rating" value="5">
                         <label for="main4_star5"></label>
@@ -91,7 +95,7 @@
                         <input type="radio" id="main4_star1" name="rating" value="1">
                         <label for="main4_star1"></label>
                     </div>
-                </div>
+                </form>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -108,8 +112,9 @@
             <h2 class="section-title">Preferences</h2>
         </div>
         <div class="preferences-container">
-            <div onclick="goToLink(this)" class="main-preferences-article">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="main-preferences-article article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub1_star5" name="rating" value="5">
                         <label for="sub1_star5"></label>
@@ -122,7 +127,7 @@
                         <input type="radio" id="sub1_star1" name="rating" value="1">
                         <label for="sub1_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-article-image-main hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -132,8 +137,9 @@
                     <span class="preference-article-description-main"></span>
                 </div>      
             </div>
-            <div onclick="goToLink(this)" class="preference-sub-article1 preference-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="preference-sub-article1 preference-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub2_star5" name="rating" value="5">
                         <label for="sub2_star5"></label>
@@ -146,7 +152,7 @@
                         <input type="radio" id="sub2_star1" name="rating" value="1">
                         <label for="sub2_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -155,8 +161,9 @@
                     <span class="preference-sub-article-title">No Article Found</span>
                 </div> 
             </div>
-            <div onclick="goToLink(this)" class="preference-sub-article2 preference-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="preference-sub-article2 preference-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub3_star5" name="rating" value="5">
                         <label for="sub3_star5"></label>
@@ -169,7 +176,7 @@
                         <input type="radio" id="sub3_star1" name="rating" value="1">
                         <label for="sub3_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -178,8 +185,9 @@
                     <span class="preference-sub-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="preference-sub-article3 preference-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="preference-sub-article3 preference-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub4_star5" name="rating" value="5">
                         <label for="sub4_star5"></label>
@@ -192,7 +200,7 @@
                         <input type="radio" id="sub4_star1" name="rating" value="1">
                         <label for="sub4_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -201,8 +209,9 @@
                     <span class="preference-sub-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="preference-sub-article4 preference-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="preference-sub-article4 preference-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub5_star5" name="rating" value="5">
                         <label for="sub5_star5"></label>
@@ -215,7 +224,7 @@
                         <input type="radio" id="sub5_star1" name="rating" value="1">
                         <label for="sub5_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -224,8 +233,9 @@
                     <span class="preference-sub-article-title">No Article Found</span>
                 </div>
             </div>
-            <div onclick="goToLink(this)" class="preference-sub-article5 preference-sub-article-general">
-                <div class="rating_container" onclick="rate(event)">
+            <div onclick="goToLink(this)" class="preference-sub-article5 preference-sub-article-general article">
+                <span class="article_id"></span>
+                <form class="rating_container" onclick="rate(event)">
                     <div class="rating-stars">
                         <input type="radio" id="sub6_star5" name="rating" value="5">
                         <label for="sub6_star5"></label>
@@ -238,7 +248,7 @@
                         <input type="radio" id="sub6_star1" name="rating" value="1">
                         <label for="sub6_star1"></label>
                     </div>
-                </div>
+                </form>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>

@@ -2,7 +2,8 @@
 <main>
     <section class="latest-news">
         <div class="latest-news-container">
-            <div class="latest-article1 general-latest-article">
+            <div class="latest-article1 general-latest-article article">
+                <span class="article_id"></span>
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
@@ -31,7 +32,8 @@
                     </div>
                 </a>      
             </div>
-            <div class="latest-article2 general-latest-article">
+            <div class="latest-article2 general-latest-article article">
+                <span class="article_id"></span>
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
@@ -61,7 +63,8 @@
                 </a>
 
             </div>
-            <div class="latest-article3 general-latest-article">
+            <div class="latest-article3 general-latest-article article">
+                <span class="article_id"></span>
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
@@ -90,7 +93,8 @@
                     </div>
                 </a>
             </div>
-            <div class="latest-article4 general-latest-article">
+            <div class="latest-article4 general-latest-article article">
+                <span class="article_id"></span>
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
