@@ -77,3 +77,15 @@ function setTheme(themeChange){
         document.documentElement.className = "dark";
     }
 }
+
+function setStars(ratingObject, article){
+    if(article.rating.avgRating >= 5) ratingObject.querySelector("star5").checked;
+    if(article.rating.avgRating >= 4) ratingObject.querySelector("star4").checked;
+    if(article.rating.avgRating >= 3) ratingObject.querySelector("star3").checked;
+    if(article.rating.avgRating >= 2) ratingObject.querySelector("star2").checked;
+    if(article.rating.avgRating >= 1) ratingObject.querySelector("star1").checked;
+}
+
+function rate(e){
+    e.stopPropagation();
+}
