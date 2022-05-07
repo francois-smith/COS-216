@@ -274,10 +274,15 @@
                     foreach($types as $type){
                         if($type == "*"){
                             $element = $article;
+                            $query = "SELECT a.id, COUNT(r.rating) as numRatings, FORMAT((SUM(r.rating) / COUNT(r.rating)),1) as avgRating FROM articles as a LEFT JOIN ratings as r ON r.article_id = a.id WHERE a.id = ".$article["id"]." GROUP BY (r.article_id)"; 
+                            $result = $database->getConnection()->query($query); 
+                            $ratings = $result->fetch_assoc(); 
+                            $element["rating"] = $ratings;
                             break;
                         }
                         $element[$type] = $article[$type];
                     }
+                    
                     $data[] = $element;
                     $num++;
                 }
@@ -285,7 +290,7 @@
                     break;
                 }
             }
-            
+
             $returnString = ["status"=> "success", "timestamp"=>time(), "data"=>$data];
             echo json_encode($returnString);
         }
