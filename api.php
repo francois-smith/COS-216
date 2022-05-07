@@ -145,6 +145,22 @@
                     return;
                 }
 
+                if(!array_key_exists("rating", $data) || $data["rating"] > 5 || $data["rating"] < 0){
+                    echo json_encode($API->failMessage("Rating Invalid"));
+                    return;
+                }
+
+                if(!array_key_exists("article_id", $data)){
+                    echo json_encode($API->failMessage("Article not set"));
+                    return;
+                }
+
+                if(!array_key_exists("user_id", $data)){
+                    echo json_encode($API->failMessage("Invalid user ID provided"));
+                    return;
+                }
+
+                rate($data["user_id"], $data["article_id"], $data["rating"], $database);
                 break;
             case "chat":
                 if(!array_key_exists("key", $data)){
@@ -162,6 +178,7 @@
                     return;
                 }
 
+                
                 break;
             default:
                 echo json_encode($API->failMessage("Unexpected error occured"));
@@ -191,6 +208,28 @@
                 return;
             }
             echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>$return]]);
+        }
+
+        function rate($user_id, $article_id, $rating, $database){
+            $query = "SELECT rating FROM ratings WHERE article_id = ".$data["article_id"]." AND user_id = '".$data["user_id"]."'"; 
+            $result = $database->getConnection()->query($query); 
+            
+            if($result->num_rows > 0){ 
+                $status = "failed";
+                $message = "You Have Already Rated This Article"; 
+            }else{ 
+                $query = "INSERT INTO ratings (`article_id`, `user_id`, `rating`) VALUES ('".$data["article_id"]."', '".$data["user_id"]."', '".$data["rating"]."')"; 
+                $insert = $database->getConnection()->query($query); 
+                
+                $status = "success";
+                $message = "Article Successfully Rated"; 
+            } 
+
+            $query = "SELECT COUNT(rating) as numRatings, FORMAT((SUM(rating) / COUNT(rating)),1) as avgRating FROM ratings WHERE article_id = ".$data["article_id"]." GROUP BY (article_id)"; 
+            $result = $database->getConnection()->query($query); 
+            $ratingData = $result->fetch_assoc(); 
+
+            echo json_encode(["status"=> $status, "timestamp"=>time(), "data"=>["message"=>$message, "rating"=>$ratingData]]);
         }
     
         function getArticle($database, $title, $author, $date, $rating, $types, $tag, $limit){
