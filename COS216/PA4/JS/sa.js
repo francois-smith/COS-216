@@ -1,6 +1,5 @@
 getWeather();
 getNews();
-loader();
 setupPage();
 
 function setupPage() {
@@ -17,17 +16,6 @@ function setupPage() {
     let link = links.querySelectorAll('a')[1];
 
     link.setAttribute('id', 'active-link');
-}
-
-function loader(){
-    const loader = document.querySelector("#loading-background");
-    setTimeout(() => {
-        loader.classList.remove("display");
-    }, 3000);
-
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 4000);
 }
 
 function getNews(){

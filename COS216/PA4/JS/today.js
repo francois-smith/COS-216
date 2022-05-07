@@ -19,18 +19,6 @@ function setupPage() {
 }
 
 function loadTodayArticles(){
-    const loader = document.querySelector("#loading-background");
-    loader.classList.remove("display");
-    loader.style.display = "none";
-
-    // setTimeout(() => {
-    //     loader.classList.remove("display");
-    // }, 3000);
-
-    // setTimeout(() => {
-    //     loader.style.display = "none";
-    // }, 4000);
-
     const request = new XMLHttpRequest();
 
     request.open("POST", "/u21649988/api.php");

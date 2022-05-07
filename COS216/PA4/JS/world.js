@@ -1,4 +1,3 @@
-loader();
 setupPage();
 let preferenceJSON;
 let generalJSON;
@@ -17,17 +16,6 @@ function setupPage() {
     let links = document.getElementById('link-container'); 
     let link = links.querySelectorAll('a')[2];
     link.setAttribute('id', 'active-link');
-}
-
-function loader(){
-    const loader = document.querySelector("#loading-background");
-    setTimeout(() => {
-        loader.classList.remove("display");
-    }, 3000);
-
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 4000);
 }
 
 function getGeneralData(){
@@ -76,6 +64,7 @@ function getPreferenceData(){
     request.send(JSON.stringify(requestData));
     request.onload = function(){
         preferenceJSON = JSON.parse(this.responseText);
+
         if(preferenceJSON.data.data == "No articles found matching request criteria"){
             emptyRequest();
         }
