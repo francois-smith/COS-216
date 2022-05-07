@@ -52,6 +52,10 @@
     color: var(--font-color);
 }
 
+.general-latest-article:hover .rating_container{
+    opacity: 1;
+}
+
 .latest-article1 { 
     grid-area: latest-article1; 
 }
@@ -91,6 +95,7 @@ div.img-container:hover span {
     height: 250px;
     width: 350px;
     padding-right: 10px;
+    filter: brightness(0.8);
 }
 
 .general-latest-article:hover .latest-article-content{

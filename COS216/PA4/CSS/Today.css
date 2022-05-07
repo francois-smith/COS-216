@@ -43,6 +43,11 @@
   
 .general-article{
     cursor: pointer;
+    position: relative;
+}
+
+.general-article:hover .rating_container{
+    opacity: 1;
 }
 
 .general-article a {
@@ -130,6 +135,10 @@
     cursor: pointer;
 }
 
+.main-article:hover .rating_container{
+    opacity: 1;
+}
+
 .main-article a{
     display: none;
 }
@@ -199,6 +208,7 @@
     height: 70%;
 }
 
+
 .grid-article-content {
     display: flex;
     flex-direction: column;
@@ -233,6 +243,7 @@
 .sub-article-general{
     display: flex;
     cursor: pointer;
+    position: relative;
 }
 
 .grid-article-image-sub {
@@ -248,6 +259,10 @@
 
 .sub-article-general:hover .sub-article-content{
     transform: translateX(15px);
+}
+
+.sub-article-general:hover .rating_container{
+    opacity: 1;
 }
 
 .sub-author-date {

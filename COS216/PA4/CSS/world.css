@@ -126,6 +126,10 @@
     transform: translateX(15px);
 }
 
+.main-preferences-article:hover .rating_container { 
+    opacity: 1;
+}
+
 .main-preferences-article:hover .preference-article-image-main{
     filter: brightness(0.65);
 }
@@ -149,6 +153,11 @@
 .preference-sub-article-general{
     display: flex;
     cursor: pointer;
+    position: relative;
+}
+
+.preference-sub-article-general:hover .rating_container { 
+    opacity: 1;
 }
 
 .preference-sub-article-image {
@@ -227,6 +236,10 @@
     transition: all 0.4s;
 }
 
+.general-article-main:hover .rating_container { 
+    opacity: 1;
+}
+
 .link{
     display: none;
 }
@@ -281,6 +294,10 @@
     overflow: hidden;
     cursor: pointer;
     position: relative;
+}
+
+.general-sub-article-general:hover .rating_container { 
+    opacity: 1;
 }
 
 .general-article-sub1 { 
