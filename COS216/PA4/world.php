@@ -1,15 +1,25 @@
 <?php require_once("php/General/header.php"); ?>
 <main>
-    <div id="loading-background" class="display">
-        <img id="loading" src="img/loading.svg" alt="Loading Screen"/>
-        <p>Loading Articles</p>
-    </div>
     <section class="general-news">
         <div class="general-header">
             <h2 class="section-title">General</h2>
         </div>
         <div class="general-container">
             <div onclick="goToLink(this)" class="general-article-main">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="main1_star5" name="rating" value="5">
+                        <label for="main1_star5"></label>
+                        <input type="radio" id="main1_star4" name="rating" value="4">
+                        <label for="main1_star4"></label>
+                        <input type="radio" id="main1_star3" name="rating" value="3">
+                        <label for="main1_star3"></label>
+                        <input type="radio" id="main1_star2" name="rating" value="2">
+                        <label for="main1_star2"></label>
+                        <input type="radio" id="main1_star1" name="rating" value="1">
+                        <label for="main1_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <span class="tag general"></span>
                 <div class="overlay"></div>
@@ -20,6 +30,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="general-article-sub1 general-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="main2_star5" name="rating" value="5">
+                        <label for="main2_star5"></label>
+                        <input type="radio" id="main2_star4" name="rating" value="4">
+                        <label for="main2_star4"></label>
+                        <input type="radio" id="main2_star3" name="rating" value="3">
+                        <label for="main2_star3"></label>
+                        <input type="radio" id="main2_star2" name="rating" value="2">
+                        <label for="main2_star2"></label>
+                        <input type="radio" id="main2_star1" name="rating" value="1">
+                        <label for="main2_star1"></label>
+                    </div>
+                </div>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -30,6 +54,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="general-article-sub2 general-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="main3_star5" name="rating" value="5">
+                        <label for="main3_star5"></label>
+                        <input type="radio" id="main3_star4" name="rating" value="4">
+                        <label for="main3_star4"></label>
+                        <input type="radio" id="main3_star3" name="rating" value="3">
+                        <label for="main3_star3"></label>
+                        <input type="radio" id="main3_star2" name="rating" value="2">
+                        <label for="main3_star2"></label>
+                        <input type="radio" id="main3_star1" name="rating" value="1">
+                        <label for="main3_star1"></label>
+                    </div>
+                </div>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -40,6 +78,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="general-article-sub3 general-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="main4_star5" name="rating" value="5">
+                        <label for="main4_star5"></label>
+                        <input type="radio" id="main4_star4" name="rating" value="4">
+                        <label for="main4_star4"></label>
+                        <input type="radio" id="main4_star3" name="rating" value="3">
+                        <label for="main4_star3"></label>
+                        <input type="radio" id="main4_star2" name="rating" value="2">
+                        <label for="main4_star2"></label>
+                        <input type="radio" id="main4_star1" name="rating" value="1">
+                        <label for="main4_star1"></label>
+                    </div>
+                </div>
                 <div class="overlay"></div>
                 <a href="" class="link"></a>
                 <img class="general-sub-article-image" src="IMG/blank.png" alt="a">
@@ -57,6 +109,20 @@
         </div>
         <div class="preferences-container">
             <div onclick="goToLink(this)" class="main-preferences-article">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub1_star5" name="rating" value="5">
+                        <label for="sub1_star5"></label>
+                        <input type="radio" id="sub1_star4" name="rating" value="4">
+                        <label for="sub1_star4"></label>
+                        <input type="radio" id="sub1_star3" name="rating" value="3">
+                        <label for="sub1_star3"></label>
+                        <input type="radio" id="sub1_star2" name="rating" value="2">
+                        <label for="sub1_star2"></label>
+                        <input type="radio" id="sub1_star1" name="rating" value="1">
+                        <label for="sub1_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-article-image-main hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -67,6 +133,20 @@
                 </div>      
             </div>
             <div onclick="goToLink(this)" class="preference-sub-article1 preference-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub2_star5" name="rating" value="5">
+                        <label for="sub2_star5"></label>
+                        <input type="radio" id="sub2_star4" name="rating" value="4">
+                        <label for="sub2_star4"></label>
+                        <input type="radio" id="sub2_star3" name="rating" value="3">
+                        <label for="sub2_star3"></label>
+                        <input type="radio" id="sub2_star2" name="rating" value="2">
+                        <label for="sub2_star2"></label>
+                        <input type="radio" id="sub2_star1" name="rating" value="1">
+                        <label for="sub2_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -76,6 +156,20 @@
                 </div> 
             </div>
             <div onclick="goToLink(this)" class="preference-sub-article2 preference-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub3_star5" name="rating" value="5">
+                        <label for="sub3_star5"></label>
+                        <input type="radio" id="sub3_star4" name="rating" value="4">
+                        <label for="sub3_star4"></label>
+                        <input type="radio" id="sub3_star3" name="rating" value="3">
+                        <label for="sub3_star3"></label>
+                        <input type="radio" id="sub3_star2" name="rating" value="2">
+                        <label for="sub3_star2"></label>
+                        <input type="radio" id="sub3_star1" name="rating" value="1">
+                        <label for="sub3_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -85,6 +179,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="preference-sub-article3 preference-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub4_star5" name="rating" value="5">
+                        <label for="sub4_star5"></label>
+                        <input type="radio" id="sub4_star4" name="rating" value="4">
+                        <label for="sub4_star4"></label>
+                        <input type="radio" id="sub4_star3" name="rating" value="3">
+                        <label for="sub4_star3"></label>
+                        <input type="radio" id="sub4_star2" name="rating" value="2">
+                        <label for="sub4_star2"></label>
+                        <input type="radio" id="sub4_star1" name="rating" value="1">
+                        <label for="sub4_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -94,6 +202,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="preference-sub-article4 preference-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub5_star5" name="rating" value="5">
+                        <label for="sub5_star5"></label>
+                        <input type="radio" id="sub5_star4" name="rating" value="4">
+                        <label for="sub5_star4"></label>
+                        <input type="radio" id="sub5_star3" name="rating" value="3">
+                        <label for="sub5_star3"></label>
+                        <input type="radio" id="sub5_star2" name="rating" value="2">
+                        <label for="sub5_star2"></label>
+                        <input type="radio" id="sub5_star1" name="rating" value="1">
+                        <label for="sub5_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>
@@ -103,6 +225,20 @@
                 </div>
             </div>
             <div onclick="goToLink(this)" class="preference-sub-article5 preference-sub-article-general">
+                <div class="rating_container" onclick="rate(event)">
+                    <div class="rating-stars">
+                        <input type="radio" id="sub6_star5" name="rating" value="5">
+                        <label for="sub6_star5"></label>
+                        <input type="radio" id="sub6_star4" name="rating" value="4">
+                        <label for="sub6_star4"></label>
+                        <input type="radio" id="sub6_star3" name="rating" value="3">
+                        <label for="sub6_star3"></label>
+                        <input type="radio" id="sub6_star2" name="rating" value="2">
+                        <label for="sub6_star2"></label>
+                        <input type="radio" id="sub6_star1" name="rating" value="1">
+                        <label for="sub6_star1"></label>
+                    </div>
+                </div>
                 <a href="" class="link"></a>
                 <img class="preference-sub-article-image hide-alt" src="IMG/blank.png" alt="a">
                 <span class="tag preference"></span>

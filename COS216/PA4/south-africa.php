@@ -1,16 +1,25 @@
 <?php require_once("php/General/header.php"); ?>
 <main>
-    <div id="loading-background" class="display">
-        <img id="loading" src="img/loading.svg" alt="Loading Screen"/>
-        <p>Loading Articles</p>
-    </div>
     <section class="latest-news">
         <div class="latest-news-container">
             <div class="latest-article1 general-latest-article">
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
-                        <span>8.3/10</span>
+                        <div class="rating_container" onclick="rate(event)">
+                            <div class="rating-stars">
+                                <input type="radio" id="art1_star5" name="rating" value="5">
+                                <label for="art1_star5"></label>
+                                <input type="radio" id="art1_star4" name="rating" value="4">
+                                <label for="art1_star4"></label>
+                                <input type="radio" id="art1_star3" name="rating" value="3">
+                                <label for="art1_star3"></label>
+                                <input type="radio" id="art1_star2" name="rating" value="2">
+                                <label for="art1_star2"></label>
+                                <input type="radio" id="art1_star1" name="rating" value="1">
+                                <label for="art1_star1"></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="latest-article-content">
                         <span class="latest-article-title">No Article Found</span>
@@ -26,7 +35,20 @@
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
-                        <span>6.6/10</span>
+                        <div class="rating_container" onclick="rate(event)">
+                            <div class="rating-stars">
+                                <input type="radio" id="art2_star5" name="rating" value="5">
+                                <label for="art2_star5"></label>
+                                <input type="radio" id="art2_star4" name="rating" value="4">
+                                <label for="art2_star4"></label>
+                                <input type="radio" id="art2_star3" name="rating" value="3">
+                                <label for="art2_star3"></label>
+                                <input type="radio" id="art2_star2" name="rating" value="2">
+                                <label for="art2_star2"></label>
+                                <input type="radio" id="art2_star1" name="rating" value="1">
+                                <label for="art2_star1"></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="latest-article-content">
                         <span class="latest-article-title">No Article Found</span>
@@ -43,7 +65,20 @@
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
-                        <span>4.9/10</span>
+                        <div class="rating_container" onclick="rate(event)">
+                            <div class="rating-stars">
+                                <input type="radio" id="art3_star5" name="rating" value="5">
+                                <label for="art3_star5"></label>
+                                <input type="radio" id="art3_star4" name="rating" value="4">
+                                <label for="art3_star4"></label>
+                                <input type="radio" id="art3_star3" name="rating" value="3">
+                                <label for="art3_star3"></label>
+                                <input type="radio" id="art3_star2" name="rating" value="2">
+                                <label for="art3_star2"></label>
+                                <input type="radio" id="art3_star1" name="rating" value="1">
+                                <label for="art3_star1"></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="latest-article-content">
                         <span class="latest-article-title">No Article Found</span>
@@ -59,7 +94,20 @@
                 <a href="">
                     <div class="img-container">
                         <img class="latest-article-image" src="" alt="a">
-                        <span>7.1/10</span>
+                        <div class="rating_container" onclick="rate(event)">
+                            <div class="rating-stars">
+                                <input type="radio" id="art4_star5" name="rating" value="5">
+                                <label for="art4_star5"></label>
+                                <input type="radio" id="art4_star4" name="rating" value="4">
+                                <label for="art4_star4"></label>
+                                <input type="radio" id="art4_star3" name="rating" value="3">
+                                <label for="art4_star3"></label>
+                                <input type="radio" id="art4_star2" name="rating" value="2">
+                                <label for="art4_star2"></label>
+                                <input type="radio" id="art4_star1" name="rating" value="1">
+                                <label for="art4_star1"></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="latest-article-content">
                         <span class="latest-article-title">No Article Found</span>
