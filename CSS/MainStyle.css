@@ -521,3 +521,26 @@ footer {
     margin: 4px 0 0;
     line-height: normal;
 }
+
+.article_id{
+    display: none;
+}
+
+.notification-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top: -100px;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.notification{
+    width: 15%;
+    color: rgb(218, 218, 218);
+    padding: 8px 12px;
+    font-size: 20px;
+    border-radius: 2px;
+}
+

@@ -125,11 +125,13 @@
                 }
                 else{
                     let popup = document.querySelector(".notification-container");
-                        popup.style.transform = "translateY(150px)";
-                        popup.innerHTML = "Details could not be updated";
-                        setTimeout(function(){
-                            popup.style.transform = "translateY(0px)";
-                        }, 2500);
+                    popup.children[0].style.backgroundColor = "rgb(179, 51, 51)";
+                    popup.children[0].innerHTML = "Details Could Not Be Updated";
+                    popup.style.transform = "translateY(150px)";
+
+                    setTimeout(function(){
+                        popup.style.transform = "translateY(0px)";
+                    }, 2500);
                 }
             }
         }

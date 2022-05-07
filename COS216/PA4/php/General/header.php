@@ -90,8 +90,12 @@
                 </div>
             </div>
         </nav>
+        <div class="notification-container">
+            <div class="notification">
+                Invalid Login Credentials
+            </div>
+        </div>
         <script src="/u21649988/COS216/PA4/JS/general.js"></script>
-
         <?php
             if(isset($_SESSION)){
                 if($_SESSION["logged_in"] == true){
