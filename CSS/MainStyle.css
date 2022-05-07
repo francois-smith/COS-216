@@ -30,7 +30,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.3s;
 }
   
 html {
@@ -80,6 +79,7 @@ nav #top-bar{
     cursor: default;
     text-align: center;
     padding: 15px;
+    transition: all 0.3s;
 }
 
 #date-time {
@@ -361,6 +361,7 @@ footer {
     align-items: center;
     position: fixed;
     z-index: 99;
+    transition: all 0.3s;
 }
 
 .preferences{
@@ -481,39 +482,42 @@ footer {
     margin: auto;
 }
 
-#loading-background{
-    position: fixed;
-    background-color: #393939;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 100;
+.rating_container{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    z-index: 50;
     opacity: 0;
-    transition: all 1s ease-out;
+    transition: all 0.2s;
 }
 
-#loading-background p {
-    color: #fff;
-    font-size: 50px;
-    font-weight: 200;
-    width: 100%;
-    text-align: center;
-    top: 50%;    
-    position: fixed;
+.rating-stars:not(:checked) > label::before {
+    content: '★ ';
+    content: "\2605";
 }
 
-#loading-background.display {
-    opacity: 1;
-    display: block;
+.rating-stars:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
 }
 
-#loading {
-    position: fixed;
-    left: 50%;
-    top: 37%;
-    margin-top: -100px;
-    margin-left: -100px;
-    width: 200px;
-    height: 200px;
+
+.rating-stars > input:checked ~ label, .rating-stars input[checked="checked"] ~ label {
+    color: #f0bc00;
+}
+
+.rating-stars:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    display: none;
+}
+
+.rating-stars input[type="radio"], input[type="checkbox"] {
+    margin: 4px 0 0;
+    line-height: normal;
 }
