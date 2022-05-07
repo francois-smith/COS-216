@@ -110,7 +110,7 @@
             return $return;
         }
 
-        public function addUser($name, $surname, $email, $password, $salt){
+        public function addUser($name, $surname, $email, $passwordHashed, $salt, $password){
             $stmt = $this->connection->prepare("SELECT * FROM  `users` WHERE `email` = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -122,7 +122,7 @@
                     $preference = "none";
 
                     $stmt = $this->connection->prepare("INSERT INTO users (`name`, `surname`, `email`, `password`, `theme`, `preference`, `api_key`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("sssssss", $name, $surname, $email, $password, $theme, $preference, $api_key);
+                    $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHashed, $theme, $preference, $api_key);
                     $stmt->execute();
                     $stmt->store_result();
 
@@ -130,7 +130,15 @@
                     $stmt2 = $this->connection->prepare("INSERT INTO usersalts (`id`, `salt`) VALUES (?, ?)");
                     $stmt2->bind_param("is", $insert_id, $salt);
                     $stmt2->execute();
-                    $this->successMessage($api_key, $name);
+                    
+                    $_SESSION["logged_in"] = true;
+                    $_SESSION["user_name"] = $name;
+                    $_SESSION["user_surname"] = $surname;
+                    $_SESSION["user_id"] = $insert_id;
+                    $_SESSION["api_key"] = $api_key;
+                    $_SESSION["preference"] = $preference;
+                    $_SESSION["theme"] = $theme;
+                    $_SESSION["email"] = $email;
                 } else {
                     $this->failMessage($email);
                 }
@@ -153,26 +161,6 @@
                             <p>The following email is already registered: </p>
                             <span id="responseContainerMessage">'.$email.'</span>
                             <p>Please <span onclick="loginPage()" id="login-link">log in</span> using this email</p>
-                        </div>
-                        <div class="quote-contianer">
-                            <p><span class="blue-text">Spreading </span><span>Knowledge</span></p>
-                        </div>
-                    </div>
-                </main>
-                <script src="/u21649988/COS216/PA4/JS/signup.js"></script>
-            ';
-            require_once("../General/footer.php");
-        }
-
-        private function successMessage($message, $name){
-            require_once("../General/header.php");
-            echo '
-                <main>
-                    <div class="form-container">
-                        <div class="responseContainer">
-                            <h2><span class="blue-text">Welcome</span> '.$name.'</h2>
-                            <p>Thank your for registering an account with us, you can find you API Key below</p>
-                            <span id="responseContainerMessage">'.$message.'</span>
                         </div>
                         <div class="quote-contianer">
                             <p><span class="blue-text">Spreading </span><span>Knowledge</span></p>
