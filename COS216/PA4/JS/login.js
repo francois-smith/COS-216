@@ -41,6 +41,8 @@ if(document.querySelector(".input-container") != null){
                 }
                 else{
                     let popup = document.querySelector(".notification-container");
+                    popup.children[0].style.backgroundColor = "rgb(179, 51, 51)";
+                    popup.children[0].innerHTML = "Invalid Login Credentials";
                     popup.style.transform = "translateY(150px)";
 
                     setTimeout(function(){

@@ -85,9 +85,14 @@ function populateGeneral(json){
     let randomArticle = json.data[Math.floor(Math.random()*json.data.length)];
 
     let mainArticle = document.querySelector(".general-article-main");
+
+    let id = mainArticle.querySelector(".article_id");
+    id.innerHTML = randomArticle.id;
+
     mainArticle.querySelector(".link").setAttribute("href", randomArticle.link);
     mainArticle.querySelector(".general-main-article-image").src = randomArticle.image;
     mainArticle.querySelector(".general-main-article-title").innerHTML = randomArticle.title;
+    setStars(mainArticle, randomArticle.rating.avgRating);
 
     let author_date = mainArticle.querySelector('.general-main-author-date');
     let author = randomArticle.author;
@@ -100,6 +105,10 @@ function populateGeneral(json){
     let subArticles = document.getElementsByClassName("general-sub-article-general");
     for(let article of subArticles){
         randomArticle = json.data[Math.floor(Math.random()*json.data.length)];
+
+        let id = article.querySelector(".article_id");
+        id.innerHTML = randomArticle.id;
+
         article.querySelector(".link").setAttribute("href", randomArticle.link);
         article.querySelector(".general-sub-article-image").src = randomArticle.image;
         article.querySelector(".general-sub-article-title").innerHTML = randomArticle.title;
@@ -111,6 +120,7 @@ function populateGeneral(json){
         let tag = article.querySelector(".tag");
         tag.innerHTML = randomArticle.tag;
         tag.style.background = tagGenerator();
+        setStars(article, randomArticle.rating.avgRating);
     }
 }
 
@@ -118,9 +128,15 @@ function populatePreference(json){
     let randomArticle = json.data[Math.floor(Math.random()*json.data.length)];
 
     const mainArticle = document.querySelector(".main-preferences-article");
+
+    let id = mainArticle.querySelector(".article_id");
+    id.innerHTML = randomArticle.id;
+
     let date = randomArticle.date;
     let author = randomArticle.author;
     mainArticle.querySelector(".preference-article-author-main").innerHTML = author + " - " + date.split('T')[0];  
+
+    setStars(mainArticle, randomArticle.rating.avgRating);
 
     mainArticle.querySelector(".preference-article-title-main").innerHTML = randomArticle.title;
     mainArticle.querySelector(".preference-article-description-main").innerHTML = randomArticle.description;
@@ -135,6 +151,9 @@ function populatePreference(json){
     for (let article of subArticles){
         randomArticle = json.data[Math.floor(Math.random()*json.data.length)];
 
+        let id = article.querySelector(".article_id");
+        id.innerHTML = randomArticle.id;
+
         let date = randomArticle.date;
         let author = randomArticle.author;
         article.querySelector(".preference-sub-author-date").innerHTML = author + " - " + date.split('T')[0];  
@@ -146,6 +165,8 @@ function populatePreference(json){
         let tag = article.querySelector(".tag");
         tag.innerHTML = randomArticle.section;
         tag.style.background = tagGenerator();  
+
+        setStars(subArticles, randomArticle.rating.avgRating);
     }
 }
 

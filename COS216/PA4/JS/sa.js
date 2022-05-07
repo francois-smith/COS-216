@@ -49,6 +49,9 @@ function populateNews(json){
         article.querySelector(".latest-article-title").innerHTML = data.title;
         article.querySelector(".latest-article-description").innerHTML = data.description;
 
+        let id = article.querySelector(".article_id");
+        id.innerHTML = data.id;
+
         let author = data.author;
         if(author == ""){
             author = "Unknow Author"
@@ -59,6 +62,8 @@ function populateNews(json){
         let tag = article.querySelector(".tag");
         tag.innerHTML = data.tag;
         tag.style.backgroundColor = tagGenerator();
+
+        setStars(article, data.rating.avgRating);
     }
 }
 

@@ -30,11 +30,12 @@ function loadTodayArticles(){
         "type":"info",
         "date":date,
         "return":["*"],
-        "limit":50
+        "limit":1
     };
     request.send(JSON.stringify(requestData));
     request.onload = function(){
         json = JSON.parse(this.responseText);
+        console.log(json);
         populateInitialTrendingArticles(json);
         populateMainArticle(json);
         populateSubArticles(json);
@@ -46,6 +47,9 @@ function populateInitialTrendingArticles(json){
 
     for (let article of articles) {
         let data = json.data[Math.floor(Math.random()*json.data.length)];
+
+        let id = article.querySelector(".article_id");
+        id.innerHTML = data.id;
 
         let link = article.querySelector(".link");
         link.setAttribute("href", data.link);
@@ -64,12 +68,17 @@ function populateInitialTrendingArticles(json){
         let tag = article.querySelector(".tag");
         tag.innerHTML = data.tag;
         tag.style.background = tagGenerator();
+
+        setStars(article, data.rating.avgRating);
     }    
 }
 
 function populateMainArticle(json){
     const mainArticle = document.querySelector(".main-article");
     let data = json.data[Math.floor(Math.random()*json.data.length)];
+
+    let id = mainArticle.querySelector(".article_id");
+    id.innerHTML = data.id;
 
     let title = mainArticle.querySelector('.grid-article-title');
     title.innerHTML = data.title;
@@ -91,6 +100,8 @@ function populateMainArticle(json){
     let tag = mainArticle.querySelector(".tag");
     tag.innerHTML = data.tag;  
     tag.style.background = tagGenerator();  
+
+    setStars(mainArticle, data.rating.avgRating);
 }
 
 function populateSubArticles(json){
@@ -99,8 +110,11 @@ function populateSubArticles(json){
     for (let article of articles) {
         let data = json.data[Math.floor(Math.random()*json.data.length)];
 
+        let id = article.querySelector(".article_id");
+        id.innerHTML = data.id;
+    
         let link = article.querySelector(".link");
-        link.setAttribute("href", data.link)
+        link.setAttribute("href", data.link);
 
         let title = article.querySelector('.sub-article-title');
         title.innerHTML = data.title;
@@ -115,6 +129,8 @@ function populateSubArticles(json){
 
         let tag = article.querySelector(".tag");
         tag.innerHTML = data.tag;
+
+        setStars(article, data.rating.avgRating);
     }   
 }
 
