@@ -145,9 +145,9 @@
             }
         }
 
-        public function addNews($title, $description, $author, $image, $tag, $articleDate, $link, $rating){
-            $stmt = $this->connection->prepare("INSERT INTO articles (`title`, `description`, `author`, `image`, `tag`, `date`, `link`, `rating`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssss", $title, $description, $author, $image, $tag, $articleDate, $link, $rating);
+        public function addNews($title, $description, $author, $image, $tag, $articleDate, $link){
+            $stmt = $this->connection->prepare("INSERT INTO articles (`title`, `description`, `author`, `image`, `tag`, `date`, `link`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $title, $description, $author, $image, $tag, $articleDate, $link);
             $stmt->execute();
         }
 
@@ -269,10 +269,9 @@
                         $tag = addslashes($article["section"]);
                         $date = addslashes($article["created_date"]);
                         $link = addslashes($article["url"]);
-                        $rating = 0;
     
                         if($image != null){
-                            $this->addNews($title, $description, $author, $image, $tag, $date, $link, $rating);
+                            $this->addNews($title, $description, $author, $image, $tag, $date, $link);
                         }
                     }
                 } 
@@ -304,9 +303,9 @@
                             $link = addslashes($article["url"]);
                             $description = addslashes($article["content"]);
                             $image = addslashes($article["urlToImage"]);
-                            $rating = 0;
 
-                            $this->addNews($title, $description, $author, $image, $tag, $date, $link, $rating);
+
+                            $this->addNews($title, $description, $author, $image, $tag, $date, $link);
                         }
                     }
                 }
