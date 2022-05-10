@@ -534,6 +534,7 @@ footer {
     top: -100px;
     text-align: center;
     transition: 0.4s;
+    z-index: 999999;
 }
 
 .notification{
