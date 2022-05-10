@@ -1,43 +1,36 @@
 /*=================Default Login================*/
 (Without the ' ' symbols)
 
-Name: 'admin'
-Surname: 'user'
-Email: 'newslodge@gmail.com' 	
-Password" 'NewsLodge1234!'
-Salt: '62554314784fc5.59557897'
-API_Key: '6f499d085c39e4e8be0739886be49226f82760bc803b9b4d' 
-
-/*=================Usage Guide==================*/
-Once you open PA3 folder path index.php will be opened, this is a replica of the today page generated through echoes.
-Navigate to the top right of the screen to see My Account, this is a dialogue popup, hover over it to see login status, for PA3 it is register and login buttons.
-Click on register to be redirected to login page, this page is also constructed with echoes. Fill in the details of the form.
-Validation will take place on server and client side, if submit is clicked all form elements will be verified first and any incorrect ones will be highlighted red.
-Once validation is complete the server side will attempt to add you to the database, if your email exists you will get the appropriate error.
-If all goes well you will recieve your API key on screen to be used. 
-
-/*=============Password Requirements=============*/
-Passwords must be 8 characters long, Contain at least one numeric character, Contain at least one capital letter and lastly contain at least one special character. The reasoning behind this is to add a ton of requirements so verification can look in depth if passwords are correct. 
-
-/*===============Salt and Hashing===============*/
-SHA256 and SHA512 allows you to define the amount of rounds. The default is 5000 rounds, more is better but takes longer.
-I chose SHA512 over SHA256 because SHA256 needs a lot more rounds to be equally as secure as SHA512, so while it's not insecure, it's less secure. 
-SHA512 is also slower than SHA216 but in context of security this is good, because it will take a hacker longer to crack it.
-
-/*===============API Key Generation==============*/
-I used bin2hex(random_bytes(24)) to allow all API's to be the same length of 48 characters long, this will limit the odds of duplicates but not remove it completely.
-Random numbers are sometime predictably generated but it is fine in this case because its not used for security reasons but just to generate a random set of alpha-numeric characters to be saved as a users API key.
+Name: 'Default'
+Surname: 'User'
+Email: 'Test@gmail.com' 	
+Password" 'TestPass1!'
+API_Key: '74d1fbcdc7d52e1c4ca241d3721c12fd091636f25eaf10bd' 
 
 /*=================API Paramaters================*/
-- If no optional "title", "author", "date" or "rating" parameters are included in request, the first 20 articles are returned.
-- If the requested tile, author, rating or date is not found an appropriate message is returned.
-- If more than one parameter is specified(i.e title and author) then all articles with these parameters are returned(up to a maximum of 20), even if a single article does not  exclusively contain both specified parameters.
+-All API calls reqiure a api_key, info will just check and use the default to get articles for any users.
+
+-Update:
+    This API type takes an email, key and array of updated user info
+    This info is verified to make sure that all parametres are set, this call is purely made from the preferences screen.
+    As soon as info has been updated, the session varibales are overwridden by the new information
+
+-login:
+    Login takes an email and password input.
+    It then validates if the email exists in the database, if it does it gets the user salt from the salts table and runs the hashing method on the provided password.
+    If the result matches the password stored with the email then it is the correct details and user details are sent back to client to populate session variables.
+
+-rate 
+    This call takes a rating, user_id and article_id to store a table entry that uses foreign keys to link a rating to a user and article.
+    When articles are fetched thier ratings are also fetched from the ratings table.
 
 /*=================Functionality=================*/
 All functionality on the spec has been implemented.
 
-News articles are cached into a table, once config is constructed a call to the database is made retrieving the last refresh time, if 6 hours has elapsed, a call to NYT and theNews is made to retrieve new articles from different categories. The table can contain a max of 1000 articles and if this limit is reached the oldest articles are deleted from the table to free up space.
+Rating System uses stars. Once a user rates a article it gets added to a table and the value gets updated to the average rating, a user is only allowed to rate once and must also be logged in to be able to rate.
 
-All API keys are exactly 48 characters long, so this adds a extra layer of verification on the inputted key parameter.
+Once the web page gets loaded a hardcoded default key is stored into session storage, this key is used to fetch articles withou logging in, this allows users to use the website without needing to make an account, but advanced features such as rating needs an account. All API call check if a key is set and also if the key is not equals to the default key to further verify logged in status.
 
-If invalid return parameters are passed to the api request(i.e. ..&return[]=article-views&..) then it is just excluded from return results and no error is displayed, but if no return parameter is valid then a error is returned.
+All variables are saved to session storage and gets cleared as soon as the page is closed. When the page is loaded it checks if user is logged in and sets elements such as theme and preference to elements. The preference edit screen is nod loaded to DOM when user is not logged in, this is a security measure so that when users are not logged in they are unable to run the requests stored on the preferences page. The preference page also allows users to update and save theme, preference, name and surname. 
+
+The theme toggle on the footer of the page can be used by any user regardless if they are logged in or not. This toggle is session specific, to save theme to database to be loaded and remembered it needs to be set in the preferences window.
