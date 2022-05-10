@@ -63,8 +63,6 @@ function populateSouthAfrica(json){
         }
     }
 
-    console.log(data);
-
     let casesContainer = document.querySelector(".cases-today");
     casesContainer.querySelector(".stat-amount").innerHTML = data["New Cases"];
 
@@ -124,7 +122,6 @@ function calculateIFR(data){
 
 function scrollText(json){
     let articles = json.data;
-    console.log(json);
 
     let spacing = 200;
     let items = [];

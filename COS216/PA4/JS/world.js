@@ -166,7 +166,7 @@ function populatePreference(json){
         tag.innerHTML = randomArticle.section;
         tag.style.background = tagGenerator();  
 
-        setStars(subArticles, randomArticle.rating.avgRating);
+        setStars(article, randomArticle.rating.avgRating);
     }
 }
 

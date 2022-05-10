@@ -38,7 +38,6 @@ function loadTodayArticles(){
     request.send("key=6f499d085c39e4e8be0739886be49226f82760bc803b9b4d&type=info&date=04-18&return[]=title&return[]=description");
     request.onload = function(){
         json = JSON.parse(this.responseText);
-        console.log(json);
     }
     
 }

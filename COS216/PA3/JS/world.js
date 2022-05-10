@@ -33,7 +33,6 @@ function getSportData(){
     request.open("GET", "https://livescore6.p.rapidapi.com/news/v2/list?rapidapi-key=d6c9483578msh8c34a069db0ddacp158131jsn2cb6e7ce986a");
     request.onload = () => {
         sportsJSON = JSON.parse(request.responseText);
-        console.log(sportsJSON);
 
         //populateSports(sportsJSON);
         //generateSportsFilters(sportsJSON)

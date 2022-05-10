@@ -30,12 +30,11 @@ function loadTodayArticles(){
         "type":"info",
         "date":date,
         "return":["*"],
-        "limit":1
+        "limit":50
     };
     request.send(JSON.stringify(requestData));
     request.onload = function(){
         json = JSON.parse(this.responseText);
-        console.log(json);
         populateInitialTrendingArticles(json);
         populateMainArticle(json);
         populateSubArticles(json);
