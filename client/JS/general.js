@@ -122,7 +122,7 @@ function setupArticles(){
             articles = data.data;
         }
     }).done(function(){
-        let article = articles[1];
+        let article = articles[15];
         $('#article-id').html(article.id);
         $('#article-link').attr("href", article.link);
 
@@ -156,16 +156,22 @@ function toggleReply(e){
         if(message.querySelector(".message_id").innerHTML == reply_message){
             reply_message = "";
             is_reply = false;
-
-            doc
+            let reply = document.querySelector("#replyto");
+            reply.style.visibility = "hidden";
         }
         else{
             reply_message = message.querySelector(".message_id").innerHTML;
             is_reply = true;
+            let reply = document.querySelector("#replyto");
+            reply.style.visibility = "visible";
+            reply.querySelector("span").innerHTML = "Replying to: " + message.querySelector(".user-name").innerHTML;
         }
     }
     else{
         reply_message = message.querySelector(".message_id").innerHTML;
         is_reply = true;
+        let reply = document.querySelector("#replyto");
+        reply.style.visibility = "visible";
+        reply.querySelector("span").innerHTML = "Replying to: " + message.querySelector(".user-name").innerHTML;
     }
 }

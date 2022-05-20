@@ -32,7 +32,7 @@ $("#login-form").submit(function(e) {
                     failMessage(data.data.message);
                 }
             }
-        })
+        });
     }
     else{
         //otherwise email will display error message

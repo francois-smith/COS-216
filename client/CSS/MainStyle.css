@@ -179,7 +179,7 @@ nav{
 
 main{
     display: grid;
-    grid-template-columns:0.4fr 1fr;
+    grid-template-columns: 0.4fr 1fr;
     grid-template-rows: 1fr;
     overflow-y: hidden;
 }
@@ -188,20 +188,23 @@ main{
     grid-area: 1 / 1 / 2 / 2;
     background-color: var(--background-color-offset);
     position: relative;
+    width: 100%;
 }
 
 .chat-container h3{
     font-size: 28px;
     font-weight: 300;
     padding: 15px 30px;
+    position: relative;
 }
 
 #message-container{
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 72vh;
+    height: 69vh;
     overflow-y: scroll;
     scrollbar-width: thin;  
     scrollbar-color: var(--elements-background) var(--background-color-offset) ;
@@ -255,7 +258,18 @@ main{
     font-size: 18px;
     color: var(--message-text);
 }
-
+.reply-button-container{
+    position: relative;
+    height: 20px;
+}
+.reply-button-container img{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.reply-button-container img:hover{
+    animation: bounce 0.4s linear;
+}
 .reply-message{
     color: var(--font--hover);  
 }
@@ -265,7 +279,8 @@ main{
     width: 100%;
     bottom: 0px;
     background-color: var(--background-color-offset);
-    padding: 25px;
+    padding: 30px;
+    position: sticky;
 }
 
 #send-container-message{
@@ -275,19 +290,59 @@ main{
 }
 
 #reply-message-container{
+    position: relative;
+    font-size: 17px;
+    height: 25px;
+}
 
+#replyto{
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#replyto span{
+    padding-left: 10px;
 }
 
 #message-form{
-
+    padding: 0px;
 }
 
 #message-form textarea{
-    width: 80%;
+    width: 95%;
+    height: 140px;
+    resize: none;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--font-color);
+    background-color: var(--background-color);
+    border-radius: 5px;
 }
 
 #send-message{
+    margin-top: 10px;
+}
 
+#send-message-icon:hover svg{
+    transform: translate(1px, -1px);
+    filter: brightness(0.9);
+}
+
+#send-message-icon{
+    background-color: var(--accent-color);
+    padding: 8px 10px;
+    border-radius: 50%;
+    position: relative;
+}
+
+#send-message svg{
+    transform: translate(-2px, 2px);
+    transition: all 0.3s;
+    color: #fff;
 }
 
 .article-container{
@@ -543,4 +598,11 @@ input:focus{
 
 .toast-warning {
     background-color: #F89406 !important;
+}
+
+@keyframes bounce{
+    0%   {top: -0px;}
+    30%  {top: -5px;}
+    70%  {top: -2px;}
+    100% {top: 0px;}
 }

@@ -26,7 +26,7 @@ let port = process.argv.slice(2);
 //put before client static library to allow cookies to be set
 app.get("/", (req, res) => {
     res.cookie(`uuid`,uuidv4(), {httpOnly: false, sameSite: 'none', secure: true});
-    res.cookie(`port_number`,port.toLocaleString(), {httpOnly: false, sameSite: 'none', secure: true});
+    res.cookie(`port_number`, port.toLocaleString(), {httpOnly: false, sameSite: 'none', secure: true});
     res.sendFile(dir, "client/index.html");
 });
 
@@ -39,7 +39,7 @@ app.use(express.static(dir + 'client'));
 
 //setup port and log that server was setup correctly to desired port
 http.listen(port.toLocaleString(), function(){
-    console.log('listening on:'+port)
+    console.log('listening on: '+port)
 });
 
 //array to hold a array of connected users on client
@@ -100,6 +100,7 @@ app.post("/get_articles", (req, res) => {
     
     //populate data to send to wheatley
     const data = JSON.stringify({
+        key: "47dee55dbeb7ce9cfff65c1e854d05443a3f432797603f96",
         type:"info",
         return: ["*"],
         limit: 20
@@ -218,7 +219,7 @@ process.stdin.on('data', function (text) {
     let command = text.trim();
 
     //if LIST command, display a list of connected users by displaying their ID
-    if (text.trim() === 'LIST') {
+    if (command === 'LIST') {
         console.log(users.length+" users currently connected");
         let i = 1;
         for(let user in users){
