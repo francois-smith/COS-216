@@ -1,5 +1,5 @@
 const port = ('; '+document.cookie).split(`; port_number=`).pop().split(';')[0];
-let reply_message = "";
+let reply_message = 0;
 let is_reply = false;
 
 setupNavigation();
@@ -85,28 +85,45 @@ function submitMessage(){
     else{
         if(document.getElementsByName("message")[0].value != ""){
             $.ajax({
-                url: "http://localhost:"+port+"/login",
+                url: "http://localhost:"+port+"/post_message",
                 type: "POST",
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    id: $('#article-id').html(),
-                    // is_reply: ,
-                    // reply_id: ,
-                    // message_contents: document.getElementsByName("message")[0].value,
-                    // user_id: ,
-                    // time: ,
-                    // article_id: 
+                    "key": sessionStorage.getItem('api_key'),
+                    "isReply": is_reply ? 1 : 0,
+                    "replyId": reply_message,
+                    "messageContents": document.getElementsByName("message")[0].value,
+                    "userId": sessionStorage.getItem('id'),
+                    "articleId": document.querySelector("#article-id").innerHTML
                 }),
                 success: function(data){
-                    console.log(data);
-    
-                    // if(data.data.message != "Message was unable to send"){
-                    //     //document.querySelector('#login-form').reset();
-                    // }
-                    // else{
-                    //     //else display toastr message
-                    //     //displayMessageError();
-                    // }
+                    if(data.data.message != "Message added Successfully"){
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "4000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    
+                        //add toastr error to screen
+                        toastr["error"]("Message Failed To Send", "Error");
+                    }
+                    document.getElementsByName("message")[0].value = "";
+                    reply_message = 0;
+                    is_reply = false;
+                    let reply = document.querySelector("#replyto");
+                    reply.style.visibility = "hidden";
                 }
             }) 
         }
@@ -154,7 +171,7 @@ function toggleReply(e){
 
     if(is_reply){
         if(message.querySelector(".message_id").innerHTML == reply_message){
-            reply_message = "";
+            reply_message = 0;
             is_reply = false;
             let reply = document.querySelector("#replyto");
             reply.style.visibility = "hidden";
