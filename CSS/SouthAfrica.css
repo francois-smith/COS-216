@@ -1,0 +1,240 @@
+/*Francois Smith - u21649988*/
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --accent-color: #2a81ea;
+    --accent-color-offset: rgb(228, 228, 228);
+} 
+
+:root.light{
+    --font-color: #393939;
+    --font--hover: #5e5e5e;
+    --background-color: rgb(241, 241, 241);
+    --background-color-offset: rgb(228, 228, 228);
+    --misc-background: #383838;
+    --misc-text: #cfcfcf;
+    --highlights: rgba(246, 80, 80, 15%);
+}
+
+:root.dark{
+    --font-color: #acacac;
+    --font--hover: #919191;
+    --background-color: rgb(48, 48, 48);
+    --background-color-offset: rgb(32, 32, 32);
+    --misc-background: #222222;
+    --misc-text: #d4d4d4;
+    --highlights: rgba(19, 4, 4, 0.15);
+}
+
+/*===========================================LatestNews===================================*/
+
+.latest-news {
+    padding: 40px 35px;
+}
+
+.latest-news-container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 250px 250px 250px 250px; 
+    gap: 25px 25px; 
+    grid-template-areas: 
+      "latest-article1 latest-article1 side-bar"
+      "latest-article2 latest-article2 side-bar"
+      "latest-article3 latest-article3 side-bar"
+      "latest-article4 latest-article4 side-bar"; 
+}
+
+.general-latest-article a{
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.general-latest-article:hover .rating_container{
+    opacity: 1;
+}
+
+.latest-article1 { 
+    grid-area: latest-article1; 
+}
+
+.latest-article2 { 
+    grid-area: latest-article2; 
+}
+
+.latest-article3 { 
+    grid-area: latest-article3; 
+}
+
+.latest-article4 { 
+    grid-area: latest-article4; 
+}
+
+.img-container {
+    position: relative;
+}
+
+div.img-container span {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #393939;
+    color: rgb(212, 212, 212);
+    padding: 5px;
+    border-radius: 5px;
+}
+  
+div.img-container:hover span {
+    display: block;
+}
+
+.latest-article-image {
+    height: 250px;
+    width: 350px;
+    padding-right: 10px;
+    filter: brightness(0.8);
+}
+
+.general-latest-article:hover .latest-article-content{
+    transform: translateX(10px);
+}
+
+.latest-article-content {
+    padding: 0px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.4s;
+}
+
+.latest-article-title {
+    font-size: 30px;
+    padding-bottom: 12px;
+}
+ 
+.latest-article-author {
+    padding-left: 10px;
+}
+
+.latest-article-description {
+    font-size: 18px;
+    opacity: 0.8;
+    padding-top: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.side-bar { 
+    grid-area: side-bar; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#weather-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #393939;
+}
+
+#weather-type{
+    margin-top: -10px;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+#weather-icon{
+    width: 200px;
+    margin-bottom: -60px;
+} 
+
+#weather-region{
+    font-size: 30px;
+}
+
+#temprature{
+    display: flex;
+}
+
+#weather-temp{
+    font-size: 50px;
+}
+
+#weather-symbol{
+    font-size: 35px;
+    padding-left: 2px;
+}
+
+#social-links{
+    padding-top: 30px;
+    width: 70%;
+}
+
+#social-links ul{
+    list-style: none;
+}
+
+#social-links i{
+    font-size: 50px;
+    padding: 4px 10px 4px;
+}
+
+#social-links li{
+    box-shadow: 2px 2px 5px var(--highlights);
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#social-links li:hover{ 
+    filter: brightness(0.8);
+}
+
+.social-text{
+    display: flex;
+    align-items: center;
+}
+
+.social-prompt{
+    padding-right: 10px;
+    border-left: 2px solid #fff;
+    padding-left: 10px;
+}
+
+#instagram{
+    background: #ff496d;
+}
+
+#facebook{
+    background: #2566b7;
+}
+
+#facebook .social-prompt{
+    padding-right: 20px;
+    padding-left: 15px;
+}
+
+#twitter{
+    background: #00adf6;
+}
+
+/*===========================================General Classes===================================*/
+
+.tag{
+    color: #fff;
+    padding: 2px 6px;
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: capitalize;
+}
