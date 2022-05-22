@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 
 //set port to listen to based on input arguments
 let port = process.argv.slice(2);
-console.log(__dirname);
 
 //create a cookie for every client that connects to allow dynamic ports to be accessible
 //put before client static library to allow cookies to be set
