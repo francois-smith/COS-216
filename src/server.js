@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 //set port to listen to based on input arguments
 let port = process.argv.slice(2);
+console.log(__dirname);
 
 //create a cookie for every client that connects to allow dynamic ports to be accessible
 //put before client static library to allow cookies to be set
@@ -40,11 +41,57 @@ app.use(express.static(dir + 'client'));
 //setup port and log that server was setup correctly to desired port
 http.listen(port.toLocaleString(), function(){
     console.log('listening on: '+port)
+    getMessages();
 });
 
-//array to hold a array of connected users on client
+//array to hold a array of connected users on client and messages
 let users = [];
 let userIDs = [];
+let messages;
+
+function getMessages(){
+    //setup required header
+    const https = require('https');
+        
+    //populate data to send to wheatley
+    const data = JSON.stringify({
+        type:"chat",
+        retrieve: true,
+        return: ["*"]
+    });
+
+    //setup wheatley location and connection path
+    var hostName = "wheatley.cs.up.ac.za";
+    var path = "/u21649988/api.php";
+
+    //setup post options for POSTing to Wheatley
+    const options = {
+        hostname: hostName,
+        path: path,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    //run request, always return status 200(asuming Wheatley will recieve request)
+    //request is turned into JSON and passed back to client
+    const request = https.request(options, (returnData) => {
+        returnData.on('data', (response) => {
+            messages = JSON.parse(response).data.message;
+        });
+    });
+
+    //if a error occured, log error to server console
+    request.on('error', (error) => {
+        console.log(error);
+    });
+
+    request.write(data);
+    request.end();
+}
 
 //when login menu submits a post is sent and caught by the function below
 app.post("/login", (req, res) => {
@@ -144,12 +191,19 @@ app.post("/post_message", (req, res) => {
     //setup required header
     const https = require('https');
     
+    let userKey = req.body.key;
+    let messageObject = req.body;
+    delete messageObject["key"]
+
     //populate data to send to wheatley
     const data = JSON.stringify({
-        type:"chat",
-        message: req.body.message,
+        key: userKey,
+        type: "chat",
+        messageData: messageObject,
+        retrieve: false,
         return: ["*"]
     });
+
 
     //setup wheatley location and connection path
     var hostName = "wheatley.cs.up.ac.za";
@@ -171,6 +225,8 @@ app.post("/post_message", (req, res) => {
     //request is turned into JSON and passed back to client
     const request = https.request(options, (returnData) => {
         returnData.on('data', (response) => {
+            messages = (JSON.parse(response.toString())).data.messages.data.message;
+            updateChat();
             res.status(200).json(JSON.parse(response.toString()));
         });
     });
@@ -190,23 +246,25 @@ io.sockets.on('connection', function(socket){
     //function called by each user upon connection
     socket.on('adduser', function(id){
         socket.user = id;
+        socket.emit('update', messages);
         users.push(id);
         userIDs.push(socket.id);
     });
 
     //when user diconnects remove them from user array
     socket.on('disconnect', function () {
-        for(var i=0; i<users.length; i++) {
+        for(var i = 0; i < users.length; i++) {
             if(users[i] == socket.user) {
-                users = users.splice(users[i], 1);
-                userIDs = userIDs.splice(userIDs[i], 1);
+                users.splice(i, 1);
+                userIDs.splice(i, 1);
+                break;
             }
         }
     });
 });
 
 function updateChat() {
-    io.sockets.emit('update', chatList);
+    io.sockets.emit('update', messages);
 }
 
 //start pickup of console commands and set encoding
@@ -221,10 +279,8 @@ process.stdin.on('data', function (text) {
     //if LIST command, display a list of connected users by displaying their ID
     if (command === 'LIST') {
         console.log(users.length+" users currently connected");
-        let i = 1;
-        for(let user in users){
-            console.log("user "+i+": "+users[i-1]);
-            i++;
+        for(let i = 0; i < users.length; i++){
+            console.log("user "+(i+1)+": "+users[i]);
         }
     }
 
@@ -245,7 +301,8 @@ process.stdin.on('data', function (text) {
                     if(socket.id === userIDs[id]){
                         //if user is found disconnect them and display in console that user was removed
                         socket.disconnect(true);
-                        console.log("killed user connection with id: "+id);
+                        console.log("Killed user connection with id: "+id);
+                        return;
                     }
                 });
             }
@@ -258,7 +315,7 @@ process.stdin.on('data', function (text) {
         io.sockets.emit('quit');
 
         //log to console that quit is active
-        console.log("server is shutting down, disconnecting all users");
+        console.log("Server is shutting down.... disconnecting all users");
 
         //loop through all active users and disconnect them
         io.sockets.sockets.forEach((socket) => {
