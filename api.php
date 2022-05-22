@@ -172,6 +172,11 @@
                 $API->rate($data["user_id"], $data["article_id"], $data["rating"], $database);
                 break;
             case "chat":
+                if($data["retrieve"] == true){
+                    echo json_encode($API->retrieveChats($database));
+                    return;
+                }
+
                 if(!array_key_exists("key", $data)){
                     echo json_encode($API->failMessage("API key not set"));
                     return;
@@ -187,7 +192,12 @@
                     return;
                 }
 
-                
+                if(!array_key_exists("messageData", $data)){
+                    echo json_encode($API->failMessage("No message provided"));
+                    return;
+                }
+
+                $API->addMessage($database, $data["messageData"]);
                 break;
             default:
                 echo json_encode($API->failMessage("Unexpected error occured"));
@@ -219,6 +229,32 @@
             echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>$return]]);
         }
 
+        function retrieveChats($database){
+            $query = "SELECT m.*, u.surname, u.name FROM messages as m JOIN users as u ON (m.`user_id` = u.id)"; 
+            $result = $database->getConnection()->query($query); 
+            $row = null;
+            $messages = [];
+            while($row = $result->fetch_assoc()){          
+                $messages[] = $row;
+            }
+
+            return ["status"=> "success", "timestamp"=>time(), "data"=>["message"=>$messages]];
+        }
+
+        function addMessage($database, $messageData){
+            $time = date("Y-m-d H:i:s");
+            $isReply = $messageData["isReply"];
+            $replyId = $messageData["replyId"];
+            $messageContents = $messageData["messageContents"];
+            $userId = $messageData["userId"];
+            $articleId = $messageData["articleId"];
+
+            $database->getConnection()->query("INSERT INTO `messages` (`is_reply`, `reply_id`, `message_contents`, `user_id`, `time`, `article_id`) VALUES ('$isReply', '$replyId', '$messageContents', '$userId', '$time', '$articleId')");  
+        
+            $this->retrieveChats($database);
+            echo json_encode(["status"=> "success", "timestamp"=>time(), "data"=>["message"=>"Message added Successfully", "messages"=>$this->retrieveChats($database)]]);
+        }
+
         function rate($user_id, $article_id, $rating, $database){
             $query = "SELECT rating FROM ratings WHERE article_id = ".$article_id." AND user_id = '".$user_id."'"; 
             $result = $database->getConnection()->query($query); 
@@ -239,7 +275,7 @@
         }
 
         function getRating($article_id, $database){
-            $query = "SELECT COUNT(rating) as numRatings, FORMAT((SUM(rating) / COUNT(rating)),1) as avgRating FROM ratings WHERE article_id = ".$article_id." GROUP BY (article_id)"; 
+            $query = "SELECT COUNT(rating) as numRatings, FORMAT((SUM(rating) / COUNT(rating)),1) as avgRating FROM ratings WHERE article_id = ".$article_id." GROUP BY (article_id)";
             $result = $database->getConnection()->query($query); 
             return $result->fetch_assoc();
         }
