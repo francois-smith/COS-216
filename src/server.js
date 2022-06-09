@@ -10,8 +10,8 @@ const http = require("http").Server(app);
 const io = require('socket.io')(http);
 
 //default login details for wheatley connection
-const username = 'u21649988';
-const password = 'Faffa0319';
+const username = 'username';
+const password = 'password';
 const auth = 'Basic ' + Buffer.from(username + ':' + password).toString('base64');
 
 //setup required parsers for handling cookies and POST data
